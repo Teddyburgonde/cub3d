@@ -4,6 +4,7 @@ Etape 1 : Creation du Makefile  ✅
 
 Etape 2 : Installation de la MLX42 ❌
 
+
 **Parsing**
 
 Etape 3 : Creation d'une fonction pour gerer le .cub ✅ 
