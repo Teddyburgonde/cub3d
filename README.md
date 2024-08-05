@@ -1,4 +1,4 @@
-##Plan :## 
+## Plan :
 
 Etape 1 : Creation du Makefile  ✅ 
 Etape 2 : Installation de la MLX42 ❌
