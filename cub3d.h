@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/06 15:17:37 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:05:51 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "MLX42/include/MLX42/MLX42.h"
 # include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h> 
 
 /*
 * Struct
@@ -51,6 +52,7 @@ int		manage_cub_extension(char **argv);
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	*ft_memset(void *s, int c, size_t n);
+void	ft_putstr_fd(char *s, int fd);
 
 /*
 * Initialization

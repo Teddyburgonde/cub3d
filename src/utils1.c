@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:39:22 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/06 11:35:49 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:01:29 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,19 @@ void	*ft_memset(void *s, int c, size_t n)
 	}
 	return (s);
 }
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	if (s)
+	{
+		while (s[i])
+		{
+			write (fd, &s[i], 1);
+			i++;
+		}
+	}
+}
+

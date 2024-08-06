@@ -5,22 +5,55 @@
 - Creation du Makefile.  ✅
 - Installation de la MLX42. ✅
 - Création du .h ✅
-- Initialiser les variables des structures ❌
+- Initialiser les variables des structures ✅
+- Importer get_next_line ❌
+
+
 
 ## Parsing
 
 **Parsing arguments**
 
 - Nombre d’arguments invalide : moins de 2 arguments ou plus de 3. ✅ 
-- Le fichier .cub n'existe pas. ❌
+- Le fichier .cub n'existe pas. ✅
 - L'extention du fichier .cub est t'il valide ? ✅
-- Le .cub est un directory ❌
+
+
+
+
+
+
+
+
 
 
 ✅  ❌
 
 
+🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
+Tous les trucs tricky auxquels il faut penser pour le parsing de tout sauf la map :
+
+    : Il manque qqe chose (R, NO, SO, S…)
+    : Deux fois la même chose (deux R, deux NO..)
+    : Résolution avec des int plus grands que int max
+    : Résolution avec une virgule ou un autre caractère dedans
+    : Résolution avec 3 chiffres, ou un seul, ou un 0
+    : F ou C avec un chiffre qui manque, ou un chiffre en trop
+    : F ou C avec une virgule en moins ou une virgule en trop
+    : F ou C avec un int supérieur à int max : doit renvoyer une erreur
+    : F ou C avec un chiffre supérieur à 255
+    : Un identifiant mauvais genre (X au lieu de R, ou E au lieu de EA)
+
+Tous les trucs tricky auxquels il faut penser pour le parsing de la map :
+
+    : Une ligne vide dans la map : “Sauf pour la map elle-même, les informations de chaque élément peuvent être séparées par un ou plusieurs espace(s)"
+    : Un caractère incorrect dans la map, genre un 4
+    : Une map ouverte
+    : “Les espaces sont une partie valable de la carte, c’est à vous de les gérer correctement” : pour moi les espaces vides sont des murs
+    : La map est avant un autre élément
+    : Il n’y a pas de map
+    : Pas de joueur ou plusieurs joueurs
 
 
 
