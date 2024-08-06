@@ -4,7 +4,8 @@
 
 - Creation du Makefile.  ✅
 - Installation de la MLX42. ✅
-- Création du .h
+- Création du .h ❌
+- Initialiser les variables des structures ❌
 
 ## Parsing
 
