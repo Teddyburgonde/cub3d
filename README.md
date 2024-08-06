@@ -26,6 +26,7 @@ Etape 3 : Creation d'une fonction pour gerer le .cub ✅
 
 
 **Free structure**
+```c
 
 void	unleak(t_cub *cb)
 {
@@ -50,7 +51,7 @@ void	unleak(t_cub *cb)
 	if (cb->map.bozo_texture)
 		mlx_delete_texture(cb->map.bozo_texture);
 }
-
+```
 
 
 ✅ ❌
