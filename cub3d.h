@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/06 12:53:35 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/06 14:53:59 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ typedef struct s_map {
     
 } t_map;
 
+/*
+* Parsing
+*/
 
+int		manage_cub_extension(char **argv);
 
 /*
 * Utils
@@ -50,7 +54,12 @@ typedef struct s_map {
 int     ft_strncmp(const char *s1, const char *s2, size_t n);
 void	*ft_memset(void *s, int c, size_t n);
 
+/*
+* Initialization
+*/
 
+
+void    initialization_all_struct(t_map *map);
 
 
 #endif

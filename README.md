@@ -4,7 +4,7 @@
 
 - Creation du Makefile.  ✅
 - Installation de la MLX42. ✅
-- Création du .h ❌
+- Création du .h ✅
 - Initialiser les variables des structures ❌
 
 ## Parsing
@@ -12,10 +12,9 @@
 **Parsing arguments**
 
 - Nombre d’arguments invalide : moins de 2 arguments ou plus de 3. ✅ 
-- Le fichier .cub n'existe pas. ✅
+- Le fichier .cub n'existe pas. ❌
+- L'extention du fichier .cub est t'il valide ? ✅
 - Le .cub est un directory ❌
-
-
 
 
 ✅  ❌

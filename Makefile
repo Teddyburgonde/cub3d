@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/08/05 07:45:15 by tebandam         ###   ########.fr        #
+#    Updated: 2024/08/06 14:54:18 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ CFLAGS = -Wall -Wextra -Werror -I. -g
 
 SRCS =	src/main.c \
 		src/utils1.c \
+		src/initialization.c \
+		src/parsing_args.c \
 
 #============ TRANSFORM .c TO .o ============#
 
