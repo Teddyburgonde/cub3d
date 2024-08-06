@@ -6,13 +6,20 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/06 12:03:46 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:53:35 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 #define CUB3D_H
 
+
+/*
+* Includes
+*/
+
+#include "MLX42/include/MLX42/MLX42.h"
+#include "MLX42/include/MLX42/MLX42.h"
 #include <unistd.h>
 #include <stdio.h>
 
@@ -21,14 +28,16 @@
 */
 
 typedef struct s_map {
-    char    **map;
-    int     weight;
+    char	**map;
+    int		weight;
     int     height;
+	int		floor_color;
+	int		ceiling_color;
 
 	mlx_texture_t *northern_texture;
-	mlx_texture_t *southern texture;
-	mlx_texture_t *western texture;
-	mlx_texture_t *eastern texture;
+	mlx_texture_t *southern_texture;
+	mlx_texture_t *western_texture;
+	mlx_texture_t *eastern_texture;
     
 } t_map;
 
