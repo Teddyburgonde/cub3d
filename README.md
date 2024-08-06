@@ -5,7 +5,7 @@
 - Creation du Makefile  ✅
 - Installation de la MLX42 ✅
 
-##Parsing
+## Parsing
 
 **Parsing arguments**
 
