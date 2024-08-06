@@ -2,16 +2,15 @@
 
 **Petite instalation**
 
-- Creation du Makefile  ✅
-- Installation de la MLX42 ✅
+- Creation du Makefile.  ✅
+- Installation de la MLX42. ✅
 
 ## Parsing
 
 **Parsing arguments**
 
-- Nombre d’arguments invalide : moins de 2 arguments ou plus de 3.
-
-- Le fichier .cub n'existe pas.
+- Nombre d’arguments invalide : moins de 2 arguments ou plus de 3. ✅ 
+- Le fichier .cub n'existe pas. ✅
 - Le .cub est un directory
 
 
