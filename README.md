@@ -12,7 +12,7 @@
 - Nombre d’arguments invalide : moins de 2 arguments ou plus de 3.
 
 - Le fichier .cub n'existe pas.
-
+- Le .cub est un directory
 
 
 
