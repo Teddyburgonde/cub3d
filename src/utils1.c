@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:39:22 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/05 14:11:19 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/06 11:35:49 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,19 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	return (0);
+}
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	size_t	i;
+	char	*tab;
+
+	tab = s;
+	i = 0;
+	while (i < n)
+	{
+		tab[i] = c;
+		i++;
+	}
+	return (s);
 }
