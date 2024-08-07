@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/07 09:16:52 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:01:35 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,37 @@
 // 	free(map);
 // }
 
+
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void		*ptr;
+	long int	size_alloc;
+
+	size_alloc = nmemb * size;
+	if (size_alloc < 0 || ((int)nmemb < 0 && (int)size < 0))
+		return (NULL);
+	ptr = malloc(nmemb * size);
+	if (ptr)
+		ft_memset(ptr, '\0', nmemb * size);
+	return (ptr);
+}
+
+
 int	main(int argc, char **argv)
 {
 
 	int	fd;
 	t_map *map;
-	char buffer[4096];
-	ssize_t bytesRead;
+	char *line;
 
 	map = NULL;
-
+	map = ft_calloc(1, sizeof(t_map));
+	if (!map)
+	{
+		ft_putstr_fd("Memory allocation error\n", 2);
+		return (1);
+	}
 	if (argc != 2 || manage_cub_extension(argv) == 1)
 	{
 		ft_putstr_fd("Error\n", 2);
@@ -58,15 +79,42 @@ int	main(int argc, char **argv)
 	if (fd < 0 || fd > 1023)
 	{
 		ft_putstr_fd("The file does not exist\n", 2);
+		//? free_map(map);
 		return (1);
 	}
-	while ((bytesRead = read(fd, buffer, sizeof(buffer))) > 0) 
-    	ft_putstr_fd(buffer, 1);
-	if (bytesRead < 0) 
-    	ft_putstr_fd("Error reading file\n", 2);
-	//get_next_line(fd);
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (ft_strncmp(line, "NO", 2) == 0)
+		{
+			printf("'NO' is present.\n");
+		}
+		else if (ft_strncmp(line, "SO", 2) == 0)
+		{
+			printf("'SO' is present.\n");
+		}
+		else if (ft_strncmp(line, "WE", 2) == 0)
+		{
+			printf("'WE' is present.\n");
+		}
+		else if (ft_strncmp(line, "EA", 2) == 0)
+		{
+			printf("'EA' is present.\n");
+		}
+		else if (ft_strncmp(line, "F", 1) == 0)
+		{
+			printf("'F' is present.\n");
+		}
+		else if (ft_strncmp(line, "C", 1) == 0)
+		{
+			printf("'C' is present.\n");
+		}
+		//ft_putstr_fd(line, 1);
+		free(line);
+		line = get_next_line(fd);
+	}
 	//! Penser a free ma structure t_map !
-	// free_map(map);
+	//? free_map(map);
 	close(fd);
 	printf("\033[32mEnd of program 😊\033[0m\n");
 	return (0);
