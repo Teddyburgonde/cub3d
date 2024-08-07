@@ -6,7 +6,7 @@
 - Installation de la MLX42. ✅
 - Création du .h ✅
 - Initialiser les variables des structures ✅
-- Importer get_next_line ❌
+- Importer get_next_line ✅
 
 
 
@@ -18,13 +18,16 @@
 - Le fichier .cub n'existe pas. ✅
 - L'extention du fichier .cub est t'il valide ? ✅
 
+**Parsing map**
+
+- Lire la map ❌
 
 
 
+**Problems**
 
-
-
-
+- Je ne free pas ma structure t_map. ❌
+- Je n'arrive pas a include MLX42_Int_h pour mlx_delete_texture. ❌
 
 
 ✅  ❌

@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/08/06 14:54:18 by tebandam         ###   ########.fr        #
+#    Updated: 2024/08/07 07:21:32 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,8 @@ SRCS =	src/main.c \
 		src/utils1.c \
 		src/initialization.c \
 		src/parsing_args.c \
+		get_next_line/get_next_line.c \
+		get_next_line/get_next_line_utils.c \
 
 #============ TRANSFORM .c TO .o ============#
 

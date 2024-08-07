@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/06 18:00:21 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/07 08:23:13 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 * Includes
 */
 
-# include "MLX42/include/MLX42/MLX42.h"
+//# include "MLX42/include/MLX42/MLX42_Int.h"
 # include "MLX42/include/MLX42/MLX42.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h> 
-# include "../../get_next_line.h" 
+# include "get_next_line/get_next_line.h" 
 
 /*
 * Struct
