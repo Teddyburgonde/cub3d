@@ -6,12 +6,13 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/09 01:33:16 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/09 01:47:35 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include <fcntl.h>
+
 
 int	main(int argc, char **argv)
 {
@@ -19,12 +20,8 @@ int	main(int argc, char **argv)
 
 	if (parsing_arguments(argc, argv) == 1)
 		return (1);
-	map.fd = open(argv[1], O_DIRECTORY);
-	if (map.fd > 0)
-		return (message_error_for_parsing_args("Is a directory\n", 1));
-	map.fd = open(argv[1], O_RDONLY);
-	if (map.fd < 0 || map.fd > 1023)
-		return (message_error_for_parsing_args("The file does not exist\n", 1));
+	if (check_and_open_file(&map, argv) == 1)
+		return (1);
 
 	// char *line;
 	// int	check_no;
@@ -69,7 +66,7 @@ int	main(int argc, char **argv)
 	//  	ft_putstr_fd("Parsing ok all elements exist 😊\n", 1);
 	// //! Penser a free ma structure t_map !
 	// //? free_map(map);
-	// close(fd);
+	close(map.fd);
 	printf("\033[32mEnd of program 😊\033[0m\n");
 	return (0);
 }

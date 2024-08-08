@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/09 01:31:49 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/09 01:49:53 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ typedef struct s_map
 int		manage_cub_extension(char **argv);
 int		parsing_arguments(int argc, char **argv);
 
+
+/*
+* Check and open file
+*/
+int check_and_open_file(t_map *map, char **argv);
+
 /*
 * Utils
 */
@@ -62,7 +68,6 @@ void	ft_putstr_fd(char *s, int fd);
 */
 
 void	initialization_all_struct(t_map *map);
-
 
 
 /*

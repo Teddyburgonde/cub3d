@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/08/09 01:32:15 by tebandam         ###   ########.fr        #
+#    Updated: 2024/08/09 01:50:30 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS =	src/main.c \
 		src/initialization.c \
 		src/parsing_args.c \
 		src/error.c \
+		src/check_and_open_file.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
 

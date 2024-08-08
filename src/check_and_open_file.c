@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_args.c                                     :+:      :+:    :+:   */
+/*   check_and_open_file.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/06 14:52:41 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/09 01:54:21 by tebandam         ###   ########.fr       */
+/*   Created: 2024/08/09 01:49:06 by tebandam          #+#    #+#             */
+/*   Updated: 2024/08/09 01:49:28 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	manage_cub_extension(char **argv)
+int check_and_open_file(t_map *map, char **argv)
 {
-	int	i;
-
-	i = 0;
-	while (argv[1][i])
-		i++;
-	i--;
-	if (i >= 4 && ft_strncmp(&argv[1][i - 3], ".cub", 4) != 0)
-		return (1);
-	return (0);
-}
-
-int	parsing_arguments(int argc, char **argv)
-{
-	if (argc != 2)
-		return (message_error_for_parsing_args("Wrong argument number.\n", 1));
-	if (manage_cub_extension(argv) == 1)
-		return (message_error_for_parsing_args("Wrong extension map.\n", 1));
+	map->fd = open(argv[1], O_DIRECTORY);
+	if (map->fd > 0)
+		return (message_error_for_parsing_args("Is a directory.\n", 1));
+	map->fd = open(argv[1], O_RDONLY);
+	if (map->fd < 0 || map->fd > 1023)
+		return (message_error_for_parsing_args("The file does not exist.\n", 1));
 	return (0);
 }
