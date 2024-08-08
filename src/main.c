@@ -6,13 +6,11 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/09 01:47:35 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/09 01:56:05 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-#include <fcntl.h>
-
 
 int	main(int argc, char **argv)
 {
