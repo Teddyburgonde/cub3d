@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialization.c                                   :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/06 13:30:36 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/09 01:34:21 by tebandam         ###   ########.fr       */
+/*   Created: 2024/08/09 01:31:06 by tebandam          #+#    #+#             */
+/*   Updated: 2024/08/09 01:31:23 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	initialization_map_struct(t_map *map)
+int	message_error_for_parsing_args(char *message, int ret_value)
 {
-	ft_memset(map, 0, sizeof(*map));
-}
-
-void	initialization_all_struct(t_map *map)
-{
-	initialization_map_struct(map);
+	ft_putstr_fd("Error : ", 2);
+	ft_putstr_fd(message, 2);
+	return (ret_value);
 }

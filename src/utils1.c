@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:39:22 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/06 17:55:38 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/09 01:22:28 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,3 +56,16 @@ void	ft_putstr_fd(char *s, int fd)
 	}
 }
 
+// void	*ft_calloc(size_t nmemb, size_t size)
+// {
+// 	void		*ptr;
+// 	long int	size_alloc;
+
+// 	size_alloc = nmemb * size;
+// 	if (size_alloc < 0 || ((int)nmemb < 0 && (int)size < 0))
+// 		return (NULL);
+// 	ptr = malloc(nmemb * size);
+// 	if (ptr)
+// 		ft_memset(ptr, '\0', nmemb * size);
+// 	return (ptr);
+// }

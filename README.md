@@ -90,6 +90,52 @@ void	unleak(t_cub *cb)
 ```
 
 
+```c
+void	error(int type, char *arg)
+{
+	ft_putstr_fd("Error\n", 2);
+	if (type == MLX)
+		ft_putstr_fd("cub3d: Impossible to load mlx.", 2);
+	if (type == ARGS)
+	{
+		ft_putstr_fd("cub3d: Invalid number of arguments -> ", 2);
+		ft_putstr_fd("usage : ./cub3d [map.cub]\n", 2);
+	}
+	else if (type == EXTENSION)
+	{
+		ft_putstr_fd("cub3d: ", 2);
+		ft_putstr_fd(arg, 2);
+		ft_putstr_fd(": Invalid map format, need [map.cub]\n", 2);
+	}
+	else if (type == DIRECTORY)
+	{
+		ft_putstr_fd("cub3d: ", 2);
+		ft_putstr_fd(arg, 2);
+		ft_putstr_fd(": is a directory\n", 2);
+	}
+	else
+		error_bis(type, arg);
+}
+```
+
+```c
+void	set_param(t_cub *cb)
+{
+	cb->map.param = ft_calloc(sizeof(char *), 7);
+	cb->map.param[0] = ft_strdup("NO");
+	cb->map.param[1] = ft_strdup("SO");
+	cb->map.param[2] = ft_strdup("EA");
+	cb->map.param[3] = ft_strdup("WE");
+	cb->map.param[4] = ft_strdup("F");
+	cb->map.param[5] = ft_strdup("C");
+	if (!cb->map.param[0] || !cb->map.param[1] || !cb->map.param[2]
+		|| !cb->map.param[3] || !cb->map.param[4] || !cb->map.param[5])
+		error(cb, MALLOC_ERROR);
+	cb->map.par = ft_calloc(sizeof(int), 7);
+	if (!cb->map.par)
+		error(cb, MALLOC_ERROR);
+}
+```
 ✅ ❌
 
 

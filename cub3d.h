@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/07 08:23:13 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/09 01:31:49 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 
 typedef struct s_map
 {
+	int				fd;
 	char			**map;
 	int				weight;
 	int				height;
@@ -42,10 +43,11 @@ typedef struct s_map
 }	t_map;
 
 /*
-* Parsing
+* Parsing arguments
 */
 
 int		manage_cub_extension(char **argv);
+int		parsing_arguments(int argc, char **argv);
 
 /*
 * Utils
@@ -60,5 +62,18 @@ void	ft_putstr_fd(char *s, int fd);
 */
 
 void	initialization_all_struct(t_map *map);
+
+
+
+/*
+* Error
+*/
+
+int	message_error_for_parsing_args(char *message, int ret_value);
+
+/*
+* Allocation 
+*/
+// void	*ft_calloc(size_t nmemb, size_t size);
 
 #endif
