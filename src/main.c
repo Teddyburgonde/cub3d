@@ -6,21 +6,41 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/09 01:56:05 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/09 02:14:58 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
+int	read_map(t_map *map, char **line)
+{
+	*line = get_next_line(map->fd);
+	if (!*line)
+	{
+		ft_putstr_fd("Error: during reading.\n", 2);
+		return (1);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_map	map;
+	char *line;
 
 	if (parsing_arguments(argc, argv) == 1)
 		return (1);
 	if (check_and_open_file(&map, argv) == 1)
 		return (1);
+	if (read_map(&map, &line) == 1)
+		return (1);
+	close(map.fd);
+	printf("\033[32mEnd of program 😊\033[0m\n");
+	return (0);
+}
 
+
+	
 	// char *line;
 	// int	check_no;
 	// int check_so;
@@ -35,12 +55,6 @@ int	main(int argc, char **argv)
 	// check_ea = 0;
 	// check_f = 0;
 	// check_c = 0;
-	// line = get_next_line(fd);
-	// if (!line)
-	// {
-	// 	ft_putstr_fd("Error read\n", 2);
-	// 	return (1);
-	// }
 	// while (line)
 	// {
 	// 	if (ft_strncmp(line, "NO", 2) == 0)
@@ -64,7 +78,5 @@ int	main(int argc, char **argv)
 	//  	ft_putstr_fd("Parsing ok all elements exist 😊\n", 1);
 	// //! Penser a free ma structure t_map !
 	// //? free_map(map);
-	close(map.fd);
-	printf("\033[32mEnd of program 😊\033[0m\n");
-	return (0);
-}
+
+
