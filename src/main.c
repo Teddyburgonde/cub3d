@@ -6,21 +6,15 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/09 02:14:58 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/09 02:50:05 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	read_map(t_map *map, char **line)
+void	init_texture(t_map *map)
 {
-	*line = get_next_line(map->fd);
-	if (!*line)
-	{
-		ft_putstr_fd("Error: during reading.\n", 2);
-		return (1);
-	}
-	return (0);
+	ft_memset(&(map->textures), 0, sizeof(t_texture));	
 }
 
 int	main(int argc, char **argv)
@@ -32,10 +26,11 @@ int	main(int argc, char **argv)
 		return (1);
 	if (check_and_open_file(&map, argv) == 1)
 		return (1);
+	init_texture(&map);
 	if (read_map(&map, &line) == 1)
 		return (1);
 	close(map.fd);
-	printf("\033[32mEnd of program 😊\033[0m\n");
+	ft_putstr_fd("\033[32mEnd of program 😊\033[0m\n", 1);
 	return (0);
 }
 

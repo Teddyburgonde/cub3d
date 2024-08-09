@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/09 02:02:21 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/09 02:49:46 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,21 @@
 
 # include "MLX42/include/MLX42/MLX42.h"
 # include <unistd.h>
-# include <stdio.h>
 # include <fcntl.h> 
 # include "get_next_line/get_next_line.h" 
 
 /*
 * Struct
 */
+
+typedef struct s_texture
+{
+	mlx_texture_t	*northern_texture;
+	mlx_texture_t	*southern_texture;
+	mlx_texture_t	*western_texture;
+	mlx_texture_t	*eastern_texture;
+}	t_texture;
+
 
 typedef struct s_map
 {
@@ -35,10 +43,7 @@ typedef struct s_map
 	int				height;
 	int				floor_color;
 	int				ceiling_color;
-	mlx_texture_t	*northern_texture;
-	mlx_texture_t	*southern_texture;
-	mlx_texture_t	*western_texture;
-	mlx_texture_t	*eastern_texture;
+	t_texture		textures;
 }	t_map;
 
 /*
@@ -52,7 +57,15 @@ int		parsing_arguments(int argc, char **argv);
 /*
 * Check and open file
 */
+
 int check_and_open_file(t_map *map, char **argv);
+
+
+/*
+* Read map 
+*/
+
+int	read_map(t_map *map, char **line);
 
 /*
 * Utils
