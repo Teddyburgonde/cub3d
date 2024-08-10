@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/09 02:16:35 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/09 02:18:22 by tebandam         ###   ########.fr       */
+/*   Created: 2024/08/10 14:35:54 by tebandam          #+#    #+#             */
+/*   Updated: 2024/08/10 14:35:55 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	read_map(t_map *map, char **line)
+char	**get_map(int fd)
 {
-	*line = get_next_line(map->fd);
-	if (!*line)
+	char	**map;
+	char	*line;
+	char	*tmp;
+
+	map = NULL;
+	line = get_next_line(fd);
+	if (!line)
+		return (NULL);
+	tmp = get_next_line(fd);
+	while (tmp != NULL)
 	{
-		ft_putstr_fd("Error: During reading.\n", 2);
-		return (1);
+		line = ft_strjoin(line, tmp);
+		free(tmp);
+		tmp = get_next_line(fd);
 	}
-	return (0);
+	map = ft_split(line, '\n');
+	free(line);
+	free(tmp);
+	return (map);
 }
+

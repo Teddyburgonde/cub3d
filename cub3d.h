@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/09 02:49:46 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/10 15:54:04 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ typedef struct s_map
 	t_texture		textures;
 }	t_map;
 
+
+void	ft_print_value_map(t_map *map);
+int		ft_print_map_elements(t_map *map);
+
+
+
 /*
 * Parsing arguments
 */
@@ -65,7 +71,7 @@ int check_and_open_file(t_map *map, char **argv);
 * Read map 
 */
 
-int	read_map(t_map *map, char **line);
+char	**get_map(int fd);
 
 /*
 * Utils
@@ -76,10 +82,18 @@ void	*ft_memset(void *s, int c, size_t n);
 void	ft_putstr_fd(char *s, int fd);
 
 /*
+* ft_split
+*/
+
+char	**ft_split(char const *s, char c);
+
+
+/*
 * Initialization
 */
 
 void	initialization_all_struct(t_map *map);
+void	init_texture(t_map *map);
 
 
 /*
