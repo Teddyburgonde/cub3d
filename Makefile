@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/08/10 14:38:18 by tebandam         ###   ########.fr        #
+#    Updated: 2024/08/11 11:10:33 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ CFLAGS = -Wall -Wextra -Werror -I. -g
 SRCS =	src/test.c \
 		src/main.c \
 		src/utils1.c \
-		src/initialization.c \
 		src/parsing_args.c \
 		src/error.c \
 		src/check_and_open_file.c \

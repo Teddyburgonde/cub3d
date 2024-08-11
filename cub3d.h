@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/11 10:09:05 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/11 11:07:49 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ char	**ft_split(char const *s, char c);
 * Initialization
 */
 
-void	initialize_map(t_map *map);
 //void	init_texture(t_map *map);
 
 
@@ -106,7 +105,8 @@ void	initialize_map(t_map *map);
 * Error
 */
 
-int	message_error_for_parsing_args(char *message, int ret_value);
+int		message_error_for_parsing_args(char *message, int ret_value);
+int		message_error_for_missing_elements(t_map *map);
 
 /*
 * Allocation 

@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 01:49:06 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/09 01:58:27 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/11 10:56:52 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	check_and_open_file(t_map *map, char **argv)
 	map->fd = open(argv[1], O_DIRECTORY);
 	if (map->fd > 0)
 		return (message_error_for_parsing_args("Is a directory.\n", 1));
+	close(map->fd);
 	map->fd = open(argv[1], O_RDONLY);
 	if (map->fd < 0 || map->fd > 1023)
 		return (message_error_for_parsing_args(
