@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 01:31:06 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/11 11:09:34 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/11 16:56:19 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	message_error_for_parsing_args(char *message, int ret_value)
 	return (ret_value);
 }
 
-int	message_error_for_missing_elements(t_map *map)
+int	message_error_for_missing_elements(t_counter_parameter counter_parameter)
 {
-	if (map->counter_no != 1 || map->counter_so != 1 || map->counter_we != 1
-		|| map->counter_ea != 1 || map->counter_f != 1 || map->counter_c != 1)
+	if (counter_parameter.counter_no != 1 || counter_parameter.counter_so != 1 || counter_parameter.counter_we != 1
+		|| counter_parameter.counter_ea != 1 || counter_parameter.counter_f != 1 || counter_parameter.counter_c != 1)
 	{
 		ft_putstr_fd("Error: One or more elements are missing \n", 2);
 		return (1);

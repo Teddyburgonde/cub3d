@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/11 11:07:49 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:01:00 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,16 @@
 * Struct
 */
 
-// typedef struct s_texture
-// {
-// 	char	*northern_texture;
-// 	char	*southern_texture;
-// 	char	*western_texture;
-// 	char	*eastern_texture;
-// }	t_texture;
+typedef struct s_counter_parameter 
+{
+	int				counter_no;
+	int				counter_so;
+	int				counter_we;
+	int				counter_ea;
+	int				counter_f;
+	int				counter_c;
+} t_counter_parameter;
+
 
 typedef struct s_map
 {
@@ -42,18 +45,12 @@ typedef struct s_map
 	int				height;
 	int				floor_color;
 	int				ceiling_color;
-	int				counter_no;
-	int				counter_so;
-	int				counter_we;
-	int				counter_ea;
-	int				counter_f;
-	int				counter_c;
 }	t_map;
 
 
 
 void	ft_print_value_map(t_map *map);
-int		ft_print_map_elements(t_map *map);
+int		ft_parse_map_elements_wall(t_map *map);
 
 
 
@@ -63,6 +60,7 @@ int		ft_print_map_elements(t_map *map);
 
 int		manage_cub_extension(char **argv);
 int		parsing_arguments(int argc, char **argv);
+int		ft_parse_map_elements(t_map *map);
 
 
 /*
@@ -106,8 +104,7 @@ char	**ft_split(char const *s, char c);
 */
 
 int		message_error_for_parsing_args(char *message, int ret_value);
-int		message_error_for_missing_elements(t_map *map);
-
+int		message_error_for_missing_elements(t_counter_parameter counter_parameter);
 /*
 * Allocation 
 */

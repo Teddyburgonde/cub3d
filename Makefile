@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/08/11 11:10:33 by tebandam         ###   ########.fr        #
+#    Updated: 2024/08/11 15:24:55 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ CC = clang
 
 #=================== FLAGS ==================#
 
-CFLAGS = -Wall -Wextra -Werror -I. -g
+CFLAGS = -Wall -Wextra -Werror -I./MLX42/include -g
+
+MLXFLAGS= MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 
 #============= MANDATORY SOURCES ============#
 
@@ -30,6 +32,7 @@ SRCS =	src/test.c \
 		src/error.c \
 		src/check_and_open_file.c \
 		src/get_map.c \
+		src/parsing_elements.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
 		src/ft_split.c \
@@ -50,7 +53,7 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME) : $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) -o $(NAME)
 	@echo $(dark_green)"Executable is ready"
 
 clean: 
