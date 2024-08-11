@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/10 20:48:26 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/11 10:09:05 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@
 * Struct
 */
 
-typedef struct s_texture
-{
-	char	*northern_texture;
-	char	*southern_texture;
-	char	*western_texture;
-	char	*eastern_texture;
-}	t_texture;
+// typedef struct s_texture
+// {
+// 	char	*northern_texture;
+// 	char	*southern_texture;
+// 	char	*western_texture;
+// 	char	*eastern_texture;
+// }	t_texture;
 
 typedef struct s_map
 {
@@ -48,7 +48,6 @@ typedef struct s_map
 	int				counter_ea;
 	int				counter_f;
 	int				counter_c;
-	t_texture		textures;
 }	t_map;
 
 
@@ -86,6 +85,7 @@ char	**get_map(int fd);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_putstr_fd(char *s, int fd);
 void	*ft_memset(void *s, int c, size_t n);
+char	*ft_strdup(const char *s);
 
 /*
 * ft_split
@@ -98,8 +98,8 @@ char	**ft_split(char const *s, char c);
 * Initialization
 */
 
-void	initialization_all_struct(t_map *map);
-void	init_texture(t_map *map);
+void	initialize_map(t_map *map);
+//void	init_texture(t_map *map);
 
 
 /*

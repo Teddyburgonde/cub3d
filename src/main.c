@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/10 20:52:22 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/11 10:09:20 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,16 @@ int	ft_parse_map_elements(t_map *map)
 	int	i;
 
 	i = 0;
-	printf("ft_parse_map_element before while\n");
+	map->map = (char **)malloc(sizeof(char *) * 7);
+	if (!map->map)
+		ft_putstr_fd("Error allocation\n", 1);
+	map->map[0] = ft_strdup("NO texture_north");
+	map->map[1] = ft_strdup("SO texture_south");
+	map->map[2] = ft_strdup("WE texture_west");
+	map->map[3] = ft_strdup("EA texture_east");
+	map->map[4] = ft_strdup("F floor_color");
+	map->map[5] = ft_strdup("C ceiling_color");
+	map->map[6] = NULL;
 	while (map->map[i])
 	{
 		if (ft_strncmp(map->map[i], "NO ", 3) == 0)
@@ -35,7 +44,6 @@ int	ft_parse_map_elements(t_map *map)
 			map->counter_c++;
 		i++;
 	}
-	printf("ft_parse_map_element after while\n");
 	if (map->counter_no != 1 || map->counter_so != 1 || map->counter_we != 1 
 		|| map->counter_ea != 1 || map->counter_f != 1 || map->counter_c != 1)
 	{
@@ -52,10 +60,9 @@ int	main(int argc, char **argv)
 		return (1);
 	if (check_and_open_file(&map, argv) == 1)
 		return (1);
-	initialization_all_struct(&map);
-	init_texture(&map);
+	initialize_map(&map);
+	//init_texture(&map);
 	map.map = get_map(map.fd);
-	printf("main apres get_map\n");
 	//ft_print_map_elements(&map);
 	if (ft_parse_map_elements(&map) == 1)
 		return (1);

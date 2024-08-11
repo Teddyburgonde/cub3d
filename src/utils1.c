@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:39:22 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/10 20:48:07 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/11 10:08:21 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,26 @@ void	*ft_memset(void *s, int c, size_t n)
 	}
 	return (s);
 }
+
+char	*ft_strdup(const char *s)
+{
+	char		*tab;
+	int			i;
+
+	i = 0;
+	tab = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (tab)
+	{
+		while (s[i])
+		{
+			tab[i] = s[i];
+			i++;
+		}
+		tab[i] = '\0';
+	}
+	return ((char *)tab);
+}
+
 
 // void	*ft_calloc(size_t nmemb, size_t size)
 // {
