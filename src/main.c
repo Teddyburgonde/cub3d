@@ -6,11 +6,62 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/12 18:55:56 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:59:41 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+// code generer a etudier 
+
+
+/*
+int	load_texture(char *map_line, const char *prefix, void **texture_ptr)
+{
+	char	**tab;
+
+	if (ft_strncmp(map_line, prefix, 3) == 0)
+	{
+		tab = ft_split(map_line, ' ');
+		if (tab[1] != NULL)
+		{
+			if (mlx_load_png(tab[1]) == NULL)
+			{
+				printf("Error loading texture\n");
+				ft_free(tab);
+				return (1);
+			}
+			else
+				*texture_ptr = mlx_load_png(tab[1]);
+			ft_free(tab);
+		}
+	}
+	return (0);
+}
+
+int	ft_parse_map_path_texture(t_map *map, t_texture *texture)
+{
+	int	i;
+
+	i = 0;
+	while (map->map[i])
+	{
+		if (load_texture(map->map[i], "NO ", (void**)&texture->north_texture) ||
+			load_texture(map->map[i], "SO ", (void**)&texture->south_texture) ||
+			load_texture(map->map[i], "WE ", (void**)&texture->west_texture) ||
+			load_texture(map->map[i], "EA ", (void**)&texture->east_texture))
+		{
+			return (1);
+		}
+		i++;
+	}
+	ft_putstr_fd("All textures are OK", 1);
+	return (0);
+}
+
+
+*/
+
 
 int	ft_parse_map_elements(t_map *map)
 {
@@ -119,38 +170,6 @@ int	ft_parse_map_path_texture(t_map *map, t_texture *texture)
 	}
 	ft_putstr_fd("All texture it's OK", 1);
 	return (0);
-		// else if (ft_strncmp(map->map[i], "F ", 2) == 0)
-		// {
-		// 	tab = ft_split(map->map[i], ' ');
-		// 	if (tab[1] != NULL)
-		// 	{
-		// 		if (mlx_load_png(tab[1]) == NULL)
-		// 		{
- 		// 			printf("Error loading texture\n");
-		// 			ft_free(tab);
-		// 			return (1);
-		// 		}
-		// 		else
-		// 		 	texture->west_texture = mlx_load_png(tab[1]);
-		// 		ft_free(tab);
-		// 	}
-		// }
-		// else if (ft_strncmp(map->map[i], "C ", 2) == 0)
-		// {
-		// 	tab = ft_split(map->map[i], ' ');
-		// 	if (tab[1] != NULL)
-		// 	{
-		// 		if (mlx_load_png(tab[1]) == NULL)
-		// 		{
- 		// 			printf("Error loading texture\n");
-		// 			ft_free(tab);
-		// 			return (1);
-		// 		}
-		// 		else
-		// 		 	map->ceiling_color = mlx_load_png(tab[1]);
-		// 		ft_free(tab);
-		// 	}
-		// }
 }
 
 
