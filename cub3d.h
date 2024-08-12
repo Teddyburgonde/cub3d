@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/11 17:01:00 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:42:19 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@
 * Struct
 */
 
+typedef struct s_texture 
+{
+	mlx_texture_t	*north_texture;
+	mlx_texture_t	*west_texture;
+	mlx_texture_t	*south_texture;
+	mlx_texture_t	*east_texture;
+} t_texture;
+
+
 typedef struct s_counter_parameter 
 {
 	int				counter_no;
@@ -34,7 +43,7 @@ typedef struct s_counter_parameter
 	int				counter_ea;
 	int				counter_f;
 	int				counter_c;
-} t_counter_parameter;
+}	t_counter_parameter;
 
 
 typedef struct s_map
@@ -105,6 +114,13 @@ char	**ft_split(char const *s, char c);
 
 int		message_error_for_parsing_args(char *message, int ret_value);
 int		message_error_for_missing_elements(t_counter_parameter counter_parameter);
+
+/*
+* Free
+*/
+
+void	ft_free(char **tab);
+
 /*
 * Allocation 
 */

@@ -1,5 +1,16 @@
-NO ./textures/wall_no.png
-SO 2222222222
+NO                  ./textures/wall_no.png
+
+
+
+
+SO                  2222222222
+
+
+
+
+
+
+
 WE    3333333333
 EA 111111111111111
 F 111

@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/08/11 15:24:55 by tebandam         ###   ########.fr        #
+#    Updated: 2024/08/12 18:43:00 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS =	src/test.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
 		src/ft_split.c \
+		src/free.c \
 
 #============ TRANSFORM .c TO .o ============#
 
