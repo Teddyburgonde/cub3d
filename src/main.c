@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/12 18:50:43 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:55:56 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int	ft_parse_map_path_texture(t_map *map, t_texture *texture)
 }
 
 
-	
+// telecharger les autres textures	
 
 int	main(int argc, char **argv)
 {
