@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/12 18:42:19 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:38:48 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	ft_print_value_map(t_map *map);
 int		ft_parse_map_elements_wall(t_map *map);
 
 
-
 /*
 * Parsing arguments
 */
@@ -70,6 +69,15 @@ int		ft_parse_map_elements_wall(t_map *map);
 int		manage_cub_extension(char **argv);
 int		parsing_arguments(int argc, char **argv);
 int		ft_parse_map_elements(t_map *map);
+
+
+/*
+* Textures
+*/
+
+int		load_north_south_textures(t_map *map, t_texture *texture, int i);
+int		load_west_east_textures(t_map *map, t_texture *texture, int i);
+int		ft_parse_map_path_texture(t_map *map, t_texture *texture);
 
 
 /*
@@ -114,7 +122,7 @@ char	**ft_split(char const *s, char c);
 
 int		message_error_for_parsing_args(char *message, int ret_value);
 int		message_error_for_missing_elements(t_counter_parameter counter_parameter);
-
+int		message_error_for_texture_load(char *error_message);
 /*
 * Free
 */

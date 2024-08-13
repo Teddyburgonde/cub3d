@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 01:31:06 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/11 16:56:19 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:38:53 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,19 @@ int	message_error_for_parsing_args(char *message, int ret_value)
 
 int	message_error_for_missing_elements(t_counter_parameter counter_parameter)
 {
-	if (counter_parameter.counter_no != 1 || counter_parameter.counter_so != 1 || counter_parameter.counter_we != 1
-		|| counter_parameter.counter_ea != 1 || counter_parameter.counter_f != 1 || counter_parameter.counter_c != 1)
+	if (counter_parameter.counter_no != 1 || counter_parameter.counter_so != 1
+		|| counter_parameter.counter_we != 1
+		|| counter_parameter.counter_ea != 1
+		|| counter_parameter.counter_f != 1 || counter_parameter.counter_c != 1)
 	{
 		ft_putstr_fd("Error: One or more elements are missing \n", 2);
 		return (1);
 	}
 	return (0);
+}
+
+int	message_error_for_texture_load(char *error_message)
+{
+	ft_putstr_fd(error_message, 2);
+	return (1);
 }
