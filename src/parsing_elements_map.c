@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/13 14:37:05 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:48:48 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,5 @@ int	ft_parse_map_path_texture(t_map *map, t_texture *texture)
 		}
 		i++;
 	}
-	ft_putstr_fd("All texture it's OK\n", 1);
 	return (0);
 }

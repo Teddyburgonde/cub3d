@@ -7,12 +7,14 @@ WE                  ./textures/wall_we.png
 
 EA ./textures/wall_ea.png
 
-F /telecharger les autres textures 
-C /telecharger les autres textures 
+F 256,100,0 
+C 225,30,0
 
-4444444444
-111111111111111
 
-00000000
 
-p
+- trouver le F ✅
+- split et stock dans tab ❌
+- if (tab[1] != NULL) ❌
+- parcourir le tableau de tableau  ❌
+- si les 3 premiers element sont un chiffre et element 4 et une virgule et si les 3 elements
+sont des chiffres puis virgule et apres un chifre ( tout est entre 0 a 255) ❌
