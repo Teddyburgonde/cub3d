@@ -7,7 +7,7 @@ WE                  ./textures/wall_we.png
 
 EA ./textures/wall_ea.png
 
-F 254,12,600
+F 254,45,60
 C 225,30,0
 
 
@@ -17,5 +17,6 @@ C 225,30,0
 - if (tab[1] != NULL) ✅
 - parcourir le tableau de tableau  ✅
 - si les 3 premiers element sont un chiffre et element 4 et une virgule et si les 3 elements
-sont des chiffres puis virgule et apres un chifre ( tout est entre 0 a 255) ❌
-- chercher la fonction MLX42 qui permet de transformer le RGB ❌
+sont des chiffres puis virgule et apres un chifre ( tout est entre 0 a 255) ✅
+- chercher la fonction MLX42 qui permet de transformer le RGB ✅
+- Appliquer la fonction qui permet de transformer le RGB 
