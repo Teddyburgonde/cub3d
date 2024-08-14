@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/13 17:59:20 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/14 08:29:39 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_parse_map_elements_color(t_map *map)
 	char	**tmp;
 	char	**tab;
 	int		i;
-	
+	map->floor_color = ft_calloc(3, sizeof(int));
 	i = 0;
 	tmp = NULL;
 	tab = NULL;
@@ -28,11 +28,17 @@ int	ft_parse_map_elements_color(t_map *map)
 		{
 			tmp = ft_split(map->map[i], ' ');
 			tab = ft_split(tmp[1], ',');
-			map->floor_color = ft_atoi(tab[0]);
-			if (map->floor_color >= 0 && map->floor_color <= 255)
-				printf("La valeur %d est correct\n", map->floor_color);
+			map->floor_color[0] = ft_atoi(tab[0]);
+			map->floor_color[1] = ft_atoi(tab[1]);
+			map->floor_color[2] = ft_atoi(tab[2]);
+			if (map->floor_color[0] >= 0 && map->floor_color[0] <= 255)
+			{
+				printf("La valeur %d est correct\n", map->floor_color[0]);
+				printf("La valeur %d est correct\n", map->floor_color[1]);
+				printf("La valeur %d est correct\n", map->floor_color[2]);
+			}
 			else
-				printf("La valeur %d est incorrect\n", map->floor_color);
+				printf("La valeur %d est incorrect\n", map->floor_color[0]);
 		}
 		if (ft_strncmp(map->map[i], "C ", 2) == 0)
 		{

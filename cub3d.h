@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/13 17:57:52 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/14 08:10:14 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_map
 	char			**map;
 	int				weight;
 	int				height;
-	int				floor_color;
+	int				*floor_color;
 	int				ceiling_color;
 }	t_map;
 
@@ -102,19 +102,13 @@ void	ft_putstr_fd(char *s, int fd);
 void	*ft_memset(void *s, int c, size_t n);
 char	*ft_strdup(const char *s);
 int		ft_atoi(const char *nptr);
+void	*ft_calloc(size_t nmemb, size_t size);
 
 /*
 * ft_split
 */
 
 char	**ft_split(char const *s, char c);
-
-
-/*
-* Initialization
-*/
-
-//void	init_texture(t_map *map);
 
 
 /*
