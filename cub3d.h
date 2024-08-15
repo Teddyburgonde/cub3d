@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/15 00:48:40 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/15 09:11:55 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ int		ft_parse_map_elements_wall(t_map *map);
 int		manage_cub_extension(char **argv);
 int		parsing_arguments(int argc, char **argv);
 int		ft_parse_map_elements(t_map *map);
+
+
+/*
+* Parsing colors
+*/
+
+int	ft_parse_map_elements_colors(t_map *map);
 
 
 /*

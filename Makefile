@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/08/13 17:58:17 by tebandam         ###   ########.fr        #
+#    Updated: 2024/08/15 09:08:30 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS =	src/test.c \
 		src/get_map.c \
 		src/load_textures.c \
 		src/parsing_elements_map.c \
+		src/parsing_colors_maps.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
 		src/ft_split.c \
