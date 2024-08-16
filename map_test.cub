@@ -9,7 +9,11 @@ EA ./textures/wall_ea.png
 F 254,45,60
 C 225,30,5
 
-
+111111
+111111
+11 1N1
+111101
+111111
 
 - trouver le F ✅
 - split et stock dans tab ✅
@@ -20,12 +24,8 @@ sont des chiffres puis virgule et apres un chifre ( tout est entre 0 a 255) ✅
 - chercher la fonction MLX42 qui permet de transformer le RGB ✅
 - Appliquer la fonction qui permet de transformer le RGB ✅
 
+
+
+- trouver comment on peut regarder la map en bas sans les elements den haut 
 - regarder si la map est bien fermer par des 1
 - N S E W doit etre dedans 
-
-
-111111
-111111
-11 1N1
-111101
-111111

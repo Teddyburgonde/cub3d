@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/15 09:14:47 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:26:58 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	ft_parse_map_elements_colors(t_map *map)
 		}
 		if (ft_strncmp(map->map[i], "C ", 2) == 0)
 		{
+			map->map_after_color = map->map[i + 2];
 			if (ft_parse_color(map->map[i], map->ceiling_color) == 1)
 				return (EXIT_FAILURE);
 		}
