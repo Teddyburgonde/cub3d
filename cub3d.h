@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/15 09:31:21 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:48:04 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,14 @@ typedef struct s_counter_parameter
 
 typedef struct s_map
 {
+	int				save;
 	int				fd;
 	char			**map;
 	int				weight;
 	int				height;
 	int				floor_color[4];
 	int				ceiling_color[4];
-	char			*map_after_color;
+	char			**map_after_color;
 }	t_map;
 
 
@@ -76,8 +77,13 @@ int		ft_parse_map_elements(t_map *map);
 * Parsing colors
 */
 
-int	ft_parse_map_elements_colors(t_map *map);
+int		ft_parse_map_elements_colors(t_map *map);
 
+/*
+* Parse map
+*/
+
+int		parse_map(t_map *map);
 
 /*
 * Textures

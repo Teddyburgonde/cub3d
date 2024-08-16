@@ -9,10 +9,32 @@ EA ./textures/wall_ea.png
 F 254,45,60
 C 225,30,5
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 111111
 111111
 11 1N1
-111101
+ 11101
 111111
 
 - trouver le F ✅
@@ -26,6 +48,6 @@ sont des chiffres puis virgule et apres un chifre ( tout est entre 0 a 255) ✅
 
 
 
-- trouver comment on peut regarder la map en bas sans les elements den haut 
+- trouver comment on peut regarder la map en bas sans les elements den haut ✅
 - regarder si la map est bien fermer par des 1
 - N S E W doit etre dedans 
