@@ -146,6 +146,24 @@ SO ?
 WE ?
 EA ?
 
+- trouver le F ✅
+- split et stock dans tab ✅
+- if (tab[1] != NULL) ✅
+- parcourir le tableau de tableau  ✅
+- si les 3 premiers element sont un chiffre et element 4 et une virgule et si les 3 elements
+sont des chiffres puis virgule et apres un chifre ( tout est entre 0 a 255) ✅
+- chercher la fonction MLX42 qui permet de transformer le RGB ✅
+- Appliquer la fonction qui permet de transformer le RGB ✅
+
+
+
+- trouver comment on peut regarder la map en bas sans les elements den haut ✅
+- regarder si la map est bien fermer par des 1
+- N S E W doit etre dedans 
+
+
+- regarder si la map est bien fermer par des 1
+- N S E W doit etre dedans 
 
 Sources : 
 

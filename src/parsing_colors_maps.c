@@ -6,12 +6,11 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/16 16:54:23 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/17 16:30:30 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-#include <stdint.h>
 
 static	int32_t	ft_pixel(int32_t r, int32_t g, int32_t b)
 {
@@ -58,36 +57,12 @@ static int	ft_parse_color(char *map_line, int *color)
 	ft_free(tab);
 	return (EXIT_SUCCESS);
 }
-#include <stdio.h>
 
-// int	parse_map(t_map *map)
-// {
-
-// 	while (map->map_after_color[map->save])
-// 	{
-// 		printf("%s\n", map->map_after_color[map->save]);
-// 		map->save++;
-// 	}
-// 	return (0);
-// }
-
-int	parse_map(t_map *map)
-{
-	while (map->map[map->save])
-	{
-		
-		printf("parse_map , value : %s\n", map->map[map->save]);
-		map->save++;
-	}
-	return (0);
-}
-
-int	ft_parse_map_elements_colors(t_map *map)
+int	ft_parse_map_elements_colors(t_map_data *map)
 {
 	int		i;
 
 	i = 0;
-	//map->map_after_color = malloc(sizeof(char *) + 1);
 	while (map->map[i])
 	{
 		if (ft_strncmp(map->map[i], "F ", 2) == 0)
@@ -105,4 +80,3 @@ int	ft_parse_map_elements_colors(t_map *map)
 	}
 	return (EXIT_SUCCESS);
 }
-

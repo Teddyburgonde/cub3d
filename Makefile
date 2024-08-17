@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/08/16 16:18:30 by tebandam         ###   ########.fr        #
+#    Updated: 2024/08/17 16:29:51 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,7 @@ MLXFLAGS= MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 
 #============= MANDATORY SOURCES ============#
 
-SRCS =	src/test.c \
-		src/main.c \
+SRCS =  src/main.c \
 		src/utils1.c \
 		src/parsing_args.c \
 		src/error.c \
@@ -40,6 +39,8 @@ SRCS =	src/test.c \
 		src/ft_split.c \
 		src/free.c \
 		src/utils2.c \
+		src/parsing_map.c \
+		#src/test.c \
 
 #============ TRANSFORM .c TO .o ============#
 

@@ -6,13 +6,13 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/13 16:48:48 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/17 16:14:23 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	ft_parse_map_elements(t_map *map)
+int	ft_parse_map_elements(t_map_data *map)
 {
 	int					i;
 	t_counter_parameter	counter_parameter;
@@ -40,7 +40,7 @@ int	ft_parse_map_elements(t_map *map)
 	return (0);
 }
 
-int	ft_parse_map_path_texture(t_map *map, t_texture *texture)
+int	ft_parse_map_path_texture(t_map_data *map, t_texture *texture)
 {
 	int	i;
 

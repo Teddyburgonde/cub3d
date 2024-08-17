@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:57:15 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/13 17:59:28 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/17 16:23:09 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,19 @@ int	ft_atoi(const char *nptr)
 	}
 	return (a * sign);
 }
+
+int	is_full_whitespaces(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+

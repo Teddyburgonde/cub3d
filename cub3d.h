@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/16 16:48:04 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/17 16:23:24 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_counter_parameter
 }	t_counter_parameter;
 
 
-typedef struct s_map
+typedef struct s_map_data
 {
 	int				save;
 	int				fd;
@@ -56,12 +56,12 @@ typedef struct s_map
 	int				floor_color[4];
 	int				ceiling_color[4];
 	char			**map_after_color;
-}	t_map;
+}	t_map_data;
 
 
 
-void	ft_print_value_map(t_map *map);
-int		ft_parse_map_elements_wall(t_map *map);
+void	ft_print_value_map(t_map_data *map);
+int		ft_parse_map_elements_wall(t_map_data *map);
 
 
 /*
@@ -70,35 +70,35 @@ int		ft_parse_map_elements_wall(t_map *map);
 
 int		manage_cub_extension(char **argv);
 int		parsing_arguments(int argc, char **argv);
-int		ft_parse_map_elements(t_map *map);
+int		ft_parse_map_elements(t_map_data *map);
 
 
 /*
 * Parsing colors
 */
 
-int		ft_parse_map_elements_colors(t_map *map);
+int		ft_parse_map_elements_colors(t_map_data *map);
 
 /*
 * Parse map
 */
 
-int		parse_map(t_map *map);
+int		parse_map(t_map_data *map);
 
 /*
 * Textures
 */
 
-int		load_north_south_textures(t_map *map, t_texture *texture, int i);
-int		load_west_east_textures(t_map *map, t_texture *texture, int i);
-int		ft_parse_map_path_texture(t_map *map, t_texture *texture);
+int		load_north_south_textures(t_map_data *map, t_texture *texture, int i);
+int		load_west_east_textures(t_map_data *map, t_texture *texture, int i);
+int		ft_parse_map_path_texture(t_map_data *map, t_texture *texture);
 
 
 /*
 * Check and open file
 */
 
-int check_and_open_file(t_map *map, char **argv);
+int check_and_open_file(t_map_data *map, char **argv);
 
 
 /*
@@ -117,6 +117,7 @@ void	*ft_memset(void *s, int c, size_t n);
 char	*ft_strdup(const char *s);
 int		ft_atoi(const char *nptr);
 void	*ft_calloc(size_t nmemb, size_t size);
+int		is_full_whitespaces(char *str);
 
 /*
 * ft_split
