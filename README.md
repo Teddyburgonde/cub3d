@@ -139,6 +139,12 @@ void	set_param(t_cub *cb)
 ✅ ❌
 
 
+- trouver comment on peut regarder la map en bas sans les elements den haut ✅
+- N S E W doit etre dedans 
+- regarder si la map est bien fermer par des 1
+
+
+
 
 
 NO ?
@@ -157,9 +163,9 @@ sont des chiffres puis virgule et apres un chifre ( tout est entre 0 a 255) ✅
 
 
 
-- trouver comment on peut regarder la map en bas sans les elements den haut ✅
-- regarder si la map est bien fermer par des 1
-- N S E W doit etre dedans 
+
+
+
 
 
 - regarder si la map est bien fermer par des 1

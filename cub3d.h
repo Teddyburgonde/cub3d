@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/17 16:23:24 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/17 17:01:32 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_map_data
 	int				floor_color[4];
 	int				ceiling_color[4];
 	char			**map_after_color;
+	char			direction;
 }	t_map_data;
 
 
