@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/17 17:32:31 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/18 18:15:17 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,56 @@ int	is_direction_valid(char *str, t_map_data *map_data)
 	return (1);
 }
 
+static int	is_top_and_bottom_wall_closed(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+// is_top_wall_closed                           ok
+// is_bottom_wall_closed                        ok
+// is_left_wall_closed							ok
+// is_right_wall_closed							OK
+
+
+#include <stdio.h>
 int	parse_map(t_map_data *map_data)
 {
 	int	i;
-	
+	int	j;
+
+	i = 0;
+	j = 0;
 	while (map_data->map[map_data->save] && is_full_whitespaces(map_data->map[map_data->save]) == 1)
 		map_data->save++;
+	if (is_top_and_bottom_wall_closed(map_data->map[map_data->save]) == 0)
+	{
+		ft_putstr_fd("Error: Invalid map\n", 2);
+		return (1);
+	}
 	while (map_data->map[map_data->save])
 	{
-		i = 0;
+		if (map_data->map[map_data->save][i] != '1')
+		{
+			printf("%c\n", map_data->map[map_data->save][i]);
+			ft_putstr_fd("Error: Invalid map\n", 2);
+			return (1);
+		}
+		j = ft_strlen(map_data->map[map_data->save]);
+		j--;
+		if (map_data->map[map_data->save][j] != '1')
+		{
+			ft_putstr_fd("Error: Invalid map\n", 2);
+			return (1);
+		}
 		if (is_line_valid(map_data->map[map_data->save]) == 0 || is_full_whitespaces(map_data->map[map_data->save]) == 1)
 		{
 			ft_putstr_fd("Error: Invalid map\n", 2);
@@ -70,9 +111,14 @@ int	parse_map(t_map_data *map_data)
 		}
 		map_data->save++;
 	}
+	map_data->save--;
+	if (is_top_and_bottom_wall_closed(map_data->map[map_data->save]) == 0)
+	{
+		ft_putstr_fd("Error: Invalid map\n", 2);
+		return (1);
+	}
 	if (!map_data->direction)
 	{
-		ft_putstr_fd(map_data->map[map_data->save], 2);
 		ft_putstr_fd("Error: Invalid map\n", 2);
 		return (1);
 	}
