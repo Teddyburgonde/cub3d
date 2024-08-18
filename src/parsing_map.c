@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/18 18:15:17 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/18 18:16:36 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,6 @@ static int	is_top_and_bottom_wall_closed(char *str)
 	return (1);
 }
 
-// is_top_wall_closed                           ok
-// is_bottom_wall_closed                        ok
-// is_left_wall_closed							ok
-// is_right_wall_closed							OK
-
-
-#include <stdio.h>
 int	parse_map(t_map_data *map_data)
 {
 	int	i;
@@ -88,7 +81,6 @@ int	parse_map(t_map_data *map_data)
 	{
 		if (map_data->map[map_data->save][i] != '1')
 		{
-			printf("%c\n", map_data->map[map_data->save][i]);
 			ft_putstr_fd("Error: Invalid map\n", 2);
 			return (1);
 		}
