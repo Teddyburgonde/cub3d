@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 01:31:06 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 15:25:08 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:51:26 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,8 @@ int	message_error_return_1(char *error_message)
 	return (1);
 }
 
+int	free_tab_return_1(char **tab)
+{
+	ft_free(tab);
+	return (1);
+}

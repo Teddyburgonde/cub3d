@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:16:14 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/17 16:19:52 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:55:09 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,15 @@ int	load_north_south_textures(t_map_data *map_data, t_texture *texture, int i)
 	{
 		if (ft_strncmp(map_data->map[i], "NO ", 3) == 0)
 		{
-			if ((texture->north_texture = mlx_load_png(tab[1])) == NULL)
-			{
-				ft_free(tab);
-				return (1);
-			}
+			texture->north_texture = mlx_load_png(tab[1]);
+			if (!texture->north_texture)
+				return (free_tab_return_1(tab));
 		}
 		else if (ft_strncmp(map_data->map[i], "SO ", 3) == 0)
 		{
-			if ((texture->south_texture = mlx_load_png(tab[1])) == NULL)
-			{
-				ft_free(tab);
-				return (1);
-			}
+			texture->south_texture = mlx_load_png(tab[1]);
+			if (!texture->south_texture)
+				return (free_tab_return_1(tab));
 		}
 		ft_free(tab);
 	}
@@ -49,19 +45,15 @@ int	load_west_east_textures(t_map_data *map_data, t_texture *texture, int i)
 	{
 		if (ft_strncmp(map_data->map[i], "WE ", 3) == 0)
 		{
-			if ((texture->west_texture = mlx_load_png(tab[1])) == NULL)
-			{
-				ft_free(tab);
-				return (1);
-			}
+			texture->west_texture = mlx_load_png(tab[1]);
+			if (!texture->west_texture)
+				return (free_tab_return_1(tab));
 		}
 		else if (ft_strncmp(map_data->map[i], "EA ", 3) == 0)
 		{
-			if ((texture->east_texture = mlx_load_png(tab[1])) == NULL)
-			{
-				ft_free(tab);
-				return (1);
-			}
+			texture->east_texture = mlx_load_png(tab[1]);
+			if (!texture->east_texture)
+				return (free_tab_return_1(tab));
 		}
 		ft_free(tab);
 	}

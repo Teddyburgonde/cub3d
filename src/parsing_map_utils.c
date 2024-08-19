@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:50:29 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 09:59:02 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:41:15 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	is_line_valid(char *str)
 {
 	char	*valid_chars;
-	int	i;
+	int		i;
 
 	valid_chars = "10 NSEW";
 	i = 0;
@@ -35,7 +35,8 @@ int	is_direction_valid(char *str, t_map_data *map_data)
 	i = 0;
 	while (str[i])
 	{
-		if (map_data->direction && (str[i] == 'N' || str[i] == 'S' || str[i] == 'E' || str[i] == 'W'))
+		if (map_data->direction && (str[i] == 'N' || str[i] == 'S'
+				|| str[i] == 'E' || str[i] == 'W'))
 			return (0);
 		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'E' || str[i] == 'W')
 			map_data->direction = str[i];
@@ -57,6 +58,3 @@ int	is_top_and_bottom_wall_closed(char *str)
 	}
 	return (1);
 }
-
-
-

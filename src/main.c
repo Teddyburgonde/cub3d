@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 09:46:01 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:42:50 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	main(int argc, char **argv)
 {
-	t_map_data		map;
-	t_texture	texture;
-	int	i;
+	t_texture				texture;
+	t_map_data				map;
+	int						i;
 
 	i = 0;
 	if (parsing_arguments(argc, argv) == 1)

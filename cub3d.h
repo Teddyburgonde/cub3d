@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 15:25:08 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:51:40 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,15 @@
 * Struct
 */
 
-typedef struct s_texture 
+typedef struct s_texture
 {
 	mlx_texture_t	*north_texture;
 	mlx_texture_t	*west_texture;
 	mlx_texture_t	*south_texture;
 	mlx_texture_t	*east_texture;
-} t_texture;
+}	t_texture;
 
-
-typedef struct s_counter_parameter 
+typedef struct s_counter_parameter
 {
 	int				counter_no;
 	int				counter_so;
@@ -44,7 +43,6 @@ typedef struct s_counter_parameter
 	int				counter_f;
 	int				counter_c;
 }	t_counter_parameter;
-
 
 typedef struct s_map_data
 {
@@ -59,11 +57,8 @@ typedef struct s_map_data
 	char			direction;
 }	t_map_data;
 
-
-
 void	ft_print_value_map(t_map_data *map);
 int		ft_parse_map_elements_wall(t_map_data *map);
-
 
 /*
 * Parsing arguments
@@ -72,7 +67,6 @@ int		ft_parse_map_elements_wall(t_map_data *map);
 int		manage_cub_extension(char **argv);
 int		parsing_arguments(int argc, char **argv);
 int		ft_parse_map_elements(t_map_data *map);
-
 
 /*
 * Parsing colors
@@ -94,21 +88,17 @@ int		load_north_south_textures(t_map_data *map, t_texture *texture, int i);
 int		load_west_east_textures(t_map_data *map, t_texture *texture, int i);
 int		ft_parse_map_path_texture(t_map_data *map, t_texture *texture);
 
-
 /*
 * Check and open file
 */
 
-int check_and_open_file(t_map_data *map, char **argv);
-
+int		check_and_open_file(t_map_data *map, char **argv);
 
 /*
 * Read map 
 */
 
 char	**get_map(int fd);
-
-
 
 /*
 * Parsing map Utils
@@ -121,9 +111,6 @@ int		is_top_and_bottom_wall_closed(char *str);
 /*
 * Utils
 */
-
-
-
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_putstr_fd(char *s, int fd);
@@ -139,14 +126,16 @@ int		is_full_whitespaces(char *str);
 
 char	**ft_split(char const *s, char c);
 
-
 /*
 * Error
 */
 
 int		message_error_for_parsing_args(char *message, int ret_value);
-int		message_error_for_missing_elements(t_counter_parameter counter_parameter);
+int		message_error_for_missing_elements(
+			t_counter_parameter counter_parameter);
 int		message_error_return_1(char *error_message);
+int		free_tab_return_1(char **tab);
+
 /*
 * Free
 */

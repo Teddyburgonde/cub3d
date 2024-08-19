@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 15:28:29 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:41:48 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	parse_map(t_map_data *map_data)
 
 	i = 0;
 	j = 0;
-	while (map_data->map[map_data->save] && is_full_whitespaces(map_data->map[map_data->save]) == 1)
+	while (map_data->map[map_data->save]
+		&& is_full_whitespaces(map_data->map[map_data->save]) == 1)
 		map_data->save++;
 	if (is_top_and_bottom_wall_closed(map_data->map[map_data->save]) == 0)
 		return (message_error_return_1("Error: Invalid map\n"));
