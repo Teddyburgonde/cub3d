@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 01:31:06 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 15:01:11 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:25:08 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	message_error_for_missing_elements(t_counter_parameter counter_parameter)
 	return (0);
 }
 
-int	message_error_r1(char *error_message)
+int	message_error_return_1(char *error_message)
 {
 	ft_putstr_fd(error_message, 2);
 	return (1);
