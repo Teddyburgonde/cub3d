@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 09:12:21 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/19 09:40:11 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,15 @@
 
 static int	is_line_valid(char *str)
 {
+	char	*valid_chars;
 	int	i;
 
+	valid_chars = "10 NSEW";
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] != '1'
-			&& str[i] != '0'
-			&& str[i] != ' '
-			&& str[i] != 'N'
-			&&  str[i] != 'S'
-			&&  str[i] != 'E'
-			&&  str[i] != 'W'
-			&&  str[i] != ' ')
-			{
-				return (0);
-			}
+		if (ft_strchr(valid_chars, str[i]) == 0)
+			return (0);
 		i++;
 	}
 	return (1);
@@ -57,15 +50,14 @@ static int	is_top_and_bottom_wall_closed(char *str)
 
 	i = 0;
 	while (str[i])
-	{
-		if (str[i] != '1')
+	{                                 // bizarre espace ne fonctionne pas ?
+		if (str[i] != '1' && str[i] != ' ')
 			return (0);
 		i++;
 	}
 	return (1);
 }
-// Accepter les 0        ok
-// Accepter les " "
+
 
 int	parse_map(t_map_data *map_data)
 {
@@ -83,7 +75,7 @@ int	parse_map(t_map_data *map_data)
 	}
 	while (map_data->map[map_data->save])
 	{
-		if (map_data->map[map_data->save][i] != '1')
+		if (map_data->map[map_data->save][i] != '1' && map_data->map[map_data->save][i] != ' ')
 		{
 			ft_putstr_fd("Error: Invalid map\n", 2);
 			return (1);
