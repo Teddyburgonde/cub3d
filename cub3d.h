@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/17 17:01:32 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:01:11 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,22 @@ int check_and_open_file(t_map_data *map, char **argv);
 
 char	**get_map(int fd);
 
+
+
+/*
+* Parsing map Utils
+*/
+
+int		is_line_valid(char *str);
+int		is_direction_valid(char *str, t_map_data *map_data);
+int		is_top_and_bottom_wall_closed(char *str);
+
 /*
 * Utils
 */
+
+
+
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_putstr_fd(char *s, int fd);
@@ -133,7 +146,7 @@ char	**ft_split(char const *s, char c);
 
 int		message_error_for_parsing_args(char *message, int ret_value);
 int		message_error_for_missing_elements(t_counter_parameter counter_parameter);
-int		message_error_for_texture_load(char *error_message);
+int		message_error_r1(char *error_message);
 /*
 * Free
 */

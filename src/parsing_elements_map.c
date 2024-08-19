@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/17 16:14:23 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:01:11 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ int	ft_parse_map_path_texture(t_map_data *map, t_texture *texture)
 			|| ft_strncmp(map->map[i], "SO ", 3) == 0)
 		{
 			if (load_north_south_textures(map, texture, i) != 0)
-				return (message_error_for_texture_load(
+				return (message_error_r1(
 						"Error loading north or south texture\n"));
 		}
 		else if (ft_strncmp(map->map[i], "WE ", 3) == 0
 			|| ft_strncmp(map->map[i], "EA ", 3) == 0)
 		{
 			if (load_west_east_textures(map, texture, i) != 0)
-				return (message_error_for_texture_load(
+				return (message_error_r1(
 						"Error loading west or east texture\n"));
 		}
 		i++;

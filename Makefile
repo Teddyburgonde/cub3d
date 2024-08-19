@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/08/17 16:29:51 by tebandam         ###   ########.fr        #
+#    Updated: 2024/08/19 09:51:14 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS =  src/main.c \
 		src/free.c \
 		src/utils2.c \
 		src/parsing_map.c \
+		src/parsing_map_utils.c \
 		#src/test.c \
 
 #============ TRANSFORM .c TO .o ============#
