@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 15:51:40 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:16:07 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ char	**get_map(int fd);
 int		is_line_valid(char *str);
 int		is_direction_valid(char *str, t_map_data *map_data);
 int		is_top_and_bottom_wall_closed(char *str);
+int		check_around_0(char	**line);
 
 /*
 * Utils

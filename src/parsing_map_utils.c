@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:50:29 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 15:41:15 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:15:53 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,28 @@ int	is_top_and_bottom_wall_closed(char *str)
 		i++;
 	}
 	return (1);
+}
+
+int	check_around_0(char	**line)
+{
+	int	i;
+	int	j;
+	
+	j = 1;
+	while (line[j + 1])
+	{
+		i = 1;
+		while (line[j][i + 1])
+		{
+			if (line[j][i] == '0')
+            {
+				if (line[j - 1][i] == ' ' || line[j + 1][i] == ' ' ||
+                	line[j][i - 1] == ' ' || line[j][i + 1] == ' ')
+                return (1);
+			}
+			i++;
+		}
+		j++;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 15:41:48 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:15:44 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ static int	is_validate_map_line(char *line, t_map_data *map_data)
 
 int	parse_map(t_map_data *map_data)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
 	while (map_data->map[map_data->save]
 		&& is_full_whitespaces(map_data->map[map_data->save]) == 1)
 		map_data->save++;
@@ -42,6 +37,8 @@ int	parse_map(t_map_data *map_data)
 		return (message_error_return_1("Error: Invalid map\n"));
 	while (map_data->map[map_data->save])
 	{
+		if (check_around_0(map_data->map) == 1)
+			return (message_error_return_1("Error: Invalid map\n"));
 		if (is_validate_map_line(map_data->map[map_data->save], map_data) != 0)
 			return (1);
 		map_data->save++;
