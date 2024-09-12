@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 14:06:44 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/10 14:14:05 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:43:17 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static int	wd_count_words(const char *str, char charset)
 			count++;
 			while (str[i] && !ft_separator(str[i], charset))
 				i++;
+			if (!str[i])
+				i--;
 		}
 		i++;
 	}
@@ -86,3 +88,5 @@ char	**ft_split(char const *s, char c)
 	tab[j] = 0;
 	return (tab);
 }
+
+

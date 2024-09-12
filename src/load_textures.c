@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:16:14 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 15:55:09 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/12 14:14:26 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	load_north_south_textures(t_map_data *map_data, t_texture *texture, int i)
 {
 	char	**tab;
-
+	
 	tab = ft_split(map_data->map[i], ' ');
 	if (tab[1] != NULL)
 	{

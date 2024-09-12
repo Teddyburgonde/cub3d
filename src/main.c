@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 15:42:50 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:27:40 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int	main(int argc, char **argv)
 	if (check_and_open_file(&map, argv) == 1)
 		return (EXIT_FAILURE);
 	map.map = get_map(map.fd);
+	if (!map.map)
+		return (EXIT_FAILURE);
+	//ft_print_value_map(&map);
 	if (ft_parse_map_elements(&map) == 1)
 		return (EXIT_FAILURE);
 	if (ft_parse_map_path_texture(&map, &texture) != 0)
@@ -34,7 +37,8 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	parse_map(&map);
 	close(map.fd);
-	// //? free_map(map);
+	ft_free(map.map);
+	ft_delete_texture(texture);
 	ft_putstr_fd("\033[32mEnd of program 😊\033[0m\n", 1);
 	return (EXIT_SUCCESS);
 }

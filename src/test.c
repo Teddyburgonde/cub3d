@@ -6,21 +6,26 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:09:49 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 15:40:03 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/12 08:50:52 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include <stdio.h>
 
-void	ft_print_value_map(t_map *map)
+void	ft_print_value_map(t_map_data *map)
 {
-	printf("La valeur de map[0] %s\n", map->map[0]);
-	printf("La valeur de map[1] %s\n", map->map[1]);
-	printf("La valeur de map[2] %s\n", map->map[2]);
+	int	i;
+	
+	i = 0;
+	while (map->map[i])
+	{
+		printf("La valeur de map[i] %s\n", map->map[i]);
+		i++;
+	}
 }
 
-int	ft_print_map_elements(t_map *map)
+int	ft_print_map_elements(t_map_data *map)
 {
 	if (ft_strncmp(map->map[0], "NO ", 3) == 0)
 		printf("Finded NO\n");

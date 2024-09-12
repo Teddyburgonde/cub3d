@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 17:16:07 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/12 15:27:26 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,14 @@ int		free_tab_return_1(char **tab);
 */
 
 void	ft_free(char **tab);
+void	ft_delete_texture(t_texture texture);
 
 /*
 * Allocation 
 */
 // void	*ft_calloc(size_t nmemb, size_t size);
+
+
+void	ft_print_value_map(t_map_data *map);
 
 #endif
