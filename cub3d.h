@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/12 15:27:26 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:12:33 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,28 @@
 /*
 * Struct
 */
+
+
+// test 
+#include "math.h"
+
+#define MAP_HEIGHT 10
+#define MAP_WIDTH 10
+
+typedef struct s_player
+{
+	float x;
+	float y;
+} t_player;
+
+typedef struct s_rayresult
+{
+	float distance;
+	float wallHeight;
+} t_rayresult;
+
+
+// en dessous c'est bon , au dessus c'est un essai 
 
 typedef struct s_texture
 {
