@@ -6,11 +6,12 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/14 12:31:34 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/14 13:06:51 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+#include <stdlib.h>
 
 // mlx_loop_hook(p->game->mlx, ft_ray_casting, p);
 // typedef struct s_ray_casting
@@ -122,7 +123,19 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	parse_map(game->data);
 	close(game->data->fd);
+
 	game->mlx = mlx_init(1040, 720, "cub3d", false); // mlx_init permet de cree la fenêtre.
+	if (!game->mlx)
+		return (EXIT_FAILURE);
+	
+	
+	// test for image 
+	// transformer un texture en image 
+
+	game->texture->image = mlx_texture_to_image(game->mlx, game->texture->north_texture);
+
+	if (mlx_image_to_window(game->mlx, game->texture->image, 0, 0) < 0)
+		return (EXIT_FAILURE);
 	mlx_loop(game->mlx); // mlx_loop permet d'afficher la fenêtre.
 	mlx_close_window(game->mlx); // mlx_close_window permet de fermer la fenêtre.
 	mlx_terminate(game->mlx); // mlx_terminate permet de fermer proprement la fenêtre

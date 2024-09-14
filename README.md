@@ -46,25 +46,25 @@ des rayons sont projetés depuis un point de vue pour calculer la distance aux o
 permettant ainsi de créer une illusion de profondeur et de perspective.
 ```
 
-**ETAPE 1 : Afficher une fenêtre**
+**ETAPE 1 : Afficher une fenêtre** ✅
 
 ```c
-	mlx_t* mlx_init(int32_t width, int32_t height, const char* title, bool resize); // mlx_init permet de cree la fenêtre.
-	void mlx_loop(mlx_t* mlx); // mlx_loop permet d'afficher la fenêtre.
-	void mlx_close_window(mlx_t* mlx); // mlx_close_window permet de fermer la fenêtre.
-	void mlx_terminate(mlx_t* mlx); // mlx_terminate permet de fermer proprement la fenêtre
+mlx_t* mlx_init(int32_t width, int32_t height, const char* title, bool resize); // mlx_init permet de cree la fenêtre.
+void mlx_loop(mlx_t* mlx); // mlx_loop permet d'afficher la fenêtre.
+void mlx_close_window(mlx_t* mlx); // mlx_close_window permet de fermer la fenêtre.
+void mlx_terminate(mlx_t* mlx); // mlx_terminate permet de fermer proprement la fenêtre
 ```
 
-**ETAPE 2 : Afficher une image**
+**ETAPE 2 : Afficher une image**  ❌
+
+
+
+
+
 
 
 
 ✅  ❌
-
-
-
-
-
 
 
 

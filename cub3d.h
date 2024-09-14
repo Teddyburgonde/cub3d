@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/14 11:53:47 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/14 13:00:36 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 typedef struct s_texture
 {
+	mlx_image_t		*image;
 	mlx_texture_t	*north_texture;
 	mlx_texture_t	*west_texture;
 	mlx_texture_t	*south_texture;
