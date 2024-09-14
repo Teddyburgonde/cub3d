@@ -41,10 +41,31 @@ sont des chiffres puis virgule et apres un chifre ( tout est entre 0 a 255) ✅
 **Définition du Raycasting**
 
 ```c
-Le raycasting est une technique de rendu 3D simplifiée où des rayons sont projetés depuis un point de vue pour calculer la distance aux objets dans une scène 2D, permettant ainsi de créer une illusion de profondeur et de perspective.
+Le raycasting est une technique de rendu 3D simplifiée où 
+des rayons sont projetés depuis un point de vue pour calculer la distance aux objets dans une scène 2D, 
+permettant ainsi de créer une illusion de profondeur et de perspective.
 ```
 
+**ETAPE 1 : Afficher une fenêtre**
+
+```c
+	mlx_t* mlx_init(int32_t width, int32_t height, const char* title, bool resize); // mlx_init permet de cree la fenêtre.
+	void mlx_loop(mlx_t* mlx); // mlx_loop permet d'afficher la fenêtre.
+	void mlx_close_window(mlx_t* mlx); // mlx_close_window permet de fermer la fenêtre.
+	void mlx_terminate(mlx_t* mlx); // mlx_terminate permet de fermer proprement la fenêtre
+```
+
+**ETAPE 2 : Afficher une image**
+
+
+
 ✅  ❌
+
+
+
+
+
+
 
 
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧

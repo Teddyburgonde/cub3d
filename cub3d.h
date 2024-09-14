@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/13 14:12:33 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/14 11:53:47 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,6 @@
 * Struct
 */
 
-
-// test 
-#include "math.h"
-
-#define MAP_HEIGHT 10
-#define MAP_WIDTH 10
-
-typedef struct s_player
-{
-	float x;
-	float y;
-} t_player;
-
-typedef struct s_rayresult
-{
-	float distance;
-	float wallHeight;
-} t_rayresult;
-
-
-// en dessous c'est bon , au dessus c'est un essai 
 
 typedef struct s_texture
 {
@@ -78,6 +57,20 @@ typedef struct s_map_data
 	char			**map_after_color;
 	char			direction;
 }	t_map_data;
+
+
+
+typedef struct s_game
+{
+	mlx_t	*mlx;
+	t_map_data   *data;
+	t_counter_parameter *counter_parameter;
+	t_texture *texture;
+} t_game;
+
+
+
+
 
 void	ft_print_value_map(t_map_data *map);
 int		ft_parse_map_elements_wall(t_map_data *map);
@@ -114,7 +107,7 @@ int		ft_parse_map_path_texture(t_map_data *map, t_texture *texture);
 * Check and open file
 */
 
-int		check_and_open_file(t_map_data *map, char **argv);
+int		check_and_open_file(t_game *game, char **argv);
 
 /*
 * Read map 
@@ -164,7 +157,7 @@ int		free_tab_return_1(char **tab);
 */
 
 void	ft_free(char **tab);
-void	ft_delete_texture(t_texture texture);
+void	ft_delete_texture(t_texture *texture);
 
 /*
 * Allocation 
