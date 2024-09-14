@@ -55,9 +55,20 @@ void mlx_close_window(mlx_t* mlx); // mlx_close_window permet de fermer la fenê
 void mlx_terminate(mlx_t* mlx); // mlx_terminate permet de fermer proprement la fenêtre
 ```
 
-**ETAPE 2 : Afficher une image**  ❌
+**ETAPE 2 : Afficher une image**  ✅
 
+Vous devez d'abord transformer la texture en image et la stoker dans une variable image.
+```c
+mlx_image_t* mlx_texture_to_image(mlx_t* mlx, mlx_texture_t* texture);
+```
 
+Puis pour afficher l'image :
+
+```c
+int32_t mlx_image_to_window(mlx_t* mlx, mlx_image_t* img, int32_t x,int32_t y);
+```
+
+**ETAPE 3 : Faire bouger l'image** ❌
 
 
 
