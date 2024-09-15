@@ -41,9 +41,7 @@ sont des chiffres puis virgule et apres un chifre ( tout est entre 0 a 255) ✅
 **Définition du Raycasting**
 
 ```c
-Le raycasting est une technique de rendu 3D simplifiée où 
-des rayons sont projetés depuis un point de vue pour calculer la distance aux objets dans une scène 2D, 
-permettant ainsi de créer une illusion de profondeur et de perspective.
+Le raycasting est une technique de rendu permettant de créer une perspective 3D dans une carte 2D.
 ```
 
 **ETAPE 1 : Afficher une fenêtre** ✅
@@ -55,7 +53,7 @@ void mlx_close_window(mlx_t* mlx); // mlx_close_window permet de fermer la fenê
 void mlx_terminate(mlx_t* mlx); // mlx_terminate permet de fermer proprement la fenêtre
 ```
 
-**ETAPE 2 : Afficher une image**  ✅
+**ETAPE 2 : Afficher une image** ✅
 
 Vous devez d'abord transformer la texture en image et la stoker dans une variable image.
 ```c
@@ -86,6 +84,6 @@ Sources :
 
 https://austinhenley.com/blog/raycasting.html
 
-https://github.com/iciamyplant/Cub3d-Linux
+https://lodev.org/cgtutor/raycasting.html
 
 
