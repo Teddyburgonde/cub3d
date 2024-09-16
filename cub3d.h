@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/14 13:00:36 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/16 16:43:50 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,22 @@
 # include "MLX42/include/MLX42/MLX42.h"
 # include <unistd.h>
 # include <fcntl.h> 
+# include <stdlib.h>
 # include "get_next_line/get_next_line.h" 
 
 /*
 * Struct
 */
+
+typedef struct s_player
+{
+	float	player_pos_x;
+	float	player_pos_y;
+	float	dir_x;
+	float	dir_y;
+	float	fov;
+	float	angle;
+}	t_player;
 
 
 typedef struct s_texture
@@ -59,17 +70,14 @@ typedef struct s_map_data
 	char			direction;
 }	t_map_data;
 
-
-
 typedef struct s_game
 {
+	t_player	*player;
 	mlx_t	*mlx;
 	t_map_data   *data;
 	t_counter_parameter *counter_parameter;
 	t_texture *texture;
 } t_game;
-
-
 
 
 
