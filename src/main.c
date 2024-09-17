@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/17 11:15:04 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:59:42 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 
 // function castRay 
 // elle doit retourner distance et wallHeight
-
-typedef struct {
-    float distance;
-    float wall_height;
-} t_ray_result;
 
 // elle return un t_rayResult qui contient la distance ou il y a le mur
 // et la hauteur du mur )
@@ -158,10 +153,6 @@ int	main(int argc, char **argv)
 	if (mlx_image_to_window(game->mlx, game->texture->image, 0, 0) < 0) // affiche l'image 
 		return (EXIT_FAILURE);
 	mlx_loop_hook(game->mlx, raycast, (void*)game);
-
-
-	//! JE SUIS ICI
-
 	mlx_loop(game->mlx); // mlx_loop permet d'afficher la fenêtre.
 	mlx_close_window(game->mlx); // mlx_close_window permet de fermer la fenêtre.
 	mlx_terminate(game->mlx); // mlx_terminate permet de fermer proprement la fenêtre
