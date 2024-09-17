@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/16 17:45:54 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:15:04 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,30 @@ t_ray_result cast_ray(float rayAngle, t_game *game)
 	{
 		map_x = (int)floor(x);
 		map_y = (int)floor(y);
-		if (game->data->map[map_y][map_x] == '1')
-			break; // Il a trouver un mur
-		x += dx * 0.1f;
-        y += dy * 0.1f;
+		if (map_x >= 0 && map_y >= 0  && game->data->map[map_y][map_x] == '1')
+    		break; // il a trouver un mur
+		// x += dx * 0.1f;
+        // y += dy * 0.1f;
+		x += dx * 0.05f;
+		y += dy * 0.05f;
 		i++;
 	}
 	
 	// Calcul de la distance et de la hauteur du mur
 	ray_result.distance = sqrtf((x - game->player->player_pos_x) * (x - game->player->player_pos_x) + 
 		(y - game->player->player_pos_y) * (y - game->player->player_pos_y));
-	ray_result.wall_height = 300.0f / ray_result.distance;
-
+	ray_result.wall_height = (300.0f / ray_result.distance);
 	return (ray_result);
 }
 
 // Function pour dessiner les murs en fonction de la distance parcourue par les rayons
-void	draw_wall(mlx_image_t* image, int j, float wall_height, float slice_width)
+void	 draw_wall(mlx_image_t* image, int j, float wall_height, float slice_width)
 {
 	int	y_position;
 	int		color;
 	
 	color = 0xFFB400B4;
 
-	y_position = 0;
 	for (int i = 0; i < (int)wall_height; i++)
 	{
 		// Calcul de la position en Y
@@ -94,8 +94,8 @@ void	raycast(void *param)
 	int	rays;
 	int	screen_width;
 	int	slice_width;
-	int	angle_step;
-	int ray_angle;
+	float	angle_step;
+	float ray_angle;
 	t_ray_result	ray_result;
 	t_game *game;
 
@@ -109,11 +109,10 @@ void	raycast(void *param)
 	// murs 
 	for (int i = 0; i < rays; i++)
 	{
-		ray_angle = game->player->angle - (game->player->fov / 2) + i * angle_step;
+		ray_angle = game->player->angle - (game->player->fov / 2.0f) + i * angle_step;
 		ray_result = cast_ray(ray_angle, game);
 		draw_wall(game->texture->image, i, ray_result.wall_height, slice_width);
 	}
-	// mlx_image_to_window(game->mlx, game->texture->image, 0, 0);
 }
 
 int	main(int argc, char **argv)
@@ -127,7 +126,13 @@ int	main(int argc, char **argv)
 	game->data = ft_calloc(1, sizeof(t_map_data));
 	game->texture = ft_calloc(1, sizeof(t_texture));
 	game->player = ft_calloc(1, sizeof(t_player));
-	game->player->fov = 1.5 * M_PI;
+	if (!game->data || !game->texture || !game->player)
+    {
+        free(game);
+        return (EXIT_FAILURE);
+    }
+	// game->player->fov = 1.5 * M_PI;
+	game->player->fov = 1.221;
 	if (check_and_open_file(game, argv) == 1)
 		return (EXIT_FAILURE);
 	game->data->map = get_map(game->data->fd);
@@ -141,30 +146,32 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	parse_map(game->data);
 	game->data->map = &game->data->map[6];
-	ft_print_value_map(game->data);
-
+	//ft_print_value_map(game->data);
 	close(game->data->fd);
 	game->player->player_pos_x = 6;
 	game->player->player_pos_y = 5;
-
 	game->mlx = mlx_init(1040, 720, "cub3d", false); // mlx_init permet de cree la fenêtre.
 	if (!game->mlx)
 		return (EXIT_FAILURE);
-	game->texture->image = mlx_texture_to_image(game->mlx, game->texture->north_texture); // transformer un texture en image
+	//game->texture->image = mlx_texture_to_image(game->mlx, game->texture->north_texture); // transformer un texture en image
+	game->texture->image = mlx_new_image(game->mlx, 1040, 720);
 	if (mlx_image_to_window(game->mlx, game->texture->image, 0, 0) < 0) // affiche l'image 
 		return (EXIT_FAILURE);
+	mlx_loop_hook(game->mlx, raycast, (void*)game);
+
 
 	//! JE SUIS ICI
-	mlx_loop_hook(game->mlx, raycast, (void*)game);
 
 	mlx_loop(game->mlx); // mlx_loop permet d'afficher la fenêtre.
 	mlx_close_window(game->mlx); // mlx_close_window permet de fermer la fenêtre.
 	mlx_terminate(game->mlx); // mlx_terminate permet de fermer proprement la fenêtre
-	ft_free(game->data->map);
+	//ft_free(game->data->map);
+	//ft_delete_texture(game->texture);
 	free(game->data);
+	//free(game->data->map);
 	free(game->texture);
+	free(game->player);
 	free(game);
-	ft_delete_texture(game->texture);
 	ft_putstr_fd("\033[32mEnd of program 😊\033[0m\n", 1);
 	return (EXIT_SUCCESS);
 }
