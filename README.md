@@ -74,7 +74,8 @@ https://austinhenley.com/blog/raycasting.html
 Sur ce site vous trouverez un algorithme qui vous permettra d'afficher les murs.
 Il est ecris en javascript donc je l'ai traduis en C. 
 Ici on vas faire seulement le step 1.
-ps : vous aurez des murs moches mais 
+ps : vous aurez des murs moches mais c'est un bon entrainement pour
+apres bien comprendre le "vrai" algorithme.
 
 ```c
 
@@ -199,6 +200,10 @@ game->mlx = mlx_init(1040, 720, "cub3d", false); // mlx_init permet de cree la f
 	mlx_loop_hook(game->mlx, raycast, (void*)game);
 	mlx_loop(game->mlx); // mlx_loop permet d'afficher la fenêtre.
 ```
+
+**S'entrainer a bouger la vue du player**
+
+
 
 ✅  ❌
 
