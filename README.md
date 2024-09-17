@@ -38,6 +38,18 @@ sont des chiffres puis virgule et apres un chifre ( tout est entre 0 a 255) ✅
 
 ## Raycasting
 
+**Liste des fonctions importants**
+
+```c
+bool mlx_is_key_down(mlx_t* mlx, keys_t key);
+```
+- Description : Vérifie si une touche du clavier est enfoncée ou non.
+- Paramètres : mlx Le pointeur vers l'instance MLX.
+               key Le code de la touche à vérifier (utilisez MLX_KEY_...).
+- return : true si la touche est enfoncée, sinon false.
+
+
+
 **Définition du Raycasting**
 
 ```c
@@ -209,6 +221,11 @@ game->mlx = mlx_init(1040, 720, "cub3d", false); // mlx_init permet de cree la f
 
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
+
+Je n'ai pas vue les fonction avant mlx_strerror(mlx_error_t_val)
+
+au niveau de la traduction je suis ici 
+void mlx_get_mouse_pos(mlx_t* mlx, int32_t* x, int32_t* y);
 
 Sources : 
 
