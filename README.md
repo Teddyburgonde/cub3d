@@ -216,16 +216,47 @@ game->mlx = mlx_init(1040, 720, "cub3d", false); // mlx_init permet de cree la f
 **S'entrainer a bouger la vue du player**
 
 
+```c
+
+void key_press(mlx_key_data_t keydata, void* param)
+{
+    t_game *game = (t_game*)param;
+
+    // On détecte les flèches directionnelles
+    if (keydata.key == MLX_KEY_LEFT)
+        game->x -= 10;  // Déplacer vers la gauche
+    else if (keydata.key == MLX_KEY_RIGHT)
+        game->x += 10;  // Déplacer vers la droite
+    else if (keydata.key == MLX_KEY_UP)
+        game->y -= 10;  // Déplacer vers le haut
+    else if (keydata.key == MLX_KEY_DOWN)
+        game->y += 10;  // Déplacer vers le bas
+}
+```
+
+```c
+int main(void)
+{
+    mlx_t* mlx = mlx_init();
+    mlx_window_t* window = mlx_new_window(mlx, 800, 600, "Move Character");
+
+    t_game game = {400, 300};  // Position initiale du personnage
+
+    mlx_key_hook(mlx, key_press, &game);
+
+    mlx_loop(mlx);
+    return 0;
+}
+```
+
+**Implementation du bon algorithme de cub3D** ⚠️
+
 
 ✅  ❌
 
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
 
 
-Je n'ai pas vue les fonction avant mlx_strerror(mlx_error_t_val)
-
-au niveau de la traduction je suis ici 
-void mlx_get_mouse_pos(mlx_t* mlx, int32_t* x, int32_t* y);
 
 Sources : 
 
@@ -234,3 +265,35 @@ https://austinhenley.com/blog/raycasting.html
 https://lodev.org/cgtutor/raycasting.html
 
 
+
+/**
+ * Détruit l'objet curseur donné.
+ * 
+ * @param[in] cursor L'objet curseur à détruire.
+ */
+void mlx_destroy_cursor(mlx_win_cursor_t* cursor);
+
+
+Pour la fermeture de la fenêtre.
+typedef void (*mlx_closefunc)(void* param);
+
+
+
+
+void mlx_close_hook(mlx_t* mlx, mlx_closefunc func, void* param);
+
+
+mlx_image_t* mlx_texture_to_image(mlx_t* mlx, mlx_texture_t* texture);
+
+
+Définit/met un pixel sur une image.
+void mlx_put_pixel(mlx_image_t* image, uint32_t x, uint32_t y, uint32_t color);
+
+
+Crée et alloue un nouveau buffer d'image.
+mlx_image_t* mlx_new_image(mlx_t* mlx, uint32_t width, uint32_t height);
+
+int32_t mlx_image_to_window(mlx_t* mlx, mlx_image_t* img, int32_t x, int32_t y);
+
+
+Fonction de callback utilisée pour gérer les pressions de touches.

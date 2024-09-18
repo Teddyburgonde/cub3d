@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/17 13:43:00 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:20:30 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,18 @@
 * Struct
 */
 
-typedef struct {
-    float distance;
-    float wall_height;
-} t_ray_result;
+
+// typedef struct {
+//     float distance;
+//     float wall_height;
+// } t_ray_result;
+
+typedef struct s_camera  
+{
+	float plane_x;
+	float plane_y; 	
+}	t_camera;
+
 
 
 typedef struct s_player
@@ -83,6 +91,7 @@ typedef struct s_game
 	t_map_data   *data;
 	t_counter_parameter *counter_parameter;
 	t_texture *texture;
+	t_camera *camera;
 } t_game;
 
 
