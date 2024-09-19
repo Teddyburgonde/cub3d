@@ -6,30 +6,108 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/18 11:37:08 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:26:54 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include "math.h"
 
-//   screen(screenWidth,screenHeight, 0, "Raycaster");
+// https://lodev.org/cgtutor/raycasting2.html
 
-//   //load some textures
-//   unsigned long tw, th, error = 0;
-//   error |= loadImage(texture[0], tw, th, "pics/eagle.png");
-//   error |= loadImage(texture[1], tw, th, "pics/redbrick.png");
-//   error |= loadImage(texture[2], tw, th, "pics/purplestone.png");
-//   error |= loadImage(texture[3], tw, th, "pics/greystone.png");
-//   error |= loadImage(texture[4], tw, th, "pics/bluestone.png");
-//   error |= loadImage(texture[5], tw, th, "pics/mossy.png");
-//   error |= loadImage(texture[6], tw, th, "pics/wood.png");
-//   error |= loadImage(texture[7], tw, th, "pics/colorstone.png");
+/* 
+	//calculate step and initial sideDist
+      if (rayDirX < 0)
+      {
+        stepX = -1;
+        sideDistX = (posX - mapX) * deltaDistX;
+      }
+      else
+      {
+        stepX = 1;
+        sideDistX = (mapX + 1.0 - posX) * deltaDistX;
+      }
+      if (rayDirY < 0)
+      {
+        stepY = -1;
+        sideDistY = (posY - mapY) * deltaDistY;
+      }
+      else
+      {
+        stepY = 1;
+        sideDistY = (mapY + 1.0 - posY) * deltaDistY;
+      }
+      //perform DDA
+      while (hit == 0)
+      {
+        //jump to next map square, either in x-direction, or in y-direction
+        if (sideDistX < sideDistY)
+        {
+          sideDistX += deltaDistX;
+          mapX += stepX;
+          side = 0;
+        }
+        else
+        {
+          sideDistY += deltaDistY;
+          mapY += stepY;
+          side = 1;
+        }
+        //Check if ray has hit a wall
+        if (worldMap[mapX][mapY] > 0) hit = 1;
+      }
 
-// }
+      //Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
+      if(side == 0) perpWallDist = (sideDistX - deltaDistX);
+      else          perpWallDist = (sideDistY - deltaDistY);
 
-	// float	dir_x;
-	// float	dir_y;
+      //Calculate height of line to draw on screen
+      int lineHeight = (int)(h / perpWallDist);
+*/
+
+
+// 	int				map_pos_x; // test
+// 	int				map_pos_y; // test
+// 	char			direction;
+// }	t_map_data;
+
+
+
+// typedef struct s_player
+// {
+// 	float	player_pos_x;
+// 	float	player_pos_y;
+// 	float	dir_x;
+// 	float	dir_y;
+// 	float	fov;
+// 	float	angle;
+// }	t_player;
+
+
+// typedef struct {
+//     float distance;
+//     float wall_height;
+// 	float ray_dist_x; // test distance du rayon en x
+// 	float ray_dist_y; // test distance du rayon en y
+// 	float delta_dist_x; // test distance que le rayon doit parcourir pour atteindre la prochaine ligne verticale
+// 	float delta_dist_y; // test distance que le rayon doit parcourir pour atteindre la prochaine ligne horizontale
+// } t_ray_result;
+
+t_ray_result cast_ray(float rayAngle, t_game *game)
+{
+	t_ray_result	ray_result;
+	
+	if (ray_result.ray_dist_x == 0)
+		ray_result.delta_dist_x = 1e30;
+	else
+		ray_result.delta_dist_x = fabs(1 / ray_result.ray_dist_x);
+	if (ray_result.ray_dist_y == 0)
+		ray_result.delta_dist_y = 1e30;
+	else
+		ray_result.delta_dist_y = fabs(1 / ray_result.ray_dist_y);
+	
+
+}
 
 typedef unsigned int Uint32;
 
@@ -50,8 +128,6 @@ int	main(int argc, char **argv)
 	game->player->player_pos_y = 5;
 	game->player->dir_x = -1.0;
 	game->player->dir_y = 0.0;
-	game->camera->plane_x = 0.0;
-	game->camera->plane_y = 0.66;
 	while (i < 8)
 	{
 		texture[i] = (Uint32*)malloc(64* 64 * sizeof(Uint32));
@@ -67,11 +143,22 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
+	game->mlx = mlx_init(1040, 720, "cub3d", false);
+	if (!game->mlx)
+		return (EXIT_FAILURE);
+	game->texture->east_texture = mlx_load_png("textures/wall_ea.png");
+	game->texture->west_texture = mlx_load_png("textures/wall_we.png");
+	game->texture->south_texture = mlx_load_png("textures/wall_so.png");
+	game->texture->north_texture = mlx_load_png("textures/wall_no.png");
+	if (!game->texture->east_texture || !game->texture->west_texture || !game->texture->south_texture || !game->texture->north_texture)
+	{
+		ft_putstr_fd("Error loading texture\n", 2);
+		return (EXIT_FAILURE);
+	}
+	mlx_loop_hook(gane->mlx, void (*f)(void *), void *param)
+	mlx_loop(game->mlx);
 	
 }
-
-
-
 
 
 
@@ -129,14 +216,12 @@ int	main(int argc, char **argv)
 // 	game->mlx = mlx_init(1040, 720, "cub3d", false); // mlx_init permet de cree la fenêtre.
 // 	if (!game->mlx)
 // 		return (EXIT_FAILURE);
-// 	//game->texture->image = mlx_texture_to_image(game->mlx, game->texture->north_texture); // transformer un texture en image
 // 	game->texture->image = mlx_new_image(game->mlx, 1040, 720);
 // 	if (mlx_image_to_window(game->mlx, game->texture->image, 0, 0) < 0) // affiche l'image 
 // 		return (EXIT_FAILURE);
 // 	mlx_loop(game->mlx); // mlx_loop permet d'afficher la fenêtre.
 // 	mlx_close_window(game->mlx); // mlx_close_window permet de fermer la fenêtre.
 // 	mlx_terminate(game->mlx); // mlx_terminate permet de fermer proprement la fenêtre
-// 	//ft_free(game->data->map);
 // 	ft_delete_texture(game->texture);
 // 	free(game->data);
 // 	free(game->data->map);

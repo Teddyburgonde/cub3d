@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/18 11:20:30 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/19 17:25:34 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,20 @@
 */
 
 
-// typedef struct {
-//     float distance;
-//     float wall_height;
-// } t_ray_result;
-
-typedef struct s_camera  
+typedef struct s_ray_result
 {
-	float plane_x;
-	float plane_y; 	
-}	t_camera;
-
-
+    float distance;
+    float wall_height;
+	float ray_dist_x; // test distance du rayon en x
+	float ray_dist_y; // test distance du rayon en y
+	float delta_dist_x; // test distance que le rayon doit parcourir pour atteindre la prochaine ligne verticale
+	float delta_dist_y; // test distance que le rayon doit parcourir pour atteindre la prochaine ligne horizontale
+	float ray_dist_perpendicular_to_wall; // test distance du rayon perpendiculaire au mur
+	int	step_x; // test direction dans laquelle le rayon doit se déplacer en x
+	int	step_y; // test direction dans laquelle le rayon doit se déplacer en y
+	int	hit; // test a-t-il touché un mur?
+	int	side; // test a-t-il touché un mur NS ou EW?
+} t_ray_result;
 
 typedef struct s_player
 {
@@ -81,6 +83,8 @@ typedef struct s_map_data
 	int				floor_color[4];
 	int				ceiling_color[4];
 	char			**map_after_color;
+	int				map_pos_x; // test
+	int				map_pos_y; // test
 	char			direction;
 }	t_map_data;
 
@@ -91,7 +95,7 @@ typedef struct s_game
 	t_map_data   *data;
 	t_counter_parameter *counter_parameter;
 	t_texture *texture;
-	t_camera *camera;
+	t_ray_result *ray_result;
 } t_game;
 
 
