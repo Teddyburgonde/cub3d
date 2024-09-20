@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/19 17:26:54 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/20 09:57:01 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,87 +15,10 @@
 
 // https://lodev.org/cgtutor/raycasting2.html
 
-/* 
-	//calculate step and initial sideDist
-      if (rayDirX < 0)
-      {
-        stepX = -1;
-        sideDistX = (posX - mapX) * deltaDistX;
-      }
-      else
-      {
-        stepX = 1;
-        sideDistX = (mapX + 1.0 - posX) * deltaDistX;
-      }
-      if (rayDirY < 0)
-      {
-        stepY = -1;
-        sideDistY = (posY - mapY) * deltaDistY;
-      }
-      else
-      {
-        stepY = 1;
-        sideDistY = (mapY + 1.0 - posY) * deltaDistY;
-      }
-      //perform DDA
-      while (hit == 0)
-      {
-        //jump to next map square, either in x-direction, or in y-direction
-        if (sideDistX < sideDistY)
-        {
-          sideDistX += deltaDistX;
-          mapX += stepX;
-          side = 0;
-        }
-        else
-        {
-          sideDistY += deltaDistY;
-          mapY += stepY;
-          side = 1;
-        }
-        //Check if ray has hit a wall
-        if (worldMap[mapX][mapY] > 0) hit = 1;
-      }
-
-      //Calculate distance of perpendicular ray (Euclidean distance would give fisheye effect!)
-      if(side == 0) perpWallDist = (sideDistX - deltaDistX);
-      else          perpWallDist = (sideDistY - deltaDistY);
-
-      //Calculate height of line to draw on screen
-      int lineHeight = (int)(h / perpWallDist);
-*/
-
-
-// 	int				map_pos_x; // test
-// 	int				map_pos_y; // test
-// 	char			direction;
-// }	t_map_data;
-
-
-
-// typedef struct s_player
-// {
-// 	float	player_pos_x;
-// 	float	player_pos_y;
-// 	float	dir_x;
-// 	float	dir_y;
-// 	float	fov;
-// 	float	angle;
-// }	t_player;
-
-
-// typedef struct {
-//     float distance;
-//     float wall_height;
-// 	float ray_dist_x; // test distance du rayon en x
-// 	float ray_dist_y; // test distance du rayon en y
-// 	float delta_dist_x; // test distance que le rayon doit parcourir pour atteindre la prochaine ligne verticale
-// 	float delta_dist_y; // test distance que le rayon doit parcourir pour atteindre la prochaine ligne horizontale
-// } t_ray_result;
-
 t_ray_result cast_ray(float rayAngle, t_game *game)
 {
 	t_ray_result	ray_result;
+	int				line_height;
 	
 	if (ray_result.ray_dist_x == 0)
 		ray_result.delta_dist_x = 1e30;
@@ -105,8 +28,50 @@ t_ray_result cast_ray(float rayAngle, t_game *game)
 		ray_result.delta_dist_y = 1e30;
 	else
 		ray_result.delta_dist_y = fabs(1 / ray_result.ray_dist_y);
-	
-
+	if (ray_result.ray_dist_x < 0)
+	{
+		ray_result.step_x = -1;
+		ray_result.ray_dist_x = (game->player->player_pos_x - game->data->map_pos_x) * ray_result.delta_dist_x;
+	}
+	else
+	{
+		ray_result.step_x = 1;
+		ray_result.ray_dist_x = (game->data->map_pos_x + 1.0 - game->player->player_pos_x) * ray_result.delta_dist_x;
+	}
+	if (ray_result.ray_dist_y < 0)
+	{
+		ray_result.step_y = -1;
+		ray_result.ray_dist_y = (game->player->player_pos_y - game->data->map_pos_y) * ray_result.delta_dist_y;
+	}
+	else
+	{
+		ray_result.step_y = 1;
+		ray_result.ray_dist_y = (game->data->map_pos_y + 1.0 - game->player->player_pos_y) * ray_result.delta_dist_y;
+	}
+	// perform DDA
+	while (ray_result.hit == 0)
+	{
+		if (ray_result.ray_dist_x < ray_result.ray_dist_y)
+		{
+			ray_result.ray_dist_x += ray_result.delta_dist_x;
+			game->data->map_pos_x += ray_result.step_x;
+			ray_result.side = 0;
+		}
+		else
+		{
+			ray_result.ray_dist_y += ray_result.delta_dist_y;
+			game->data->map_pos_y += ray_result.step_y;
+			ray_result.side = 1;
+		}
+		if (game->data->map[game->data->map_pos_y][game->data->map_pos_x] == '1') // verifie si le rayon a touché un mur
+			ray_result.hit = 1;
+		if (ray_result.side == 0)
+			ray_result.ray_dist_perpendicular_to_wall = (ray_result.ray_dist_x - ray_result.delta_dist_x);
+		else
+			ray_result.ray_dist_perpendicular_to_wall = (ray_result.ray_dist_y - ray_result.delta_dist_y);
+	}
+	line_height = (int)(game->data->height / ray_result.ray_dist_perpendicular_to_wall);
+	return (ray_result);
 }
 
 typedef unsigned int Uint32;
