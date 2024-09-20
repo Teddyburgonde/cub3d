@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/19 17:25:34 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/20 15:45:57 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 typedef struct s_ray_result
 {
     float distance;
-    float wall_height;
+    int wall_height;
 	float ray_dist_x; // test distance du rayon en x
 	float ray_dist_y; // test distance du rayon en y
 	float delta_dist_x; // test distance que le rayon doit parcourir pour atteindre la prochaine ligne verticale
@@ -41,6 +41,8 @@ typedef struct s_ray_result
 	int	step_y; // test direction dans laquelle le rayon doit se déplacer en y
 	int	hit; // test a-t-il touché un mur?
 	int	side; // test a-t-il touché un mur NS ou EW?
+	int	map_pos_x; // test
+	int	map_pos_y; // test
 } t_ray_result;
 
 typedef struct s_player
@@ -83,8 +85,6 @@ typedef struct s_map_data
 	int				floor_color[4];
 	int				ceiling_color[4];
 	char			**map_after_color;
-	int				map_pos_x; // test
-	int				map_pos_y; // test
 	char			direction;
 }	t_map_data;
 
