@@ -6,12 +6,14 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/20 16:53:28 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/21 17:45:52 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include "math.h"
+#include "../MLX42/include/MLX42/MLX42.h" 
+//#include "../MLX42/include/MLX42/MLX42.Int.h" 
 
 // https://lodev.org/cgtutor/raycasting2.html
 
@@ -89,7 +91,7 @@ t_ray_result cast_ray(float rayAngle, t_game *game)
 	return (ray_result);
 }
 
-void	 draw_wall(mlx_image_t* image, int x, float wall_height)
+void	 draw_wall(mlx_image_t* image, int x, float wall_height, t_game *game)
 {
 	int		color;
 	int		up_wall;
@@ -97,8 +99,8 @@ void	 draw_wall(mlx_image_t* image, int x, float wall_height)
 	int	y;
 
 	y = 0;
-	up_wall = ((int)image->height / 2) - wall_height / 2;
-	down_wall = ((int)image->height / 2) + wall_height / 2;
+	up_wall = ((int)image->height / 2.0) - wall_height / 2 + (float)(image->height / 2.0) * game->player->pitch;
+	down_wall = ((int)image->height / 2.0) + wall_height / 2 + (float)(image->height / 2.0) * game->player->pitch;
 	if (up_wall < 0)
 		up_wall = 0;
 	if (down_wall >= (int)image->height)
@@ -123,6 +125,7 @@ void	 draw_wall(mlx_image_t* image, int x, float wall_height)
 void	raycast(void *param)
 {
 	int	rays;
+	int	i;
 	float	angle_step;
 	float ray_angle;
 	t_ray_result	ray_result;
@@ -132,28 +135,56 @@ void	raycast(void *param)
 	game = (t_game*)param;
 	rays = 1039;
 	angle_step = game->player->fov / rays;
-
+	i = 0;
 	// murs 
-	for (int i = 0; i < rays; i++)
+	while (i < rays)
 	{
 		ray_angle = game->player->angle - (game->player->fov / 2.0f) + i * angle_step;
 		ray_result = cast_ray(ray_angle, game);
-		draw_wall(game->texture->image, i, ray_result.wall_height);
+		draw_wall(game->texture->image, i, ray_result.wall_height, game);
+		i++;
+	}
+}
+// 3eme etape : Nettoyage  
+
+void	colision(t_game *game, float orientation)
+{
+	float	new_pos_x;
+	float	new_pos_y;
+
+	new_pos_x = game->player->player_pos_x + cos(game->player->angle + orientation) * 0.1;
+	new_pos_y = game->player->player_pos_y + sin(game->player->angle + orientation) * 0.1;
+	if (game->data->map[(int)new_pos_y][(int)new_pos_x] == '0')
+	{
+		game->player->player_pos_x = game->player->player_pos_x + cos(game->player->angle + orientation) * 0.05;
+		game->player->player_pos_y = game->player->player_pos_y + sin(game->player->angle + orientation) * 0.05;
 	}
 }
 
-// 1ere etape : mouvement
+void	ft_key_mouv(mlx_key_data_t keydata, void *param)
+{
+	t_game *game;
 
-// mlx_key_handle(mlx_keydata_t keydata, void*param)
-// <- tourne la tete a gauche 
-// -> tourne la tete a droite
-// ^ personnage avance
-// \/ personnage recule
-
-// 2eme etape : colision
-
-// 3eme etape : Nettoyage  
-
+	game = (t_game *)param;
+	if (keydata.key == MLX_KEY_LEFT)
+		colision(game, -1 * (M_PI / 2));
+	if (keydata.key == MLX_KEY_RIGHT)
+		colision(game, (M_PI / 2));
+	if (keydata.key == MLX_KEY_UP)
+		colision(game, 0);
+	if (keydata.key == MLX_KEY_DOWN)
+		colision(game, M_PI);
+	if (keydata.key == MLX_KEY_A)
+		game->player->angle = clamp(game->player->angle - 0.05, 0, M_PI * 2.0);
+	if (keydata.key == MLX_KEY_D)
+		game->player->angle = clamp(game->player->angle + 0.05, 0, M_PI * 2.0);
+	if (keydata.key == MLX_KEY_W && game->player->pitch < 0.5)
+		game->player->pitch += 0.04;
+	if (keydata.key == MLX_KEY_S && game->player->pitch > -0.5)
+		game->player->pitch -= 0.04;
+	if (keydata.key == MLX_KEY_ESCAPE)
+		mlx_close_window(game->mlx);
+}
 
 typedef unsigned int Uint32;
 
@@ -172,6 +203,7 @@ int	main(int argc, char **argv)
 	game = ft_calloc(1, sizeof(t_game));
 	game->player = ft_calloc(1, sizeof(t_player));
 	game->player->angle = 0.0;
+	game->player->pitch = 0.0;
 	game->texture = ft_calloc(1, sizeof(t_texture));
 	game->data = ft_calloc(1, sizeof(t_map_data));
 	if (check_and_open_file(game, argv) == 1)
@@ -188,7 +220,7 @@ int	main(int argc, char **argv)
 	parse_map(game->data);
 	game->data->map = &game->data->map[6];
 	game->player->player_pos_x = 6;
-	game->player->player_pos_y = 5;
+	game->player->player_pos_y = 4;
 	game->player->dir_x = -1.0;
 	game->player->dir_y = 0.0;
 	game->player->fov = 1.221;
@@ -223,6 +255,7 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error loading texture\n", 2);
 		return (EXIT_FAILURE);
 	}
+	mlx_key_hook(game->mlx, ft_key_mouv, (void*)game);
 	mlx_loop_hook(game->mlx, raycast, (void*)game);
 	mlx_loop(game->mlx);
 	

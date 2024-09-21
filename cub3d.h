@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/20 15:45:57 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/21 17:40:27 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_player
 	float	dir_y;
 	float	fov;
 	float	angle;
+	float	pitch;
 }	t_player;
 
 
@@ -85,7 +86,7 @@ typedef struct s_map_data
 	int				floor_color[4];
 	int				ceiling_color[4];
 	char			**map_after_color;
-	char			direction;
+	float			direction;
 }	t_map_data;
 
 typedef struct s_game
