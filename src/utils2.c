@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:57:15 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 15:42:02 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/21 18:59:34 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,13 @@ int	is_full_whitespaces(char *str)
 	}
 	return (1);
 }
+
+float	clamp(float num, float min, float max)
+{
+	if (num < min)
+		return (max + num);
+	if (num > max)
+		return (num - max);
+	return (num);
+}
+

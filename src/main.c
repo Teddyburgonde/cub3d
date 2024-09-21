@@ -6,25 +6,14 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/21 17:45:52 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/21 18:59:21 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include "math.h"
 #include "../MLX42/include/MLX42/MLX42.h" 
-//#include "../MLX42/include/MLX42/MLX42.Int.h" 
 
-// https://lodev.org/cgtutor/raycasting2.html
-
-float	clamp(float num, float min, float max)
-{
-	if (num < min)
-		return (max + num);
-	if (num > max)
-		return (num - max);
-	return (num);
-}
 
 t_ray_result cast_ray(float rayAngle, t_game *game)
 {

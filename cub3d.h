@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/21 17:40:27 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/21 19:12:14 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,22 @@
 * Struct
 */
 
-
 typedef struct s_ray_result
 {
-    float distance;
-    int wall_height;
-	float ray_dist_x; // test distance du rayon en x
-	float ray_dist_y; // test distance du rayon en y
-	float delta_dist_x; // test distance que le rayon doit parcourir pour atteindre la prochaine ligne verticale
-	float delta_dist_y; // test distance que le rayon doit parcourir pour atteindre la prochaine ligne horizontale
-	float ray_dist_perpendicular_to_wall; // test distance du rayon perpendiculaire au mur
-	int	step_x; // test direction dans laquelle le rayon doit se déplacer en x
-	int	step_y; // test direction dans laquelle le rayon doit se déplacer en y
-	int	hit; // test a-t-il touché un mur?
-	int	side; // test a-t-il touché un mur NS ou EW?
-	int	map_pos_x; // test
-	int	map_pos_y; // test
-} t_ray_result;
+	float	distance;
+	float	ray_dist_x; // distance du rayon en x
+	float	ray_dist_y; // distance du rayon en y
+	float	delta_dist_x; // distance que le rayon doit parcourir pour atteindre la prochaine ligne verticale
+	float	delta_dist_y; // distance que le rayon doit parcourir pour atteindre la prochaine ligne horizontale
+	float	ray_dist_perpendicular_to_wall; // distance du rayon perpendiculaire au mur
+	int		wall_height;
+	int		step_x; // test direction dans laquelle le rayon doit se déplacer en x
+	int		step_y; // test direction dans laquelle le rayon doit se déplacer en y
+	int		hit; // test a-t-il touché un mur?
+	int		side; // test a-t-il touché un mur NS ou EW?
+	int		map_pos_x; // test
+	int		map_pos_y; // test
+}	t_ray_result;
 
 typedef struct s_player
 {
@@ -55,7 +54,6 @@ typedef struct s_player
 	float	angle;
 	float	pitch;
 }	t_player;
-
 
 typedef struct s_texture
 {
@@ -91,18 +89,13 @@ typedef struct s_map_data
 
 typedef struct s_game
 {
-	t_player	*player;
-	mlx_t	*mlx;
-	t_map_data   *data;
-	t_counter_parameter *counter_parameter;
-	t_texture *texture;
-	t_ray_result *ray_result;
-} t_game;
-
-
-
-void	ft_print_value_map(t_map_data *map);
-int		ft_parse_map_elements_wall(t_map_data *map);
+	t_player			*player;
+	mlx_t				*mlx;
+	t_map_data			*data;
+	t_counter_parameter	*counter_parameter;
+	t_texture			*texture;
+	t_ray_result		*ray_result;
+}	t_game;
 
 /*
 * Parsing arguments
@@ -164,6 +157,7 @@ char	*ft_strdup(const char *s);
 int		ft_atoi(const char *nptr);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		is_full_whitespaces(char *str);
+float	clamp(float num, float min, float max);
 
 /*
 * ft_split
@@ -189,11 +183,10 @@ void	ft_free(char **tab);
 void	ft_delete_texture(t_texture *texture);
 
 /*
-* Allocation 
+* Divers help
 */
-// void	*ft_calloc(size_t nmemb, size_t size);
-
 
 void	ft_print_value_map(t_map_data *map);
+int		ft_parse_map_elements_wall(t_map_data *map);
 
 #endif
