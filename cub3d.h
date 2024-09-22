@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 15:22:12 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 15:49:06 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,12 @@ void	parsing_map_elements(t_game *game);
 */
 
 void	load_image(t_game *game);
+
+/*
+* Draw
+*/
+
+void	 draw_elements(mlx_image_t* image, int x, float wall_height, t_game *game);
 
 /*
 * Textures

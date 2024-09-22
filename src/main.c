@@ -6,12 +6,11 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 15:27:21 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 15:48:15 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-// #include "../MLX42/include/MLX42/MLX42.h" 
 
 t_ray_result cast_ray(float rayAngle, t_game *game)
 {
@@ -78,37 +77,6 @@ t_ray_result cast_ray(float rayAngle, t_game *game)
 	return (ray_result);
 }
 
-void	 draw_wall(mlx_image_t* image, int x, float wall_height, t_game *game)
-{
-	int		color;
-	int		up_wall;
-	int		down_wall;
-	int	y;
-
-	y = 0;
-	up_wall = ((int)image->height / 2.0) - wall_height / 2 + (float)(image->height / 2.0) * game->player->pitch;
-	down_wall = ((int)image->height / 2.0) + wall_height / 2 + (float)(image->height / 2.0) * game->player->pitch;
-	if (up_wall < 0)
-		up_wall = 0;
-	if (down_wall >= (int)image->height)
-		down_wall = image->height - 1;   
-	color = 0xFFB400B4;
-	while (y < up_wall)
-	{
-		mlx_put_pixel(image, x, y, 0x00007FFF);
-		y++;
-	}
-	while (y < down_wall)
-	{
-		mlx_put_pixel(image, x, y, color);
-		y++;
-	}
-	while (y < (int)image->height)
-	{
-		mlx_put_pixel(image, x, y, 0xAFAFAFFF);
-		y++;
-	}
-}
 void	raycast(void *param)
 {
 	t_ray_result	ray_result;
@@ -127,7 +95,7 @@ void	raycast(void *param)
 	{
 		ray_angle = game->player->angle - (game->player->fov / 2.0f) + i * angle_step;
 		ray_result = cast_ray(ray_angle, game);
-		draw_wall(game->texture->image, i, ray_result.wall_height, game);
+		draw_elements(game->texture->image, i, ray_result.wall_height, game);
 		i++;
 	}
 }

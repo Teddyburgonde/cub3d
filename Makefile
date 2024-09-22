@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/09/22 15:22:43 by tebandam         ###   ########.fr        #
+#    Updated: 2024/09/22 15:49:56 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS =  src/main.c \
 		src/initialization_of_values.c\
 		src/movement.c \
 		src/render_graphics.c \
+		src/draw_elements.c \
 
 #============ TRANSFORM .c TO .o ============#
 
