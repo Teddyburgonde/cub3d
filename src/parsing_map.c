@@ -6,12 +6,12 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 17:15:44 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 10:40:11 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
+#include <stdio.h>
 static int	is_validate_map_line(char *line, t_map_data *map_data)
 {
 	int	j;

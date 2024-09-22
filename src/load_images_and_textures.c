@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_textures.c                                    :+:      :+:    :+:   */
+/*   load_images_and_textures.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 11:16:14 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/12 14:14:26 by tebandam         ###   ########.fr       */
+/*   Created: 2024/09/22 12:30:15 by tebandam          #+#    #+#             */
+/*   Updated: 2024/09/22 12:30:52 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,17 @@ int	load_west_east_textures(t_map_data *map_data, t_texture *texture, int i)
 	}
 	return (0);
 }
+
+void	load_image(t_game *game)
+{
+	game->texture->east_texture = mlx_load_png("textures/wall_ea.png");
+	game->texture->west_texture = mlx_load_png("textures/wall_we.png");
+	game->texture->south_texture = mlx_load_png("textures/wall_so.png");
+	game->texture->north_texture = mlx_load_png("textures/wall_no.png");
+	if (!game->texture->east_texture || !game->texture->west_texture || !game->texture->south_texture || !game->texture->north_texture)
+	{
+		ft_putstr_fd("Error loading texture\n", 2);
+		exit(1);
+	}
+}
+

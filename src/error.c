@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 01:31:06 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 15:51:26 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:14:58 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	message_error_for_missing_elements(t_counter_parameter counter_parameter)
 		|| counter_parameter.counter_f != 1 || counter_parameter.counter_c != 1)
 	{
 		ft_putstr_fd("Error: One or more elements are missing \n", 2);
-		return (1);
+		exit (1);
 	}
 	return (0);
 }

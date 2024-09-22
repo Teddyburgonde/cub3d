@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/21 19:12:14 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 13:56:09 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 # include <fcntl.h> 
 # include <stdlib.h>
 # include "get_next_line/get_next_line.h" 
+# include "math.h"
+
+typedef unsigned int Uint32;
+
 
 /*
 * Struct
@@ -103,7 +107,7 @@ typedef struct s_game
 
 int		manage_cub_extension(char **argv);
 int		parsing_arguments(int argc, char **argv);
-int		ft_parse_map_elements(t_map_data *map);
+int		ft_parse_map_textures(t_map_data *map);
 
 /*
 * Parsing colors
@@ -116,6 +120,13 @@ int		ft_parse_map_elements_colors(t_map_data *map);
 */
 
 int		parse_map(t_map_data *map);
+void	parsing_map_elements(t_game *game);
+
+/*
+* Images
+*/
+
+void	load_image(t_game *game);
 
 /*
 * Textures
@@ -146,6 +157,13 @@ int		is_direction_valid(char *str, t_map_data *map_data);
 int		is_top_and_bottom_wall_closed(char *str);
 int		check_around_0(char	**line);
 
+
+/*
+* Move
+*/
+
+void	ft_key_mouv(mlx_key_data_t keydata, void *param);
+
 /*
 * Utils
 */
@@ -175,12 +193,27 @@ int		message_error_for_missing_elements(
 int		message_error_return_1(char *error_message);
 int		free_tab_return_1(char **tab);
 
+
+/*
+* Allocation
+*/
+
+void	memory_allocation_for_struct(t_game **game);
+void	allocate_textures(Uint32 *texture[8], int size);
+
+/*
+* Initialization
+*/
+
+void	initialization_of_values(t_game *game);
+
 /*
 * Free
 */
 
 void	ft_free(char **tab);
 void	ft_delete_texture(t_texture *texture);
+void	close_and_free(t_game *game);
 
 /*
 * Divers help

@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:34:28 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/14 11:54:11 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 12:49:08 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,21 @@ void	ft_delete_texture(t_texture *texture)
 		mlx_delete_texture(texture->west_texture);
 }
 
+void	close_and_free(t_game *game)
+{
+	if (game->mlx)
+	{
+		mlx_close_window(game->mlx);
+		mlx_terminate(game->mlx);
+	}
+	if (game->texture)
+		ft_delete_texture(game->texture);
+	if (game->data)
+		free(game->data);
+	if (game->texture)
+		free(game->texture);
+	if (game->player)
+		free(game->player);
+	if (game)
+		free(game);
+}

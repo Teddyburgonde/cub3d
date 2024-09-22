@@ -6,13 +6,13 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/19 15:25:08 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 13:50:02 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	ft_parse_map_elements(t_map_data *map)
+int	ft_parse_map_textures(t_map_data *map)
 {
 	int					i;
 	t_counter_parameter	counter_parameter;
@@ -65,3 +65,23 @@ int	ft_parse_map_path_texture(t_map_data *map, t_texture *texture)
 	}
 	return (0);
 }
+
+void	parsing_map_elements(t_game *game)
+{
+	if (ft_parse_map_textures(game->data) == 1)
+	{
+		ft_putstr_fd("Error: Wrong number of textures\n", 2);
+		exit (1);
+	}
+	if (ft_parse_map_path_texture(game->data, game->texture) != 0)
+	{
+		ft_putstr_fd("Error: Wrong path of textures\n", 2);	
+		exit (1);
+	}
+	if (ft_parse_map_elements_colors(game->data) != 0)
+	{
+		ft_putstr_fd("Error: The colors are poorly defined\n", 2);
+		exit (1);
+	}
+}
+

@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/09/13 14:00:49 by tebandam         ###   ########.fr        #
+#    Updated: 2024/09/22 13:56:30 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRCS =  src/main.c \
 		src/error.c \
 		src/check_and_open_file.c \
 		src/get_map.c \
-		src/load_textures.c \
+		src/load_images_and_textures.c \
 		src/parsing_elements_map.c \
 		src/parsing_colors_maps.c \
 		get_next_line/get_next_line.c \
@@ -42,6 +42,9 @@ SRCS =  src/main.c \
 		src/parsing_map.c \
 		src/parsing_map_utils.c \
 		src/test.c \
+		src/allocation.c \
+		src/initialization_of_values.c\
+		src/movement.c \
 
 #============ TRANSFORM .c TO .o ============#
 
