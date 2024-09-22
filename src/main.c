@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 13:55:25 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 15:27:21 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,12 @@ void	 draw_wall(mlx_image_t* image, int x, float wall_height, t_game *game)
 }
 void	raycast(void *param)
 {
-	int	rays;
-	int	i;
-	float	angle_step;
-	float ray_angle;
 	t_ray_result	ray_result;
-	t_game *game;
-
+	t_game			*game;
+	float			angle_step;
+	float			ray_angle;
+	int				rays;
+	int				i;
 
 	game = (t_game*)param;
 	rays = 1039;
@@ -133,86 +132,28 @@ void	raycast(void *param)
 	}
 }
 
-
 int	main(int argc, char **argv)
 {
 	t_game	*game;
-	int		i;
-	int		j;
+	Uint32	*texture[8];
 
 	game = NULL;
-	i = 0;
-	j = 0;
 	if (parsing_arguments(argc, argv) == 1)
 		return (EXIT_FAILURE);
-	Uint32* texture[8];
 	memory_allocation_for_struct(&game);
 	initialization_of_values(game);
 	if (check_and_open_file(game, argv) == 1)
 		return (EXIT_FAILURE);
 	game->data->map = get_map(game->data->fd);
-	//ft_print_value_map(game->data);
-	// if (parse_map(game->data) == 1)
-	// 	exit (1);
 	if (!game->data->map)
 		return (EXIT_FAILURE);
 	parsing_map_elements(game);
+	if (parse_map(game->data) == 1)
+		exit(1);
 	game->data->map = &game->data->map[6];
 	allocate_textures(texture, 8);
-	game->mlx = mlx_init(1040, 720, "cub3d", false);
-	if (!game->mlx)
-		return (EXIT_FAILURE);
-	game->texture->image = mlx_new_image(game->mlx, 1040, 720);
-	if (mlx_image_to_window(game->mlx, game->texture->image, 0, 0) < 0) // affiche l'image 
-		return (EXIT_FAILURE);
-	load_image(game);
-	mlx_key_hook(game->mlx, ft_key_mouv, (void*)game);
-	mlx_loop_hook(game->mlx, raycast, (void*)game);
-	mlx_loop(game->mlx);
+	render_graphics (game);
 	close_and_free(game);
 	ft_putstr_fd("\033[32mEnd of program 😊\033[0m\n", 1);
 	return (EXIT_SUCCESS);
 }
-
-
-
-// int	main(int argc, char **argv)
-// {
-// 	t_game *game;
-
-// 	game = NULL;
-// 	if (parsing_arguments(argc, argv) == 1)
-// 		return (EXIT_FAILURE);
-// 	game = ft_calloc(1, sizeof(t_game));
-// 	game->player = ft_calloc(1, sizeof(t_player));
-// 	if (!game->data || !game->texture || !game->player)
-//     {
-//         free(game);
-//         return (EXIT_FAILURE);
-//     }
-// 	// game->player->fov = 1.5 * M_PI;
-// 	game->player->fov = 1.221;
-// 	if (check_and_open_file(game, argv) == 1)
-// 		return (EXIT_FAILURE);
-// 	if (!game->data->map)
-// 		return (EXIT_FAILURE);
-// 	if (ft_parse_map_elements(game->data) == 1)
-// 		return (EXIT_FAILURE);
-// 	if (ft_parse_map_path_texture(game->data, game->texture) != 0)
-// 		return (EXIT_FAILURE);
-// 	if (ft_parse_map_elements_colors(game->data) != 0)
-// 		return (EXIT_FAILURE);
-// 	parse_map(game->data);
-// 	game->data->map = &game->data->map[6];
-// 	//ft_print_value_map(game->data);
-// 	close(game->data->fd);
-// 	game->player->player_pos_x = 6;
-// 	game->player->player_pos_y = 5;
-// 	game->mlx = mlx_init(1040, 720, "cub3d", false); // mlx_init permet de cree la fenêtre.
-// 	if (!game->mlx)
-// 		return (EXIT_FAILURE);
-// 	game->texture->image = mlx_new_image(game->mlx, 1040, 720);
-// 	if (mlx_image_to_window(game->mlx, game->texture->image, 0, 0) < 0) // affiche l'image 
-// 		return (EXIT_FAILURE);
-// 	mlx_loop(game->mlx); // mlx_loop permet d'afficher la fenêtre.
-//}
