@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:09:49 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/12 08:50:52 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:05:15 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	ft_print_value_map(t_map_data *map)
 {
 	int	i;
-	
+
 	i = 0;
 	while (map->map[i])
 	{
