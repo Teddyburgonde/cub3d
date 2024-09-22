@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:21:22 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 18:00:45 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:37:19 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	memory_allocation_for_struct(t_game **game)
 	}
 }
 
-void	allocate_textures(Uint32 *texture[8], int size)
+void	allocate_textures(Uint32 *texture[8])
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < size)
+	while (i < 8)
 	{
 		texture[i] = (Uint32 *)malloc(64 * 64 * sizeof(Uint32));
 		if (texture[i] == NULL)

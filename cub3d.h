@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 17:06:39 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:37:32 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,11 +213,11 @@ int		free_tab_return_1(char **tab);
 
 
 /*
-* Allocation
+* Allocations
 */
 
 void	memory_allocation_for_struct(t_game **game);
-void	allocate_textures(Uint32 *texture[8], int size);
+void	allocate_textures(Uint32 *texture[8]);
 
 /*
 * Initialization

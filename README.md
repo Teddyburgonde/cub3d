@@ -12,6 +12,11 @@
 
 ## Parsing
 
+```c
+Je vous conseil de commencer par ouvrir mon fichier sur excalidraw :
+parsing_explain_code.excalidraw
+```
+
 **Parsing arguments**
 
 ```c
@@ -37,6 +42,12 @@ sont des chiffres puis virgule et apres un chifre ( tout est entre 0 a 255) ✅
 ```
 
 ## Raycasting
+
+Je vous conseil de commencer par ouvrir mon fichier sur excalidraw :
+
+```c
+raycasting_explain_code.excalidraw
+```
 
 **Liste des fonctions importants**
 

@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 17:42:56 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:37:37 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	if (parse_map(game->data) == 1)
 		exit(1);
 	game->data->map = &game->data->map[6];
-	allocate_textures(texture, 8);
+	allocate_textures(texture);
 	render_graphics (game);
 	close_and_free(game);
 	ft_putstr_fd("\033[32mEnd of program 😊\033[0m\n", 1);
