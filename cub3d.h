@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 15:49:06 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 17:06:39 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,22 +158,23 @@ char	**get_map(int fd);
 * Parsing map Utils
 */
 
-int		is_line_valid(char *str);
-int		is_direction_valid(char *str, t_map_data *map_data);
-int		is_top_and_bottom_wall_closed(char *str);
-int		check_around_0(char	**line);
+int				is_line_valid(char *str);
+int				is_direction_valid(char *str, t_map_data *map_data);
+int				is_top_and_bottom_wall_closed(char *str);
+int				check_around_0(char	**line);
 
 /*
 * Render graphics
 */
 
-void	render_graphics(t_game *game);
+void			render_graphics(t_game *game);
 
 /*
 * Raycasting
 */
 
-void	raycast(void *param);
+void			raycast(void *param);
+t_ray_result	ray_hit_detection(float ray_angle, t_game *game);
 
 /*
 * Move

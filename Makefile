@@ -6,7 +6,7 @@
 #    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/09/22 15:49:56 by tebandam         ###   ########.fr        #
+#    Updated: 2024/09/22 17:08:08 by tebandam         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,8 @@ SRCS =  src/main.c \
 		src/movement.c \
 		src/render_graphics.c \
 		src/draw_elements.c \
+		src/ray_hit_detection.c \
+		src/raycast.c \
 
 #============ TRANSFORM .c TO .o ============#
 
