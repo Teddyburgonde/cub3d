@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:57:15 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/21 18:59:34 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 17:58:21 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,3 @@ float	clamp(float num, float min, float max)
 		return (num - max);
 	return (num);
 }
-

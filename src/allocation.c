@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:21:22 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 12:55:24 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:00:45 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	allocate_textures(Uint32 *texture[8], int size)
 	i = 0;
 	while (i < size)
 	{
-		texture[i] = (Uint32*)malloc(64* 64 * sizeof(Uint32));
+		texture[i] = (Uint32 *)malloc(64 * 64 * sizeof(Uint32));
 		if (texture[i] == NULL)
 		{
 			ft_putstr_fd("Allocation error\n", 2);
@@ -48,4 +48,3 @@ void	allocate_textures(Uint32 *texture[8], int size)
 		i++;
 	}
 }
-

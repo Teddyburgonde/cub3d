@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 14:06:44 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/12 14:43:17 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 17:55:49 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,3 @@ char	**ft_split(char const *s, char c)
 	tab[j] = 0;
 	return (tab);
 }
-
-

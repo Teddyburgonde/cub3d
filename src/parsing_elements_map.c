@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 13:50:02 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 17:55:24 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	parsing_map_elements(t_game *game)
 	}
 	if (ft_parse_map_path_texture(game->data, game->texture) != 0)
 	{
-		ft_putstr_fd("Error: Wrong path of textures\n", 2);	
+		ft_putstr_fd("Error: Wrong path of textures\n", 2);
 		exit (1);
 	}
 	if (ft_parse_map_elements_colors(game->data) != 0)
@@ -84,4 +84,3 @@ void	parsing_map_elements(t_game *game)
 		exit (1);
 	}
 }
-
