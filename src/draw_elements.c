@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:47:39 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 15:48:44 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 15:51:29 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ static void	draw_ceiling(mlx_image_t* image, int x, int up_wall)
 
 static void draw_wall_section(mlx_image_t* image, int x, int up_wall, int down_wall, int color)
 {
-    int y = up_wall;
+    int y;
+	
+	y = up_wall;
     while (y < down_wall)
     {
         mlx_put_pixel(image, x, y, color); // couleur du mur
@@ -36,7 +38,9 @@ static void draw_wall_section(mlx_image_t* image, int x, int up_wall, int down_w
 
 static void draw_floor(mlx_image_t* image, int x, int down_wall)
 {
-    int y = down_wall;
+    int y;
+	
+	y = down_wall;
     while (y < (int)image->height)
     {
         mlx_put_pixel(image, x, y, 0xAFAFAFFF); // couleur du sol

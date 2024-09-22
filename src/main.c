@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 15:48:15 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/22 16:07:50 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 t_ray_result cast_ray(float rayAngle, t_game *game)
 {
 	t_ray_result	ray_result;
-	
-	// map_pos_x et map_pos_y sont les coordonnées de la carte où le rayon a touché un mur
-	// map_pos c'est la position dans le tableau 
+
 	ray_result.map_pos_x = game->player->player_pos_x; 
 	ray_result.map_pos_y = game->player->player_pos_y;
-	ray_result.ray_dist_x = cos(rayAngle);
-	ray_result.ray_dist_y = sin(rayAngle);
+
+	
+	ray_result.ray_dist_x = cos(rayAngle); // On definie la direction horizontal du rayon où il sera envoyé plus tard
+	ray_result.ray_dist_y = sin(rayAngle); // On definie la direction vertical du rayon où il sera envoyé plus tard
 	if (ray_result.ray_dist_x == 0)
 		ray_result.delta_dist_x = 1e30;
 	else
@@ -50,8 +50,8 @@ t_ray_result cast_ray(float rayAngle, t_game *game)
 		ray_result.step_y = 1;
 		ray_result.ray_dist_y = (ray_result.map_pos_y + 1.0 - game->player->player_pos_y) * ray_result.delta_dist_y;
 	}
-	// perform DDA
 	ray_result.hit = 0;
+	// Cette boucle DDA fais avancé le rayon jusqu'a qu'il touche un mur 
 	while (ray_result.hit == 0)
 	{
 		if (ray_result.ray_dist_x < ray_result.ray_dist_y)
@@ -72,7 +72,8 @@ t_ray_result cast_ray(float rayAngle, t_game *game)
 			ray_result.ray_dist_perpendicular_to_wall = (ray_result.ray_dist_x - ray_result.delta_dist_x);
 		else
 			ray_result.ray_dist_perpendicular_to_wall = (ray_result.ray_dist_y - ray_result.delta_dist_y);
-	}                                                           // permet d'enleve le fisheye   
+	}                                                         
+	//cette ligne permet de calculer la hauteur du mur		    permet d'enleve le fisheye(distorsion visuel, les objets proches paraissent déformé)
 	ray_result.wall_height = (int)((float)game->data->height / (floor(ray_result.ray_dist_perpendicular_to_wall * cos(clamp(game->player->angle - rayAngle, 0, 2 * M_PI)) * 1000) / 1000)); 
 	return (ray_result);
 }
