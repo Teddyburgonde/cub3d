@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+         #
+#    By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/09/22 17:08:08 by tebandam         ###   ########.fr        #
+#    Updated: 2024/09/25 15:36:03 by ppuivif          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,8 @@ SRCS =  src/main.c \
 		src/draw_elements.c \
 		src/ray_hit_detection.c \
 		src/raycast.c \
+		src/minimap.c \
+
 
 #============ TRANSFORM .c TO .o ============#
 

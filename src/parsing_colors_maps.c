@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_colors_maps.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/12 13:57:09 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:12:39 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ static int	ft_parse_color(char *map_line, int *color)
 
 	tmp = ft_split(map_line, ' ');
 	if (!tmp)
-		return (EXIT_FAILURE);
+		return (EXIT_FAILURE);//& free des structures
 	tab = ft_split(tmp[1], ',');
 	if (!tab)
 	{
-		ft_free(tmp);
+		ft_free(tmp); //& free des structures
 		return (EXIT_FAILURE);
 	}
 	if (get_color(color, tab) == 1)
-		return (EXIT_FAILURE);
+		return (EXIT_FAILURE);//& free des structures//&free structures
 	ft_free(tmp);
 	ft_free(tab);
 	return (EXIT_SUCCESS);
@@ -68,13 +68,13 @@ int	ft_parse_map_elements_colors(t_map_data *map)
 		if (ft_strncmp(map->map[i], "F ", 2) == 0)
 		{
 			if (ft_parse_color(map->map[i], map->floor_color) == 1)
-				return (EXIT_FAILURE);
+				return (EXIT_FAILURE);//&free structures
 		}
 		if (ft_strncmp(map->map[i], "C ", 2) == 0)
 		{
 			map->save = i + 1;
 			if (ft_parse_color(map->map[i], map->ceiling_color) == 1)
-				return (EXIT_FAILURE);
+				return (EXIT_FAILURE);//&free structures
 		}
 		i++;
 	}

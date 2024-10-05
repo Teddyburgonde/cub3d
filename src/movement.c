@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 13:53:45 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 17:56:59 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/02 00:15:11 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+bool	is_movement_possible(char c)
+{
+	if (c == '0' || c == 'N' || c == 'E' || c == 'W' || c == 'S') //pour que le joueur puisse se déplacer sur sa position initiale
+		return (true);
+	return (false);
+}
 
 static void	colision(t_game *game, float orientation)
 {
@@ -21,7 +28,7 @@ static void	colision(t_game *game, float orientation)
 		+ cos(game->player->angle + orientation) * 0.1;
 	new_pos_y = game->player->player_pos_y
 		+ sin(game->player->angle + orientation) * 0.1;
-	if (game->data->map[(int)new_pos_y][(int)new_pos_x] == '0')
+	if (is_movement_possible(game->data->map[(int)new_pos_y][(int)new_pos_x]) == true)
 	{
 		game->player->player_pos_x = game->player->player_pos_x
 			+ cos(game->player->angle + orientation) * 0.05;
@@ -30,7 +37,7 @@ static void	colision(t_game *game, float orientation)
 	}
 }
 
-void	ft_key_mouv(mlx_key_data_t keydata, void *param)
+void	ft_key_mouv(mlx_key_data_t keydata, void *param) //modifier l'affectation des touches (sujet : WASD pour déplacer le personnage)
 {
 	t_game	*game;
 

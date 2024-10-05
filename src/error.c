@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 01:31:06 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 12:14:58 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/04 16:27:00 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	message_error_for_missing_elements(t_counter_parameter counter_parameter)
 		|| counter_parameter.counter_ea != 1
 		|| counter_parameter.counter_f != 1 || counter_parameter.counter_c != 1)
 	{
-		ft_putstr_fd("Error: One or more elements are missing \n", 2);
+		ft_putstr_fd("Error: One or more elements is missing \n", 2); // is missing
 		exit (1);
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_hit_detection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:04:10 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 19:40:15 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/05 17:45:34 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	initialize_ray(t_ray_result *ray_result, t_game *game, float ray_ang
 	ray_result->map_pos_y = game->player->player_pos_y; // Défini la position actuel du rayon vertical
 	ray_result->ray_dist_x = cos(ray_angle); // On definie la direction horizontal du rayon où il sera envoyé plus tard
 	ray_result->ray_dist_y = sin(ray_angle); // On definie la direction vertical du rayon où il sera envoyé plus tard
+
 }
 
 static void	calcul_delta(t_ray_result *ray_result)

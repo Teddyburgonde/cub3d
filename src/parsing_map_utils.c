@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:50:29 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 18:04:25 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/09/25 10:51:01 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	is_top_and_bottom_wall_closed(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] != '1' && str[i] != ' ')
+		if (str[i] != '1' && str[i] != ' ') //est-ce que d'autres caractères sont autorisés ?
 			return (0);
 		i++;
 	}
