@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 17:12:30 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/06 17:14:10 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	get_player_position_and_orientation(t_game *game)
 }
 
 
-int	texturing_calculations(t_game *game, mlx_texture **texture)
+int	texture_choice(t_game *game, mlx_texture **texture)
 {
 	float wall_pos_hit ;
 	int	texture_coordinate_x;
