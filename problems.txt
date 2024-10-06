@@ -1,14 +1,12 @@
 Teddy
 
-❌ traiter les espaces comme des zones valides : les remplacer par des 0
+✅- Traiter les espaces comme des zones valides : les remplacer par des 1 ->Fais le dimanche 06/10
+✅- Inverser les touches de direction et de camera (WASD <-> fleches) -> Fais le dimanche 06/10
 
-❌ gérer les free des allocations quand exit sur erreur
-
-❌ inverser les touches de direction et de camera (WASD <-> fleches)
+❌ gérer les free des allocations quand exit sur erreur 
 
 -----------------------------------------------------------------------------------------------
 PA
-
 
 
 -----------------------------------------------------------------------------------------------

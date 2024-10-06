@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/25 15:15:00 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/06 16:17:42 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,28 @@ static int	is_validate_map_line(char *line, t_map_data *map_data)
 	return (0);
 }
 
+static void	remplace_spaces_with_walls(char	**line)
+{
+	int	i;
+	int	j;
+
+	j = 1;
+	while (line[j + 1])
+	{
+		i = 1;
+		while (line[j][i + 1])
+		{
+			if (line[j][i] == 32)
+				line[j][i] = '1';
+			i++;
+		}
+		j++;
+	}
+}
+
 int	parse_map(t_map_data *map_data)
 {
+	remplace_spaces_with_walls(map_data->map);
 	while (map_data->map[map_data->save]
 		&& is_full_whitespaces(map_data->map[map_data->save]) == 1)
 		map_data->save++;
