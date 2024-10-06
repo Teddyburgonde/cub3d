@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:21:22 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/05 16:22:29 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/06 19:01:47 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ void	memory_allocation_for_struct(t_game **game)
 	(*game)->player = ft_calloc(1, sizeof(t_player));
 	(*game)->texture = ft_calloc(1, sizeof(t_texture));
 	(*game)->data = ft_calloc(1, sizeof(t_map_data));
-	if (!(*game) || !(*game)->player || !(*game)->texture || !(*game)->data)//pb pas de free des structures déjà allouées
+	if (!(*game) || !(*game)->player || !(*game)->texture || !(*game)->data)
 	{
-		ft_putstr_fd("Error: Memory allocation failed\n", 2);
+		close_and_free(*game);
+		ft_putstr_fd("Error: A memory allocation failed\n", 2);
 		exit (1);
 	}
 }
 
-void	allocate_textures(Uint32 *texture[8])
+void	allocate_textures(Uint32 *texture[8]) //utile ? verifier les free
 {
 	int	i;
 	int	j;

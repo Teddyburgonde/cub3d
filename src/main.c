@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 17:36:18 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/06 19:30:05 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	get_player_position_and_orientation(t_game *game)
 }
 
 
-int	texture_choice(t_game *game, mlx_texture **texture)
+/*int	texture_choice(t_game *game, mlx_texture **texture)
 {
 	float wall_pos_hit ;
 	int	texture_coordinate_x;
@@ -127,7 +127,7 @@ int	texture_choice(t_game *game, mlx_texture **texture)
 	if (game->ray_result->side == 1 && game->ray_result->ray_dist_perpendicular_to_wall < 0)
 		texture_coordinate_x = TEX_WIDTH - 1;
 	return (texture_coordinate_x);
-}
+}*/
 
 
 // How much to increase the texture coordinate per screen pixel
@@ -150,28 +150,31 @@ int	texture_choice(t_game *game, mlx_texture **texture)
 int	main(int argc, char **argv)
 {
 	// test modif for check branch
+	int		fd;
+	char	**map;
 	t_game	*game;
 	Uint32	*texture[8];
+	
 
+	fd = 0;
 	game = NULL;
-	if (parsing_arguments(argc, argv) == 1)
-		return (EXIT_FAILURE);
+	
+	parsing_arguments(argc, argv);
+	check_and_open_file(&fd, argv);
+	map = get_map(fd);
 	memory_allocation_for_struct(&game);
-	initialization_of_values(game);
-	if (check_and_open_file(game, argv) == 1)
-		return (EXIT_FAILURE);
-	game->data->map = get_map(game->data->fd);
-	if (!game->data->map)
-		return (EXIT_FAILURE);//verifier si GNL renvoie NULL en dehors d'une erreur d'allocation
+	initialization_of_values(game, fd, map);
+//	if (!game->data->map)
+//		return (EXIT_FAILURE);//verifier si GNL renvoie NULL en dehors d'une erreur d'allocation
 	parsing_map_elements(game);
 	if (parse_map(game->data) == 1)
-		exit(1);//free des allocations
+		exit(EXIT_FAILURE);//free des allocations
 	game->data->map = &game->data->map[6];
 
 	get_map_size(game->data);
 	get_player_position_and_orientation(game);
 
-	allocate_textures(texture);
+	allocate_textures(texture); //utile ?
 
 	render_graphics (game);
 	close_and_free(game);

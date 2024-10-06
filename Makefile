@@ -6,7 +6,7 @@
 #    By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/10/06 17:39:22 by ppuivif          ###   ########.fr        #
+#    Updated: 2024/10/06 18:39:50 by ppuivif          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ CC = cc
 
 #=================== FLAGS ==================#
 
-#CFLAGS modified to include -pg instead of -g for gmon
+#CFLAGS = -Wall -Wextra -Werror -I./MLX42/include -pg for gmon
 
-CFLAGS = -Wall -Wextra -Werror -I./MLX42/include -pg
+CFLAGS = -Wall -Wextra -Werror -I./MLX42/include -g
 
 MLXFLAGS= MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 

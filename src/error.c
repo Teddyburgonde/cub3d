@@ -6,18 +6,11 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 01:31:06 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/04 16:27:00 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/06 19:06:18 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-int	message_error_for_parsing_args(char *message, int ret_value)
-{
-	ft_putstr_fd("Error: ", 2);
-	ft_putstr_fd(message, 2);
-	return (ret_value);
-}
 
 int	message_error_for_missing_elements(t_counter_parameter counter_parameter)
 {
@@ -38,8 +31,8 @@ int	message_error_return_1(char *error_message)
 	return (1);
 }
 
-int	free_tab_return_1(char **tab)
+int	free_tab_return_1(char **arr)
 {
-	ft_free(tab);
+	free_array(arr);
 	return (1);
 }

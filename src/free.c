@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:34:28 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 12:49:08 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/06 19:03:45 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_free(char **tab)
+void	free_array(char **arr)
 {
 	int	i;
 
 	i = 0;
-	while (tab && tab[i])
+	while (arr && arr[i])
 	{
-		free(tab[i]);
+		free(arr[i]);
 		i++;
 	}
-	free(tab);
+	free(arr);
 }
 
-void	ft_delete_texture(t_texture *texture)
+static void	delete_texture(t_texture *texture)
 {
 	if (texture->north_texture)
 		mlx_delete_texture(texture->north_texture);
@@ -39,19 +39,21 @@ void	ft_delete_texture(t_texture *texture)
 
 void	close_and_free(t_game *game)
 {
+	if (game->data->fd > 2)
+		close(game->data->fd);
 	if (game->mlx)
 	{
 		mlx_close_window(game->mlx);
 		mlx_terminate(game->mlx);
 	}
-	if (game->texture)
-		ft_delete_texture(game->texture);
-	if (game->data)
-		free(game->data);
-	if (game->texture)
-		free(game->texture);
 	if (game->player)
 		free(game->player);
+	if (game->texture)
+		delete_texture(game->texture);
+	if (game->texture)
+		free(game->texture);
+	if (game->data)
+		free(game->data);
 	if (game)
 		free(game);
 }
