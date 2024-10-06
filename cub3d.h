@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 16:52:04 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/06 17:40:47 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 #define WINDOWS_WIDTH 1040
 #define WINDOWS_HEIGHT 720
 #define TEX_WIDTH 64 // largeur de texture
-
+#define TEX_HEIGHT 64 // hauteur de texture
+#define LINE_HEIGHT 64 // test 
 
 typedef unsigned int Uint32;
-
 
 /*
 * Struct

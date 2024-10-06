@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 17:14:10 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/06 17:57:45 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,22 +129,46 @@ int	texture_choice(t_game *game, mlx_texture **texture)
 	return (texture_coordinate_x);
 }
 
-
-// How much to increase the texture coordinate per screen pixel
-//       double step = 1.0 * texHeight / lineHeight;
-//       // Starting texture coordinate
-//       double texPos = (drawStart - h / 2 + lineHeight / 2) * step;
-//       for(int y = drawStart; y<drawEnd; y++)
-//       {
-//         // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-//         int texY = (int)texPos & (texHeight - 1);
-//         texPos += step;
-//         Uint32 color = texture[texNum][texHeight * texY + texX];
-//         //make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
-//         if(side == 1) color = (color >> 1) & 8355711;
-//         buffer[y][x] = color;
-//       }
-//     }
+void	draw_wall_texture(t_game *game, mlx_texture *texture)
+{
+	double step;
+	double tex_pos;
+	int	y; // Position verticale pour dessiner le mur
+	int tex_y; // Coordonnée Y de la texture
+    int tex_num; // Numéro de la texture, à initialiser
+	int screen_height;// Hauteur de l'écran
+    int draw_start;
+    int draw_end;
+	int	i;
+	char *buffer;
+	
+	screen_height = game->data->height;
+	draw_start = (screen_height / 2) - (game->ray_result->wall_height / 2);
+	draw_end = (screen_height / 2) + (game->ray_result->wall_height / 2);
+	tex_num = game->data->map[game->ray_result->map_pos_x][game->ray_result->map_pos_y] - 1; // Indice de la texture
+	step = 1.0 * TEX_HEIGHT  / game->ray_result->wall_height; // Calcul du pas pour la coordonnée de texture
+	tex_pos = (draw_start - game->data->height / 2 + game->ray_result->wall_height / 2) * step; // Initialiser tex_pos
+	y = draw_start;
+	while (i < screen_height)
+	{
+		 buffer[i] = malloc(sizeof(Uint32) * screen_width);
+	}
+	while (y < draw_end)
+	{
+		tex_y = (int)tex_pos;
+		if (tex_y < 0) 
+            tex_y = 0; 
+        if (tex_y >= TEX_HEIGHT) 
+            tex_y = TEX_HEIGHT - 1; 
+		 Uint32 color = texture[tex_num][TEX_HEIGHT * tex_y + tex_x]; 
+		if (game->ray_result->side == 1)
+			color = 0xFFB400B4;
+		buffer[y][game->ray_result->map_pos_x] = color; 
+        
+        tex_pos += step;
+		y++;
+	}
+}
 
 
 int	main(int argc, char **argv)
