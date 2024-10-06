@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:07:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/05 17:44:47 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/06 19:27:40 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ void	raycast(void *param)
 	{
 		ray_angle = game->player->angle - (game->player->fov / 2.0f) + i * angle_step; // calcul de l'angle du rayon actuel
 		ray_result = ray_hit_detection(ray_angle, game); // on regarde si le rayon a toucher un mur
-		draw_elements(game->texture->image, i, ray_result.wall_height, game);
+		texture_choice(game);
+		
+		draw_elements(game->texture->image, i, game);
 		i++;
 	}
 	display_minimap(game);

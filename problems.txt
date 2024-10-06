@@ -2,8 +2,10 @@ Teddy
 
 ✅- Traiter les espaces comme des zones valides : les remplacer par des 1 ->Fais le dimanche 06/10
 ✅- Inverser les touches de direction et de camera (WASD <-> fleches) -> Fais le dimanche 06/10
+✅- J'ai commenté le pitch
 
 ❌ gérer les free des allocations quand exit sur erreur 
+❌ afficher les textures sur les murs (gerer les limites, les proportions, les distortions)
 
 -----------------------------------------------------------------------------------------------
 PA
@@ -11,9 +13,8 @@ PA
 
 -----------------------------------------------------------------------------------------------
 
-❌ afficher les textures sur les murs (gerer les limites, les proportions, les distortions)
 
-❌ créer les bonus (ou non) pour la minimap et le pitch (camera vers le haut et vers le bas)
+❌ créer les bonus pour la minimap.
 
 
 

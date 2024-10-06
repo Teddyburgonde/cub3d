@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 17:40:47 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/06 19:25:08 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ typedef struct s_ray_result
 	int		side; // test a-t-il touché un mur NS ou EW?
 	int		map_pos_x; // test
 	int		map_pos_y; // test
+	float	wall_pos_hit; // l'endroit ou le rayon touche le mur
+	int		draw_end; // ATTENTION VALEUR NON INITIALISER
+	int		draw_start; // ATTENTION VALEUR NON INITIALISER
 }	t_ray_result;
 
 typedef struct s_player
@@ -61,7 +64,7 @@ typedef struct s_player
 	float	player_pos_y;
 	float	fov;
 	float	angle;
-	float	pitch;
+	// float	pitch; 
 }	t_player;
 
 typedef struct s_texture
@@ -79,6 +82,7 @@ typedef struct s_texture
 	mlx_texture_t	*east_texture;
 	mlx_texture_t	*south_texture;
 	mlx_texture_t	*west_texture;
+	mlx_texture_t	*texture; // pas encore initialiser attention conditionnal jump
 
 	mlx_texture_t	*player_image_N; //pour minimap
 	mlx_texture_t	*player_image_E; //pour minimap
@@ -121,6 +125,10 @@ typedef struct s_game
 	t_ray_result		*ray_result;
 }	t_game;
 
+
+int	texture_choice(t_game *game);
+int32_t	ft_pixel(int32_t r, int32_t g, int32_t b);
+void	draw_wall_texture(t_game *game, int x);
 /*
 * Parsing arguments
 */
@@ -152,8 +160,9 @@ void	load_image(t_game *game);
 * Draw
 */
 
-void	 draw_elements(mlx_image_t* image, int x, float wall_height, t_game *game);
-
+//void	 draw_elements(mlx_image_t* image, int x, float wall_height, t_game *game);
+void	draw_elements(mlx_image_t *image,
+	int x, t_game *game);
 /*
 * Textures
 */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization_of_values.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:25:34 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/05 17:10:39 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/06 19:24:02 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	initialization_of_values(t_game *game)
 	game->player->player_pos_y = 1;// 4 si map plus petite ?
 	game->player->fov = 1.221;
 	game->player->angle = 0.0;
-	game->player->pitch = 0.0;
+	//game->player->pitch = 0.0;
 
 	game->data->save = 0;
 	game->data->fd = -1;
