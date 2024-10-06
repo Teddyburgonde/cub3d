@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_elements.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:47:39 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/02 05:38:34 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/06 15:35:04 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void	draw_ceiling(mlx_image_t *image, int x, int up_wall)
 	int	y;
 
 	y = 0;
-	while (y < up_wall)
-	{
+	while (y < up_wall && y < WINDOWS_HEIGHT)
+	{	
 		mlx_put_pixel(image, x, y, 0x00007FFF);
 		y++;
 	}
@@ -143,8 +143,12 @@ static void	draw_floor(mlx_image_t *image, int x, int down_wall)
 {
 	int	y;
 
+	if (down_wall < 0) 
+		down_wall = 0;
+    if (down_wall >= (int)image->height)
+		return;
 	y = down_wall;
-	while (y < (int)image->height)
+	while (y < (int)image->height && y < WINDOWS_HEIGHT)
 	{
 		mlx_put_pixel(image, x, y, 0xAFAFAFFF); // couleur du sol
 		y++;
