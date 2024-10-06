@@ -4,7 +4,7 @@ Teddy
 
 ❌ gérer les free des allocations quand exit sur erreur
 
-❌ inverser les touches de direction et de camera (WASD <-> fleches)
+❌ inverser les touches de direction et de camera (WASD <-> fleches) ✅ Fais le dimanche 06/10
 
 -----------------------------------------------------------------------------------------------
 PA
