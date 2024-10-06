@@ -2,7 +2,7 @@ Teddy
 
 ❌ traiter les espaces comme des zones valides : les remplacer par des 0
 
-❌ gérer les free des allocations quand exit sur erreur
+❌ gérer les free des allocations quand exit sur erreur 
 
 ❌ inverser les touches de direction et de camera (WASD <-> fleches) ✅ Fais le dimanche 06/10
 

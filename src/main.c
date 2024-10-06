@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/05 17:16:15 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/06 15:38:10 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	get_player_position_and_orientation(t_game *game)
 			game->data->map[i][j] == 'S' || \
 			game->data->map[i][j] == 'N')
 			{
-				game->player->player_pos_x = j;
-				game->player->player_pos_y = i;
+				game->player->player_pos_x = j + 0.5;
+				game->player->player_pos_y = i + 0.5 ;
 				get_initial_orientation_player (game, game->data->map[i][j]);
 				return ;
 			}
