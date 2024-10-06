@@ -1,0 +1,8 @@
+Le parsing permet de déterminer la position du personnage sur la map grâce à ses coordonnées
+(float player->player_pos_x & float player->player_pos_y).
+Il permet de déterminer également l'orientation du personnage (float player->dir_x &
+float player->dir_x).
+
+Initialisation dans le code mais pas affecté en fonction de la map.
+
+-----------------------------------------------------------------------------------------------
