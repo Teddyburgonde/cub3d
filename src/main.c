@@ -6,11 +6,12 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 15:38:10 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/06 17:12:30 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+#include <math.h>
 
 static void	get_map_size(t_map_data *map_data)
 {
@@ -88,6 +89,63 @@ void	get_player_position_and_orientation(t_game *game)
 		i++;
 	}
 }
+
+
+int	texturing_calculations(t_game *game, mlx_texture **texture)
+{
+	float wall_pos_hit ;
+	int	texture_coordinate_x;
+	
+	if (game->ray_result->side == 0 && cos(game->player->angle) > 0)
+	{
+		*texture = game->texture->east_texture;
+	}
+	else if (game->ray_result->side == 0 && cos(game->player->angle) <= 0)
+	{
+		*texture = game->texture->west_texture;
+	}
+	else if (game->ray_result->side == 1 && sin(game->player->angle) > 0)
+	{
+		*texture = game->texture->south_texture;
+	}
+	else 
+	{
+		*texture = game->texture->north_texture;
+	}
+	if (game->ray_result->side == 0)
+	{
+		wall_pos_hit = game->player->player_pos_y + game->ray_result->ray_dist_perpendicular_to_wall * game->ray_result->ray_dist_y;
+	}
+	else 
+	{
+		wall_pos_hit = game->player->player_pos_x + game->ray_result->ray_dist_perpendicular_to_wall * game->ray_result->ray_dist_x;
+	}
+	wall_pos_hit -= floor(wall_pos_hit);
+	texture_coordinate_x = (int)wall_pos_hit * (double)TEX_WIDTH;
+	if (game->ray_result->side == 0 && game->ray_result->ray_dist_perpendicular_to_wall > 0)
+		texture_coordinate_x = TEX_WIDTH - 1;
+	if (game->ray_result->side == 1 && game->ray_result->ray_dist_perpendicular_to_wall < 0)
+		texture_coordinate_x = TEX_WIDTH - 1;
+	return (texture_coordinate_x);
+}
+
+
+// How much to increase the texture coordinate per screen pixel
+//       double step = 1.0 * texHeight / lineHeight;
+//       // Starting texture coordinate
+//       double texPos = (drawStart - h / 2 + lineHeight / 2) * step;
+//       for(int y = drawStart; y<drawEnd; y++)
+//       {
+//         // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
+//         int texY = (int)texPos & (texHeight - 1);
+//         texPos += step;
+//         Uint32 color = texture[texNum][texHeight * texY + texX];
+//         //make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
+//         if(side == 1) color = (color >> 1) & 8355711;
+//         buffer[y][x] = color;
+//       }
+//     }
+
 
 int	main(int argc, char **argv)
 {
