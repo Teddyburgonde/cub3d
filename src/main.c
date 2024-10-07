@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/07 14:57:49 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:40:46 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,6 @@ static void	get_map_size(t_map_data *map_data)
 	}
 	map_data->nb_lines = i;
 }
-
-/*void	print_arr(char **map)
-{
-	int	i;
-
-	i = 0;
-	while(map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
-}*/
 
 void	get_initial_orientation_player(t_game *game, char facing)
 {
@@ -131,7 +119,6 @@ void	texture_choice(t_game *game)
 	}
 }
 
-// static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int s[2]) VOIR gALLAD 
 void	draw_wall_texture(t_game *game, int x)
 {
 	
@@ -139,7 +126,6 @@ void	draw_wall_texture(t_game *game, int x)
 	int text_y;
 	int	pixel;
 	float text_x;
-	// y = s[0];
 	y = game->ray_result.draw_start;
 	if (game->ray_result.side == 0)
 	{
@@ -150,10 +136,6 @@ void	draw_wall_texture(t_game *game, int x)
 		text_x = game->ray_result.map_pos_x + game->ray_result.ray_dist_perpendicular_to_wall * cos(game->ray_result.angle);
 	}
 	text_x -= floor(text_x);
-
-	// int texX = int(wallX * double(texWidth));
-    //   if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;
-    //   if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;
 	text_x = (int)(text_x * (double)game->texture->texture->width);
 	if ((game->ray_result.side == 0 && cos(game->ray_result.angle) > 0 ) || ((game->ray_result.side == 1) && sin(game->ray_result.angle) < 0))
 	{
@@ -163,56 +145,10 @@ void	draw_wall_texture(t_game *game, int x)
 	{
 		text_y = (int)((y - game->ray_result.draw_start) * ((float)game->texture->texture->height / (game->ray_result.draw_end - game->ray_result.draw_start))); 
 		pixel = (game->texture->texture->width * text_y + text_x) * 4; // remove * 4 RGBA	
-		// if (pixel < 0)
-		// 	pixel = 0;
-		// if (y > 0 && y < (int)game->texture->texture->height && x > 0 && x < (int)game->texture->texture->height)
-		// printf("x: %d, y: %d, texty: %d, textx: %f, pixel: %d, color: %d\n", x, y, text_y, text_x, pixel, ft_pixel(game->texture->texture->pixels[pixel], game->texture->texture->pixels[pixel + 1], game->texture->texture->pixels[pixel + 2]));
 		mlx_put_pixel(game->texture->image, x, y, ft_pixel(game->texture->texture->pixels[pixel], game->texture->texture->pixels[pixel + 1], game->texture->texture->pixels[pixel + 2]));
 		y++;
 	}
 }
-
-// void	draw_wall_texture(t_game *game, mlx_texture *texture)
-// {
-// 	double step;
-// 	double tex_pos;
-// 	int	y; // Position verticale pour dessiner le mur
-// 	int tex_y; // Coordonnée Y de la texture
-//     int tex_num; // Numéro de la texture, à initialiser
-// 	int screen_height;// Hauteur de l'écran
-//     int draw_start;
-//     int draw_end;
-// 	int	i;
-// 	char *buffer;
-	
-// 	screen_height = game->data->height;
-// 	draw_start = (screen_height / 2) - (game->ray_result.wall_height / 2);
-// 	draw_end = (screen_height / 2) + (game->ray_result.wall_height / 2);
-// 	tex_num = game->data->map[game->ray_result.map_pos_x][game->ray_result.map_pos_y] - 1; // Indice de la texture
-// 	step = 1.0 * TEX_HEIGHT  / game->ray_result.wall_height; // Calcul du pas pour la coordonnée de texture
-// 	tex_pos = (draw_start - game->data->height / 2 + game->ray_result.wall_height / 2) * step; // Initialiser tex_pos
-// 	y = draw_start;
-// 	while (i < screen_height)
-// 	{
-// 		 buffer[i] = malloc(sizeof(Uint32) * screen_width);
-// 	}
-// 	while (y < draw_end)
-// 	{
-// 		tex_y = (int)tex_pos;
-// 		if (tex_y < 0) 
-//             tex_y = 0; 
-//         if (tex_y >= TEX_HEIGHT) 
-//             tex_y = TEX_HEIGHT - 1; 
-// 		 Uint32 color = texture[tex_num][TEX_HEIGHT * tex_y + tex_x]; 
-// 		if (game->ray_result.side == 1)
-// 			color = 0xFFB400B4;
-// 		buffer[y][game->ray_result.map_pos_x] = color; 
-        
-//         tex_pos += step;
-// 		y++;
-// 	}
-// }
-
 
 int	main(int argc, char **argv)
 {

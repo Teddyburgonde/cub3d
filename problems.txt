@@ -4,12 +4,12 @@ Teddy
 ✅- Inverser les touches de direction et de camera (WASD <-> fleches) -> Fais le dimanche 06/10
 ✅- J'ai commenté le pitch
 
-❌ gérer les free des allocations quand exit sur erreur 
-❌ afficher les textures sur les murs (gerer les limites, les proportions, les distortions)
+✅ afficher les textures sur les murs (gerer les limites, les proportions, les distortions)
 
 -----------------------------------------------------------------------------------------------
 PA
 
+❌ gérer les free des allocations quand exit sur erreur 
 
 -----------------------------------------------------------------------------------------------
 
@@ -18,6 +18,4 @@ PA
 
 
 
-✅
-
-❌
+✅ ❌

@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/07 14:29:31 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:44:44 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ typedef struct s_game
 }	t_game;
 
 
-//int	texture_choice(t_game *game);
 void	texture_choice(t_game *game);
 void	pos_texture(t_game *game);
 int32_t	ft_pixel(int32_t r, int32_t g, int32_t b);
