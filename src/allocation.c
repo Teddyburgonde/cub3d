@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:21:22 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 19:01:47 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/07 09:31:19 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void	memory_allocation_for_struct(t_game **game)
 	if (!(*game) || !(*game)->player || !(*game)->texture || !(*game)->data)
 	{
 		close_and_free(*game);
-		ft_putstr_fd("Error: A memory allocation failed\n", 2);
-		exit (1);
+		allocation_failed();
 	}
 }
 

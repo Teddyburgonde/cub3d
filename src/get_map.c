@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 14:35:54 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 19:31:23 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/07 10:04:13 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ char	**get_map(int fd)
 	map = NULL;
 	line = get_next_line(fd);
 	if (!line)
-		return (NULL); //exit ?
+	{
+		ft_putstr_fd("Error: Map is empty.\n", 2);
+		exit(EXIT_FAILURE);
+	}
 	tmp = get_next_line(fd);
 	while (tmp != NULL)
 	{
@@ -33,7 +36,7 @@ char	**get_map(int fd)
 		tmp = get_next_line(fd);
 	}
 	map = ft_split(line, '\n');
-	if(!map)
+	if(line && !map)
 	{
 		close(fd);
 		exit(EXIT_FAILURE);

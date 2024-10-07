@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 19:30:05 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/07 09:37:29 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,8 +164,6 @@ int	main(int argc, char **argv)
 	map = get_map(fd);
 	memory_allocation_for_struct(&game);
 	initialization_of_values(game, fd, map);
-//	if (!game->data->map)
-//		return (EXIT_FAILURE);//verifier si GNL renvoie NULL en dehors d'une erreur d'allocation
 	parsing_map_elements(game);
 	if (parse_map(game->data) == 1)
 		exit(EXIT_FAILURE);//free des allocations

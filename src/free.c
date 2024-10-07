@@ -6,13 +6,13 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:34:28 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 19:03:45 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/07 09:56:32 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	free_array(char **arr)
+void	*free_array(char **arr)
 {
 	int	i;
 
@@ -23,6 +23,7 @@ void	free_array(char **arr)
 		i++;
 	}
 	free(arr);
+	return (NULL);
 }
 
 static void	delete_texture(t_texture *texture)

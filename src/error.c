@@ -6,11 +6,17 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 01:31:06 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 19:06:18 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/07 09:31:13 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	allocation_failed()
+{
+	ft_putstr_fd("Error: A memory allocation failed\n", 2);
+	exit(EXIT_FAILURE);
+}
 
 int	message_error_for_missing_elements(t_counter_parameter counter_parameter)
 {
@@ -19,7 +25,7 @@ int	message_error_for_missing_elements(t_counter_parameter counter_parameter)
 		|| counter_parameter.counter_ea != 1
 		|| counter_parameter.counter_f != 1 || counter_parameter.counter_c != 1)
 	{
-		ft_putstr_fd("Error: One or more elements is missing \n", 2); // is missing
+		ft_putstr_fd("Error: One or more elements is missing.\n", 2); // is missing
 		exit (1);
 	}
 	return (0);

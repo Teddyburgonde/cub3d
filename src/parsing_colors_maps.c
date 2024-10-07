@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 19:08:43 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/07 10:03:30 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ static int	ft_parse_color(char *map_line, int *color)
 	char	**tab;
 
 	tmp = ft_split(map_line, ' ');
-	if (!tmp)
+	if (!tmp && map_line)//to verify
 		return (EXIT_FAILURE);//& free des structures
 	tab = ft_split(tmp[1], ',');
-	if (!tab)
+	if (!tab && tmp[1])// to verify
 	{
 		free_array(tmp); //& free des structures
 		return (EXIT_FAILURE);
