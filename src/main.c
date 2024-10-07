@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 19:22:49 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:57:49 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,38 @@ void	get_player_position_and_orientation(t_game *game)
 	}
 }
 
-
-int	texture_choice(t_game *game)
+void	pos_texture(t_game *game)
 {
 	int	texture_coordinate_x;
 	
-	if (game->ray_result->side == 0 && cos(game->player->angle) > 0)
+	if (game->ray_result.side == 0)
+	{
+		game->ray_result.wall_pos_hit = game->player->player_pos_y + game->ray_result.ray_dist_perpendicular_to_wall * game->ray_result.ray_dist_y;
+	}
+	else 
+	{
+		game->ray_result.wall_pos_hit = game->player->player_pos_x + game->ray_result.ray_dist_perpendicular_to_wall * game->ray_result.ray_dist_x;
+	}
+	game->ray_result.wall_pos_hit -= floor(game->ray_result.wall_pos_hit);
+	texture_coordinate_x = (int)game->ray_result.wall_pos_hit * (double)TEX_WIDTH;
+	if (game->ray_result.side == 0 && game->ray_result.ray_dist_perpendicular_to_wall > 0)
+		texture_coordinate_x = TEX_WIDTH - 1;
+	if (game->ray_result.side == 1 && game->ray_result.ray_dist_perpendicular_to_wall < 0)
+		texture_coordinate_x = TEX_WIDTH - 1;	
+}
+
+
+void	texture_choice(t_game *game)
+{
+	if (game->ray_result.side == 0 && cos(game->player->angle) > 0)
 	{
 		game->texture->texture = game->texture->east_texture;
 	}
-	else if (game->ray_result->side == 0 && cos(game->player->angle) <= 0)
+	else if (game->ray_result.side == 0 && cos(game->player->angle) <= 0)
 	{
 		game->texture->texture = game->texture->west_texture;
 	}
-	else if (game->ray_result->side == 1 && sin(game->player->angle) > 0)
+	else if (game->ray_result.side == 1 && sin(game->player->angle) > 0)
 	{
 		game->texture->texture = game->texture->south_texture;
 	}
@@ -111,21 +129,6 @@ int	texture_choice(t_game *game)
 	{
 		game->texture->texture = game->texture->north_texture;
 	}
-	if (game->ray_result->side == 0)
-	{
-		game->ray_result->wall_pos_hit = game->player->player_pos_y + game->ray_result->ray_dist_perpendicular_to_wall * game->ray_result->ray_dist_y;
-	}
-	else 
-	{
-		game->ray_result->wall_pos_hit = game->player->player_pos_x + game->ray_result->ray_dist_perpendicular_to_wall * game->ray_result->ray_dist_x;
-	}
-	game->ray_result->wall_pos_hit -= floor(game->ray_result->wall_pos_hit);
-	texture_coordinate_x = (int)game->ray_result->wall_pos_hit * (double)TEX_WIDTH;
-	if (game->ray_result->side == 0 && game->ray_result->ray_dist_perpendicular_to_wall > 0)
-		texture_coordinate_x = TEX_WIDTH - 1;
-	if (game->ray_result->side == 1 && game->ray_result->ray_dist_perpendicular_to_wall < 0)
-		texture_coordinate_x = TEX_WIDTH - 1;
-	return (texture_coordinate_x);
 }
 
 // static void	ft_put_floor_wall(t_player *p, int text_y, int text_x, int s[2]) VOIR gALLAD 
@@ -135,19 +138,36 @@ void	draw_wall_texture(t_game *game, int x)
 	int	y;
 	int text_y;
 	int	pixel;
-	int text_x;
+	float text_x;
 	// y = s[0];
-	y = game->ray_result->draw_start;
-	text_x = (game->ray_result->wall_pos_hit * (float)(game->texture->texture->width - 1));
-	
-	while (y < game->ray_result->draw_end && y != WINDOWS_HEIGHT - 1)
+	y = game->ray_result.draw_start;
+	if (game->ray_result.side == 0)
 	{
-		text_y = (int)((y - game->ray_result->draw_start) * (float)WINDOWS_HEIGHT / (game->ray_result->draw_end - game->ray_result->draw_start)); 
-		pixel = (WINDOWS_WIDTH * text_x + text_x); // remove * 4 RGBA	
-		if (pixel < 0)
-			pixel = 0;
-		if (y > 0 && y < WINDOWS_HEIGHT && x > 0 && x < WINDOWS_WIDTH)
-			mlx_put_pixel(game->texture->image, x, y, ft_pixel(game->texture->texture->pixels[pixel], game->texture->texture->pixels[pixel + 1], game->texture->texture->pixels[pixel + 2]));
+		text_x = game->ray_result.map_pos_y + game->ray_result.ray_dist_perpendicular_to_wall * sin(game->ray_result.angle);
+	}
+	else 
+	{
+		text_x = game->ray_result.map_pos_x + game->ray_result.ray_dist_perpendicular_to_wall * cos(game->ray_result.angle);
+	}
+	text_x -= floor(text_x);
+
+	// int texX = int(wallX * double(texWidth));
+    //   if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;
+    //   if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;
+	text_x = (int)(text_x * (double)game->texture->texture->width);
+	if ((game->ray_result.side == 0 && cos(game->ray_result.angle) > 0 ) || ((game->ray_result.side == 1) && sin(game->ray_result.angle) < 0))
+	{
+		text_x = game->texture->texture->width - text_x - 1;
+	}
+	while (y < game->ray_result.draw_end && y < WINDOWS_HEIGHT)
+	{
+		text_y = (int)((y - game->ray_result.draw_start) * ((float)game->texture->texture->height / (game->ray_result.draw_end - game->ray_result.draw_start))); 
+		pixel = (game->texture->texture->width * text_y + text_x) * 4; // remove * 4 RGBA	
+		// if (pixel < 0)
+		// 	pixel = 0;
+		// if (y > 0 && y < (int)game->texture->texture->height && x > 0 && x < (int)game->texture->texture->height)
+		// printf("x: %d, y: %d, texty: %d, textx: %f, pixel: %d, color: %d\n", x, y, text_y, text_x, pixel, ft_pixel(game->texture->texture->pixels[pixel], game->texture->texture->pixels[pixel + 1], game->texture->texture->pixels[pixel + 2]));
+		mlx_put_pixel(game->texture->image, x, y, ft_pixel(game->texture->texture->pixels[pixel], game->texture->texture->pixels[pixel + 1], game->texture->texture->pixels[pixel + 2]));
 		y++;
 	}
 }
@@ -166,11 +186,11 @@ void	draw_wall_texture(t_game *game, int x)
 // 	char *buffer;
 	
 // 	screen_height = game->data->height;
-// 	draw_start = (screen_height / 2) - (game->ray_result->wall_height / 2);
-// 	draw_end = (screen_height / 2) + (game->ray_result->wall_height / 2);
-// 	tex_num = game->data->map[game->ray_result->map_pos_x][game->ray_result->map_pos_y] - 1; // Indice de la texture
-// 	step = 1.0 * TEX_HEIGHT  / game->ray_result->wall_height; // Calcul du pas pour la coordonnée de texture
-// 	tex_pos = (draw_start - game->data->height / 2 + game->ray_result->wall_height / 2) * step; // Initialiser tex_pos
+// 	draw_start = (screen_height / 2) - (game->ray_result.wall_height / 2);
+// 	draw_end = (screen_height / 2) + (game->ray_result.wall_height / 2);
+// 	tex_num = game->data->map[game->ray_result.map_pos_x][game->ray_result.map_pos_y] - 1; // Indice de la texture
+// 	step = 1.0 * TEX_HEIGHT  / game->ray_result.wall_height; // Calcul du pas pour la coordonnée de texture
+// 	tex_pos = (draw_start - game->data->height / 2 + game->ray_result.wall_height / 2) * step; // Initialiser tex_pos
 // 	y = draw_start;
 // 	while (i < screen_height)
 // 	{
@@ -184,9 +204,9 @@ void	draw_wall_texture(t_game *game, int x)
 //         if (tex_y >= TEX_HEIGHT) 
 //             tex_y = TEX_HEIGHT - 1; 
 // 		 Uint32 color = texture[tex_num][TEX_HEIGHT * tex_y + tex_x]; 
-// 		if (game->ray_result->side == 1)
+// 		if (game->ray_result.side == 1)
 // 			color = 0xFFB400B4;
-// 		buffer[y][game->ray_result->map_pos_x] = color; 
+// 		buffer[y][game->ray_result.map_pos_x] = color; 
         
 //         tex_pos += step;
 // 		y++;

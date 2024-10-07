@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_hit_detection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:04:10 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/05 17:45:34 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/07 14:47:05 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ t_ray_result	ray_hit_detection(float ray_angle, t_game *game)
 	ray_result = perform_dda(ray_result, game->data->map);
 	//cette ligne permet de calculer la hauteur du mur		    floor permet d'enleve le fisheye(distorsion visuel, les objets proches paraissent déformé)
 	ray_result.wall_height = (int)((float)game->data->height / (floor(ray_result.ray_dist_perpendicular_to_wall * cos(clamp(game->player->angle - ray_angle, 0, 2 * M_PI)) * 1000) / 1000)); 
+	ray_result.angle = ray_angle;
 	return (ray_result);
 }
