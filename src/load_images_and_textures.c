@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:30:15 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/05 17:42:39 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/07 10:02:27 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	load_north_south_textures(t_map_data *map_data, t_texture *texture, int i)
 	char	**tab;
 
 	tab = ft_split(map_data->map[i], ' ');
+	if (!tab[1] && map_data->map[i])
+		allocation_failed();// to verify
 	if (tab[1] != NULL)
 	{
 		if (ft_strncmp(tab[0], "NO", 2) == 0)
@@ -31,7 +33,7 @@ int	load_north_south_textures(t_map_data *map_data, t_texture *texture, int i)
 			if (!texture->south_texture)
 				return (free_tab_return_1(tab));
 		}
-		ft_free(tab);
+		free_array(tab);
 	}
 	else
 		exit(EXIT_FAILURE); //free
@@ -43,6 +45,8 @@ int	load_west_east_textures(t_map_data *map_data, t_texture *texture, int i)
 	char	**tab;
 
 	tab = ft_split(map_data->map[i], ' ');
+	if (!tab[1] && map_data->map[i])
+		allocation_failed();// to verify
 	if (tab[1] != NULL)
 	{
 		if (ft_strncmp(tab[0], "WE", 2) == 0)
@@ -57,7 +61,7 @@ int	load_west_east_textures(t_map_data *map_data, t_texture *texture, int i)
 			if (!texture->east_texture)
 				return (free_tab_return_1(tab));
 		}
-		ft_free(tab);
+		free_array(tab);
 	}
 	else
 		exit(EXIT_FAILURE); //free

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_args.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:52:41 by tebandam          #+#    #+#             */
-/*   Updated: 2024/08/11 11:48:30 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/06 19:03:05 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,16 @@ int	manage_cub_extension(char **argv)
 	return (0);
 }
 
-int	parsing_arguments(int argc, char **argv)
+void	parsing_arguments(int argc, char **argv)
 {
 	if (argc != 2)
-		return (message_error_for_parsing_args("Wrong argument number.\n", 1));
+	{
+		ft_putstr_fd("Error: Wrong argument number.\n", 2);
+		exit(EXIT_FAILURE);
+	}
 	if (manage_cub_extension(argv) == 1)
-		return (message_error_for_parsing_args("Wrong extension map.\n", 1));
-	return (0);
+	{
+		ft_putstr_fd("Error: Wrong extension map.\n", 2);
+		exit(EXIT_FAILURE);
+	}
 }

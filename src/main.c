@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/08 07:42:50 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/08 07:56:48 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,28 +153,29 @@ void	draw_wall_texture(t_game *game, int x)
 int	main(int argc, char **argv)
 {
 	// test modif for check branch
+	int		fd;
+	char	**map;
 	t_game	*game;
 	Uint32	*texture[8];
+	
 
+	fd = 0;
 	game = NULL;
-	if (parsing_arguments(argc, argv) == 1)
-		return (EXIT_FAILURE);
+	
+	parsing_arguments(argc, argv);
+	check_and_open_file(&fd, argv);
+	map = get_map(fd);
 	memory_allocation_for_struct(&game);
-	initialization_of_values(game);
-	if (check_and_open_file(game, argv) == 1)
-		return (EXIT_FAILURE);
-	game->data->map = get_map(game->data->fd);
-	if (!game->data->map)
-		return (EXIT_FAILURE);//verifier si GNL renvoie NULL en dehors d'une erreur d'allocation
+	initialization_of_values(game, fd, map);
 	parsing_map_elements(game);
 	if (parse_map(game->data) == 1)
-		exit(1);//free des allocations
+		exit(EXIT_FAILURE);//free des allocations
 	game->data->map = &game->data->map[6];
 
 	get_map_size(game->data);
 	get_player_position_and_orientation(game);
 
-	allocate_textures(texture);
+	allocate_textures(texture); //utile ?
 
 	render_graphics (game);
 	close_and_free(game);

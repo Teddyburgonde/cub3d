@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/07 15:44:44 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/08 07:55:13 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	draw_elements(mlx_image_t *image,
 */
 
 int		manage_cub_extension(char **argv);
-int		parsing_arguments(int argc, char **argv);
+void	parsing_arguments(int argc, char **argv);
 int		ft_parse_map_textures(t_map_data *map);
 
 /*
@@ -179,7 +179,7 @@ int		ft_parse_map_path_texture(t_map_data *map, t_texture *texture);
 * Check and open file
 */
 
-int		check_and_open_file(t_game *game, char **argv);
+void		check_and_open_file(int *fd, char **argv);
 
 /*
 * Read map 
@@ -238,7 +238,6 @@ char	**ft_split(char const *s, char c);
 * Error
 */
 
-int		message_error_for_parsing_args(char *message, int ret_value);
 int		message_error_for_missing_elements(
 			t_counter_parameter counter_parameter);
 int		message_error_return_1(char *error_message);
@@ -256,14 +255,13 @@ void	allocate_textures(Uint32 *texture[8]);
 * Initialization
 */
 
-void	initialization_of_values(t_game *game);
+void	initialization_of_values(t_game *game, int fd, char **map);
 
 /*
 * Free
 */
 
-void	ft_free(char **tab);
-void	ft_delete_texture(t_texture *texture);
+void	free_array(char **arr);
 void	close_and_free(t_game *game);
 
 /*

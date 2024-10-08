@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_colors_maps.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/07 14:51:38 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/08 07:57:08 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	get_color(int *color, char **tab)
 		if (color[i] < 0 || color[i] > 255)
 		{
 			ft_putstr_fd("Error: Incorrect value\n", STDERR_FILENO);
-			ft_free(tab);
+			free_array(tab);
 			return (EXIT_FAILURE);
 		}
 		i++;
@@ -43,18 +43,18 @@ static int	ft_parse_color(char *map_line, int *color)
 	char	**tab;
 
 	tmp = ft_split(map_line, ' ');
-	if (!tmp)
+	if (!tmp && map_line)//to verify
 		return (EXIT_FAILURE);//& free des structures
 	tab = ft_split(tmp[1], ',');
-	if (!tab)
+	if (!tab && tmp[1])// to verify
 	{
-		ft_free(tmp); //& free des structures
+		free_array(tmp); //& free des structures
 		return (EXIT_FAILURE);
 	}
 	if (get_color(color, tab) == 1)
 		return (EXIT_FAILURE);//& free des structures//&free structures
-	ft_free(tmp);
-	ft_free(tab);
+	free_array(tmp);
+	free_array(tab);
 	return (EXIT_SUCCESS);
 }
 

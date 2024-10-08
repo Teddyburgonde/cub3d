@@ -9,7 +9,8 @@ Teddy
 -----------------------------------------------------------------------------------------------
 PA
 
-❌ gérer les free des allocations quand exit sur erreur 
+❌ gérer les free des allocations quand exit sur erreur : attention, il semblerait qu'au moins
+1 fd reste ouvert
 
 -----------------------------------------------------------------------------------------------
 
