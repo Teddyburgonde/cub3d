@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 13:53:45 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 11:52:34 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/06 19:24:24 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ void	ft_key_mouv(mlx_key_data_t keydata, void *param)
 		game->player->angle = clamp(game->player->angle - 0.05, 0, M_PI * 2.0);
 	if (keydata.key == MLX_KEY_RIGHT)
 		game->player->angle = clamp(game->player->angle + 0.05, 0, M_PI * 2.0);
-	if (keydata.key == MLX_KEY_UP && game->player->pitch < 0.5)
-		game->player->pitch += 0.04;
-	if (keydata.key == MLX_KEY_DOWN && game->player->pitch > -0.5)
-		game->player->pitch -= 0.04;
+	// if (keydata.key == MLX_KEY_UP && game->player->pitch < 0.5)
+	// 	game->player->pitch += 0.04;
+	// if (keydata.key == MLX_KEY_DOWN && game->player->pitch > -0.5)
+	// 	game->player->pitch -= 0.04;
 	if (keydata.key == MLX_KEY_ESCAPE)
 		mlx_close_window(game->mlx);
 }

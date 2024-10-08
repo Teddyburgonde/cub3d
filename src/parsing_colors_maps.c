@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_colors_maps.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/23 17:12:39 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/07 14:51:38 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static	int32_t	ft_pixel(int32_t r, int32_t g, int32_t b)
+int32_t	ft_pixel(int32_t r, int32_t g, int32_t b)
 {
 	return (r << 24 | g << 16 | b << 8 | 255);
 }
