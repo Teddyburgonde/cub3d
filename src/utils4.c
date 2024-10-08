@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 13:43:48 by ppuivif           #+#    #+#             */
-/*   Updated: 2024/10/08 08:03:15 by ppuivif          ###   ########.fr       */
+/*   Created: 2024/08/13 17:57:15 by tebandam          #+#    #+#             */
+/*   Updated: 2024/10/08 08:25:51 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "../cub3d.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
+int	is_full_whitespaces(char *str)
+{
+	int	i;
 
-# include <unistd.h>
-# include <stdlib.h>
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
 
-char	*get_next_line(int fd);
-void	*ft_calloc(size_t nmemb, size_t size);
-int		ft_strlen(const char *s);
-char	*ft_strjoin(char *s1, char *s2);
-int		find_line_return(char *s);
-char	*close_current_line(char *s1);
-char	*begin_new_line(char *s1);
-
-#endif
+float	clamp(float num, float min, float max)
+{
+	if (num < min)
+		return (max + num);
+	if (num > max)
+		return (num - max);
+	return (num);
+}

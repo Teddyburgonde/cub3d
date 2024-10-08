@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/08 07:55:13 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/08 08:53:08 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,8 @@ int		ft_atoi(const char *nptr);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		is_full_whitespaces(char *str);
 float	clamp(float num, float min, float max);
+char	*ft_strchr(const char *s, int c);
+
 
 /*
 * ft_split
@@ -238,6 +240,7 @@ char	**ft_split(char const *s, char c);
 * Error
 */
 
+void	allocation_failed();
 int		message_error_for_missing_elements(
 			t_counter_parameter counter_parameter);
 int		message_error_return_1(char *error_message);
@@ -261,14 +264,14 @@ void	initialization_of_values(t_game *game, int fd, char **map);
 * Free
 */
 
-void	free_array(char **arr);
+void	*free_array(char **arr);
 void	close_and_free(t_game *game);
 
 /*
 * Divers help
 */
 
-void	ft_print_value_map(t_map_data *map);
+void	ft_print_value_map(char **map);
 int		ft_parse_map_elements_wall(t_map_data *map);
 
 /*

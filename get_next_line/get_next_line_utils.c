@@ -1,42 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:53:47 by ppuivif           #+#    #+#             */
-/*   Updated: 2024/10/07 09:33:09 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/08 08:28:37 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 #include "../cub3d.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	char	*str;
-	size_t	j;
-	size_t	i;
-
-	j = nmemb * size;
-	i = 0;
-	if (!size || !nmemb)
-		return (malloc(1));
-	if (j > 4294967295 || (size > 65535 && nmemb > 65535))
-		return (NULL);
-	str = malloc(j);
-	if (!str)
-		return (NULL);
-	while (i < j)
-	{
-		str[i] = '\0';
-		i++;
-	}
-	return ((void *) str);
-}
-
-int	ft_strlen(char *s)
+int	ft_strlen(const char *s)
 {
 	int	i;
 

@@ -6,32 +6,32 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/05 17:41:29 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/08 08:49:20 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	ft_parse_map_textures(t_map_data *map)
+int	ft_parse_map_textures(t_map_data *data)
 {
 	int					i;
 	t_counter_parameter	counter_parameter;
 
 	i = 0;
 	ft_memset(&counter_parameter, 0, sizeof(t_counter_parameter));//valider la fonction memset
-	while (map->map[i])
+	while (data->map[i])
 	{
-		if (ft_strncmp(map->map[i], "NO ", 3) == 0)
+		if (ft_strncmp(data->map[i], "NO ", 3) == 0)
 			counter_parameter.counter_no++;
-		if (ft_strncmp(map->map[i], "SO ", 3) == 0)
+		if (ft_strncmp(data->map[i], "SO ", 3) == 0)
 			counter_parameter.counter_so++;
-		if (ft_strncmp(map->map[i], "WE ", 3) == 0)
+		if (ft_strncmp(data->map[i], "WE ", 3) == 0)
 			counter_parameter.counter_we++;
-		if (ft_strncmp(map->map[i], "EA ", 3) == 0)
+		if (ft_strncmp(data->map[i], "EA ", 3) == 0)
 			counter_parameter.counter_ea++;
-		if (ft_strncmp(map->map[i], "F ", 2) == 0)
+		if (ft_strncmp(data->map[i], "F ", 2) == 0)
 			counter_parameter.counter_f++;
-		if (ft_strncmp(map->map[i], "C ", 2) == 0)
+		if (ft_strncmp(data->map[i], "C ", 2) == 0)
 			counter_parameter.counter_c++;
 		i++;
 	}

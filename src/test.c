@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:09:49 by tebandam          #+#    #+#             */
-/*   Updated: 2024/09/22 18:05:15 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/08 09:42:15 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 #include <stdio.h>
 
-void	ft_print_value_map(t_map_data *map)
+void	ft_print_value_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	while (map->map[i])
+	while (map && map[i])
 	{
-		printf("La valeur de map[i] %s\n", map->map[i]);
+		printf("La valeur de map[i] %s\n", map[i]);
 		i++;
 	}
 }

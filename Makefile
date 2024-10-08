@@ -6,7 +6,7 @@
 #    By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/10/06 18:39:50 by ppuivif          ###   ########.fr        #
+#    Updated: 2024/10/08 08:22:25 by ppuivif          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ MLXFLAGS= MLX42/build/libmlx42.a -Iinclude -ldl -lglfw -pthread -lm
 #============= MANDATORY SOURCES ============#
 
 SRCS =  src/main.c \
-		src/utils1.c \
 		src/parsing_args.c \
 		src/error.c \
 		src/check_and_open_file.c \
@@ -38,9 +37,11 @@ SRCS =  src/main.c \
 		src/parsing_colors_maps.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
-		src/ft_split.c \
 		src/free.c \
+		src/utils1.c \
 		src/utils2.c \
+		src/utils3.c \
+		src/utils4.c \
 		src/parsing_map.c \
 		src/parsing_map_utils.c \
 		src/test.c \
