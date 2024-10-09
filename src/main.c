@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/08 09:48:39 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/09 12:17:11 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,19 +103,19 @@ void	texture_choice(t_game *game)
 {
 	if (game->ray_result.side == 0 && cos(game->player->angle) > 0)
 	{
-		game->texture->texture = game->texture->east_texture;
+		game->texture->texture = game->texture->west_texture;
 	}
 	else if (game->ray_result.side == 0 && cos(game->player->angle) <= 0)
 	{
-		game->texture->texture = game->texture->west_texture;
+		game->texture->texture = game->texture->east_texture;
 	}
 	else if (game->ray_result.side == 1 && sin(game->player->angle) > 0)
 	{
-		game->texture->texture = game->texture->south_texture;
+		game->texture->texture = game->texture->north_texture;
 	}
 	else 
 	{
-		game->texture->texture = game->texture->north_texture;
+		game->texture->texture = game->texture->south_texture;
 	}
 }
 
@@ -129,15 +129,15 @@ void	draw_wall_texture(t_game *game, int x)
 	y = game->ray_result.draw_start;
 	if (game->ray_result.side == 0)
 	{
-		text_x = game->ray_result.map_pos_y + game->ray_result.ray_dist_perpendicular_to_wall * sin(game->ray_result.angle);
+		text_x = game->ray_result.map_pos_y + game->ray_result.ray_dist_perpendicular_to_wall * sin(game->ray_result.ray_angle);
 	}
 	else 
 	{
-		text_x = game->ray_result.map_pos_x + game->ray_result.ray_dist_perpendicular_to_wall * cos(game->ray_result.angle);
+		text_x = game->ray_result.map_pos_x + game->ray_result.ray_dist_perpendicular_to_wall * cos(game->ray_result.ray_angle);
 	}
 	text_x -= floor(text_x);
 	text_x = (int)(text_x * (double)game->texture->texture->width);
-	if ((game->ray_result.side == 0 && cos(game->ray_result.angle) > 0 ) || ((game->ray_result.side == 1) && sin(game->ray_result.angle) < 0))
+	if ((game->ray_result.side == 0 && cos(game->ray_result.ray_angle) > 0 ) || ((game->ray_result.side == 1) && sin(game->ray_result.ray_angle) < 0))
 	{
 		text_x = game->texture->texture->width - text_x - 1;
 	}
@@ -175,6 +175,8 @@ int	main(int argc, char **argv)
 
 	get_map_size(game->data);
 	get_player_position_and_orientation(game);
+
+
 
 	allocate_textures(texture); //utile ?
 
