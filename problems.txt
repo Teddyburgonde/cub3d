@@ -6,6 +6,8 @@ Teddy
 
 ✅ afficher les textures sur les murs (gerer les limites, les proportions, les distortions)
 
+❌ draw_wall_texture
+
 -----------------------------------------------------------------------------------------------
 PA
 

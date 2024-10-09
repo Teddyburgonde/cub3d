@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/09 10:54:47 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/09 14:02:59 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <unistd.h>
 # include <fcntl.h> 
 # include <stdlib.h>
+# include <math.h>
 # include "get_next_line/get_next_line.h" 
-# include "math.h"
 
 # include <stdio.h> //to delete
 
