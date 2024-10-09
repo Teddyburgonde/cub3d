@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_hit_detection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:04:10 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/07 14:47:05 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/09 09:20:59 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void	initialize_ray_step_and_distance(t_ray_result *ray_result,
 	{
 		ray_result->step_x = -1; // Si la direction est négative, on descend dans la carte
 		ray_result->ray_dist_x = (game->player->player_pos_x - ray_result->map_pos_x) * ray_result->delta_dist_x; // Calcule la distance à la prochaine ligne de la carte sur l'axe X
+//		ray_result->ray_dist_x = ray_result->delta_dist_x; // Calcule la distance à la prochaine ligne de la carte sur l'axe X
 	}
 	else
 	{
