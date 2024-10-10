@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 07:59:45 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 10:49:34 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,11 @@ void	get_player_position_and_orientation(t_game *game)
 
 int	main(int argc, char **argv)
 {
-	// test modif for check branch
-	int		fd;
-	char	**map;
-	t_game	*game;
+	int			fd;
+	char		**map;
+	t_game		*game;
+	t_texture	textures;
+	
 	Uint32	*texture[8];
 	
 
@@ -92,13 +93,20 @@ int	main(int argc, char **argv)
 	parsing_arguments(argc, argv);
 	check_and_open_file(&fd, argv);
 	map = get_map(fd);
-	memory_allocation_for_struct(&game);
-	initialization_of_values(game, fd, map);
 	
-	parsing_map_elements(game);
+	
+	memory_allocation_for_struct(&game);
+	initialization_of_values(game, map);
+	
+	
+	parsing_map_elements(map, &textures, game);
 	if (parse_map(game->data) == 1)
 		exit(EXIT_FAILURE);//free des allocations
+
+	
+	
 	game->data->map = &game->data->map[6];
+	game->texture = &textures;
 
 	get_map_size(game->data);
 	get_player_position_and_orientation(game);

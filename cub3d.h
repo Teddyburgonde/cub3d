@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/09 14:02:59 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 11:12:04 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	draw_elements(mlx_image_t *image,
 
 int		manage_cub_extension(char **argv);
 void	parsing_arguments(int argc, char **argv);
-int		ft_parse_map_textures(t_map_data *map);
+//int		parse_map_textures(char **map);
 
 /*
 * Parsing colors
@@ -152,7 +152,7 @@ int		ft_parse_map_elements_colors(t_map_data *map);
 */
 
 int		parse_map(t_map_data *map);
-void	parsing_map_elements(t_game *game);
+void	parsing_map_elements(char **map, t_texture *textures, t_game *game);
 
 /*
 * Images
@@ -171,8 +171,8 @@ void	load_image(t_game *game);
 * Textures
 */
 
-int		load_north_south_textures(t_map_data *map, t_texture *texture, int i);
-int		load_west_east_textures(t_map_data *map, t_texture *texture, int i);
+//int		load_north_south_textures(t_map_data *map, t_texture *texture, int i);
+//int		load_west_east_textures(t_map_data *map, t_texture *texture, int i);
 int		ft_parse_map_path_texture(t_map_data *map, t_texture *texture);
 
 /*
@@ -240,11 +240,10 @@ char	**ft_split(char const *s, char c);
 * Error
 */
 
-void	allocation_failed();
+void	display_allocation_failed_and_exit();
 int		message_error_for_missing_elements(
 			t_counter_parameter counter_parameter);
 int		message_error_return_1(char *error_message);
-int		free_tab_return_1(char **tab);
 
 
 /*
@@ -258,7 +257,7 @@ void	allocate_textures(Uint32 *texture[8]);
 * Initialization
 */
 
-void	initialization_of_values(t_game *game, int fd, char **map);
+void	initialization_of_values(t_game *game, char **map);
 
 /*
 * Free
