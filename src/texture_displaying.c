@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:01:43 by ppuivif           #+#    #+#             */
-/*   Updated: 2024/10/10 14:33:50 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/10 17:53:34 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	pos_texture(t_game *game)
 	if (game->ray_result.side == 1 && game->ray_result.ray_dist_perpendicular_to_wall < 0)
 		texture_coordinate_x = TEX_WIDTH - 1;	
 }
-
 
 void	texture_choice(t_game *game)
 {
