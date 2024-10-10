@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 15:03:04 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 18:15:43 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,38 +82,27 @@ int	main(int argc, char **argv)
 	int			fd;
 	char		**map;
 	t_game		*game;
-	t_texture	textures;
 	
-	Uint32	*texture[8];
+//	Uint32	*texture[8];
 	
 
 	fd = 0;
 	game = NULL;
-	
 	parsing_arguments(argc, argv);
 	check_and_open_file(&fd, argv);
 	map = get_map(fd);
-	
-	
-	memory_allocation_for_struct(&game);
+	memory_allocation_for_structs(&game);
 	initialization_of_values(game, map);
-	
-	
-	parsing_map_elements(map, &textures, game);
-
-	
-	game->data->map = &game->data->map[6];
-	game->texture = &textures;
-
-	get_map_size(game->data);
-	get_player_position_and_orientation(game);
+	parsing_map_elements(game);
+	get_map_size(game->data); //yc pour minimap
+	get_player_position_and_orientation(game); //yc pour minimap
 
 
 
-	allocate_textures(texture); //utile ?
+//	allocate_textures(texture); //utile ?
 
 	render_graphics (game);
-	close_and_free(game);
+	free_structs(game);
 	ft_putstr_fd("\033[32mEnd of program 😊\033[0m\n", 1);
 	return (EXIT_SUCCESS);
 }

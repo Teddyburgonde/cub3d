@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 14:54:15 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 18:05:27 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_map_data
 {
 	int				save;
 	int				fd;
+	char			**complete_map;
 	char			**map;
 	int				weight;
 	int				height;
@@ -151,8 +152,9 @@ int		ft_parse_map_elements_colors(t_map_data *map);
 */
 
 int		parse_map(t_map_data *map);
-void	parsing_map_elements(char **map, t_texture *textures, t_game *game);
-void	parse_map_textures(char  **map);
+//void	parsing_map_elements(char **map, t_game *game);
+void	parsing_map_elements(t_game *game);
+void	parse_map_textures(t_game *game);
 
 /*
 * Images
@@ -250,7 +252,7 @@ int		message_error_return_1(char *error_message);
 * Allocations
 */
 
-void	memory_allocation_for_struct(t_game **game);
+void	memory_allocation_for_structs(t_game **game);
 void	allocate_textures(Uint32 *texture[8]);
 
 /*
@@ -264,7 +266,8 @@ void	initialization_of_values(t_game *game, char **map);
 */
 
 void	*free_array(char **arr);
-void	close_and_free(t_game *game);
+//static void	delete_texture(t_texture *texture);
+void	free_structs(t_game *game);
 
 /*
 * Divers help

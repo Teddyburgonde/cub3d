@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:34:28 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 10:09:08 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 18:06:29 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	delete_texture(t_texture *texture)
 		mlx_delete_texture(texture->west_texture);
 }
 
-void	close_and_free(t_game *game)
+void	free_structs(t_game *game)
 {
 	if (game->mlx)
 	{
@@ -51,8 +51,8 @@ void	close_and_free(t_game *game)
 		delete_texture(game->texture);
 	if (game->texture)
 		free(game->texture);
-	if (game->data->map)
-		free_array(game->data->map);
+	if (game->data->complete_map)
+		free_array(game->data->complete_map);
 	if (game->data)
 		free(game->data);
 	if (game)

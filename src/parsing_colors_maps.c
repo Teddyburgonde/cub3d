@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/08 07:57:08 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 18:08:46 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,25 @@ static int	ft_parse_color(char *map_line, int *color)
 	return (EXIT_SUCCESS);
 }
 
-int	ft_parse_map_elements_colors(t_map_data *map)
+int	ft_parse_map_elements_colors(t_map_data *data)
 {
 	int		i;
+	char	**map;
 
 	i = 0;
-	while (map->map[i])
+	map = data->complete_map;
+
+	while (map[i])
 	{
-		if (ft_strncmp(map->map[i], "F ", 2) == 0)
+		if (ft_strncmp(map[i], "F ", 2) == 0)
 		{
-			if (ft_parse_color(map->map[i], map->floor_color) == 1)
+			if (ft_parse_color(map[i], data->floor_color) == 1)
 				return (EXIT_FAILURE);//&free structures
 		}
-		if (ft_strncmp(map->map[i], "C ", 2) == 0)
+		if (ft_strncmp(map[i], "C ", 2) == 0)
 		{
-			map->save = i + 1;
-			if (ft_parse_color(map->map[i], map->ceiling_color) == 1)
+			data->save = i + 1;
+			if (ft_parse_color(map[i], data->ceiling_color) == 1)
 				return (EXIT_FAILURE);//&free structures
 		}
 		i++;
