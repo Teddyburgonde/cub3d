@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_elements.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:47:39 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/07 14:16:31 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/10 14:37:41 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,10 +164,6 @@ void	draw_elements(mlx_image_t *image,
 	// 	+ (float)(image->height / 2.0) * game->player->pitch;
 	game->ray_result.draw_end = ((int)image->height / 2.0) + wall_height / 2.0;
 	// 	+ (float)(image->height / 2.0) * game->player->pitch;
-	if (game->ray_result.draw_start < 0)
-		game->ray_result.draw_start = 0;
-	if (game->ray_result.draw_end >= (int)image->height)
-		game->ray_result.draw_end = image->height - 1;
 	color = 0xFFB400B4;
 	draw_ceiling(image, x, game->ray_result.draw_start);
 	//draw_wall_section(image, x, game->ray_result.draw_start, game->ray_result.draw_end, color);

@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:01:43 by ppuivif           #+#    #+#             */
-/*   Updated: 2024/10/09 17:39:47 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 14:40:02 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	draw_wall_texture(t_game *game, int x)
 	int	pixel;
 	float text_x;
 	y = game->ray_result.draw_start;
+	if (y < 0)
+		y = 0;
 	if (game->ray_result.side == 0)
 	{
 		text_x = game->player->player_pos_y + game->ray_result.ray_dist_perpendicular_to_wall * sin(game->ray_result.ray_angle);

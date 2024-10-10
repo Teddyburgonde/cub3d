@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 10:49:34 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 15:03:04 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,7 @@ int	main(int argc, char **argv)
 	
 	
 	parsing_map_elements(map, &textures, game);
-	if (parse_map(game->data) == 1)
-		exit(EXIT_FAILURE);//free des allocations
 
-	
 	
 	game->data->map = &game->data->map[6];
 	game->texture = &textures;

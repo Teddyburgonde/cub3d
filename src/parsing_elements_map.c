@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 14:19:56 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 14:59:13 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	handling_error_loading_texture(char **tab, char **map)
 	exit(EXIT_FAILURE);
 }
 
-static int	load_texture(char **map, char *map_line, mlx_texture_t *texture)
+static void	load_texture(char **map, char *map_line, mlx_texture_t *texture)
 {
 	char	**tab;
 
@@ -35,7 +35,7 @@ static int	load_texture(char **map, char *map_line, mlx_texture_t *texture)
 	if (tab[1])
 		texture = mlx_load_png(tab[1]);
 	if (!tab[1] || !texture)
-			handling_error_loading_texture(tab, map);
+		handling_error_loading_texture(tab, map);
 	free_array(tab);
 }
 
@@ -134,13 +134,13 @@ static void	parse_map_path_texture(char **map, t_texture *textures)
 	while (map[i])
 	{
 		if (ft_strncmp(map[i], "NO ", 3) == 0)
-			load_texture(map, &map[i], textures->north_texture);
+			load_texture(map, map[i], textures->north_texture);
 		if (ft_strncmp(map[i], "EA ", 3) == 0)
-			load_texture(map, &map[i], textures->east_texture);
+			load_texture(map, map[i], textures->east_texture);
 		if (ft_strncmp(map[i], "SO ", 3) == 0)
-			load_texture(map, &map[i], textures->south_texture);
+			load_texture(map, map[i], textures->south_texture);
 		if (ft_strncmp(map[i], "WE ", 3) == 0)
-			load_texture(map, &map[i], textures->west_texture);
+			load_texture(map, map[i], textures->west_texture);
 		i++;
 	}
 }

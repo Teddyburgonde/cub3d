@@ -6,13 +6,13 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 10:54:12 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 14:51:32 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	missing_element(t_counter_parameter counter_parameter, char **map)
+static void	check_if_missing_element(t_counter_parameter counter_parameter, char **map)
 {
 	if (counter_parameter.counter_no != 1 || counter_parameter.counter_so != 1
 		|| counter_parameter.counter_we != 1
@@ -25,7 +25,7 @@ static void	missing_element(t_counter_parameter counter_parameter, char **map)
 	}
 }
 
-int	parse_map_textures(char **map)
+void	parse_map_textures(char **map)
 {
 	int					i;
 	t_counter_parameter	counter_parameter;
