@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 13:53:45 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/09 10:50:32 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 13:45:14 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void	colision(t_game *game, float orientation)
 	float	new_pos_y;
 
 	new_pos_x = game->player->player_pos_x
-		+ cos(game->player->angle + orientation) * 0.1;
+		+ cos(game->player->angle + orientation) * 0.5;
 	new_pos_y = game->player->player_pos_y
-		+ sin(game->player->angle + orientation) * 0.1;
+		+ sin(game->player->angle + orientation) * 0.5;
 	if (is_movement_possible(game->data->map[(int)new_pos_y][(int)new_pos_x]) == true)
 	{
 		game->player->player_pos_x = game->player->player_pos_x

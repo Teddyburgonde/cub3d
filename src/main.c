@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 07:59:45 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 10:37:44 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	get_player_position_and_orientation(t_game *game)
 			game->data->map[i][j] == 'N')
 			{
 				game->player->player_pos_x = j + 0.5;
-				game->player->player_pos_y = i + 0.5 ;
+				game->player->player_pos_y = i + 0.5;
 				get_initial_orientation_player (game, game->data->map[i][j]);
 				return ;
 			}
@@ -79,7 +79,6 @@ void	get_player_position_and_orientation(t_game *game)
 
 int	main(int argc, char **argv)
 {
-	// test modif for check branch
 	int		fd;
 	char	**map;
 	t_game	*game;
