@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:53:47 by ppuivif           #+#    #+#             */
-/*   Updated: 2024/10/08 08:28:37 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 10:37:59 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	j = 0;
 	str = ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof (char));
 	if (!str)
-		allocation_failed();
+		return (NULL);
 	while (s1 && s1[i])
 	{
 		str[i] = s1[i];
@@ -63,7 +63,7 @@ char	*begin_new_line(char *s1)
 	}
 	s2 = ft_calloc(len + 1, sizeof(char));
 	if (!s2)
-		allocation_failed();
+		display_allocation_failed_and_exit();
 	i = 0;
 	j = find_line_return(s1);
 	while (s1 && s1[j])
@@ -86,7 +86,7 @@ char	*close_current_line(char *s1)
 	len = find_line_return(s1);
 	s2 = ft_calloc((len + 1), sizeof(char));
 	if (!s2)
-		allocation_failed();
+		display_allocation_failed_and_exit();
 	i = 0;
 	while (s1 && s1[i] && i < len)
 	{

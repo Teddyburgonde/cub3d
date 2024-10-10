@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 14:35:54 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/07 10:04:13 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 10:40:48 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,18 @@ char	**get_map(int fd)
 	while (tmp != NULL)
 	{
 		line = ft_strjoin(line, tmp);
-		if (!line)
-			return (NULL);
 		free(tmp);
-		tmp = NULL;
+		if (!line)
+			display_allocation_failed_and_exit();
+//		tmp = NULL;
 		tmp = get_next_line(fd);
 	}
 	map = ft_split(line, '\n');
-	if(line && !map)
-	{
-		close(fd);
-		exit(EXIT_FAILURE);
-	}
+//	free(tmp);
 	free(line);
-	free(tmp);
+	if (fd > 2)
+		close(fd);
+	if(!map)
+		display_allocation_failed_and_exit();
 	return (map);
 }

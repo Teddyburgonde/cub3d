@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 10:37:44 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:31:24 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,35 +79,30 @@ void	get_player_position_and_orientation(t_game *game)
 
 int	main(int argc, char **argv)
 {
-	int		fd;
-	char	**map;
-	t_game	*game;
-	Uint32	*texture[8];
+	int			fd;
+	char		**map;
+	t_game		*game;
+	
+//	Uint32	*texture[8];
 	
 
 	fd = 0;
 	game = NULL;
-	
 	parsing_arguments(argc, argv);
 	check_and_open_file(&fd, argv);
 	map = get_map(fd);
-	memory_allocation_for_struct(&game);
-	initialization_of_values(game, fd, map);
-	
+	memory_allocation_for_structs(&game);
+	initialization_of_values(game, map);
 	parsing_map_elements(game);
-	if (parse_map(game->data) == 1)
-		exit(EXIT_FAILURE);//free des allocations
-	game->data->map = &game->data->map[6];
-
-	get_map_size(game->data);
-	get_player_position_and_orientation(game);
+	get_map_size(game->data); //yc pour minimap
+	get_player_position_and_orientation(game); //yc pour minimap
 
 
 
-	allocate_textures(texture); //utile ?
+//	allocate_textures(texture); //utile ?
 
 	render_graphics (game);
-	close_and_free(game);
+	free_structs(game);
 	ft_putstr_fd("\033[32mEnd of program 😊\033[0m\n", 1);
 	return (EXIT_SUCCESS);
 }

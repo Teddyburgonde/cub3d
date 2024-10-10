@@ -6,13 +6,13 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:21:22 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/07 09:31:19 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 17:53:11 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	memory_allocation_for_struct(t_game **game)
+void	memory_allocation_for_structs(t_game **game)
 {
 	*game = ft_calloc(1, sizeof(t_game));
 	(*game)->player = ft_calloc(1, sizeof(t_player));
@@ -20,8 +20,8 @@ void	memory_allocation_for_struct(t_game **game)
 	(*game)->data = ft_calloc(1, sizeof(t_map_data));
 	if (!(*game) || !(*game)->player || !(*game)->texture || !(*game)->data)
 	{
-		close_and_free(*game);
-		allocation_failed();
+		free_structs(*game);
+		display_allocation_failed_and_exit();
 	}
 }
 

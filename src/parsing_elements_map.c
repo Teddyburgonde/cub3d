@@ -6,81 +6,69 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/08 08:49:20 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 18:12:09 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	ft_parse_map_textures(t_map_data *data)
+static void	handling_error_loading_texture(char **arr, t_game *game)
 {
-	int					i;
-	t_counter_parameter	counter_parameter;
-
-	i = 0;
-	ft_memset(&counter_parameter, 0, sizeof(t_counter_parameter));//valider la fonction memset
-	while (data->map[i])
-	{
-		if (ft_strncmp(data->map[i], "NO ", 3) == 0)
-			counter_parameter.counter_no++;
-		if (ft_strncmp(data->map[i], "SO ", 3) == 0)
-			counter_parameter.counter_so++;
-		if (ft_strncmp(data->map[i], "WE ", 3) == 0)
-			counter_parameter.counter_we++;
-		if (ft_strncmp(data->map[i], "EA ", 3) == 0)
-			counter_parameter.counter_ea++;
-		if (ft_strncmp(data->map[i], "F ", 2) == 0)
-			counter_parameter.counter_f++;
-		if (ft_strncmp(data->map[i], "C ", 2) == 0)
-			counter_parameter.counter_c++;
-		i++;
-	}
-	if (message_error_for_missing_elements(counter_parameter) == 1)
-		return (1);
-	return (0);
+	ft_putstr_fd("Error loading ", 2);
+	ft_putstr_fd(arr[0], 2);
+	ft_putstr_fd(" texture\n", 2);
+	free_array(arr);
+	free_structs(game);
+	exit(EXIT_FAILURE);
 }
 
-int	ft_parse_map_path_texture(t_map_data *map, t_texture *texture)
+static void	load_texture(char *map_line, mlx_texture_t **texture, \
+t_game *game)
 {
-	int	i;
+	char	**arr;
 
-	i = 0;
-	while (map->map[i])
+	arr = ft_split(map_line, ' ');
+	if (map_line && !arr)
 	{
-		if (ft_strncmp(map->map[i], "NO ", 3) == 0
-			|| ft_strncmp(map->map[i], "SO ", 3) == 0)
-		{
-			if (load_north_south_textures(map, texture, i) != 0)
-				return (message_error_return_1(
-						"Error loading north or south texture\n"));  //free supplemetaires a prevoir
-		}
-		else if (ft_strncmp(map->map[i], "WE ", 3) == 0
-			|| ft_strncmp(map->map[i], "EA ", 3) == 0)
-		{
-			if (load_west_east_textures(map, texture, i) != 0)
-				return (message_error_return_1(
-						"Error loading west or east texture\n")); //free supplemetaires a prevoir
-		}
+		free_array(arr);
+		free_structs(game);
+		display_allocation_failed_and_exit();
+	}
+	if (arr[1])
+		*texture = mlx_load_png(arr[1]);
+	if (!arr[1] || !(*texture))
+		handling_error_loading_texture(arr, game);
+	free_array(arr);
+}
+
+static void	parse_map_path_texture(t_game *game)
+{
+	int			i;
+	char		**map;
+	
+	i = 0;
+	map = game->data->complete_map;
+	while (map[i])
+	{
+		if (ft_strncmp(map[i], "NO ", 3) == 0)
+			load_texture(map[i], &game->texture->north_texture, game);
+		if (ft_strncmp(map[i], "EA ", 3) == 0)
+			load_texture(map[i], &game->texture->east_texture, game);
+		if (ft_strncmp(map[i], "SO ", 3) == 0)
+			load_texture(map[i], &game->texture->south_texture, game);
+		if (ft_strncmp(map[i], "WE ", 3) == 0)
+			load_texture(map[i], &game->texture->west_texture, game);
 		i++;
 	}
-	return (0);
 }
 
 void	parsing_map_elements(t_game *game)
 {
-	if (ft_parse_map_textures(game->data) == 1)
-	{
-		ft_putstr_fd("Error: Wrong number of textures\n", 2);
-		exit (1);
-	}
-	if (ft_parse_map_path_texture(game->data, game->texture) != 0)
-	{
-		ft_putstr_fd("Error: Wrong path of textures\n", 2);
-		exit (1);
-	}
+	parse_map_textures(game);
+	parse_map_path_texture(game);
 	if (ft_parse_map_elements_colors(game->data) != 0)
 	{
-		ft_putstr_fd("Error: The colors are poorly defined\n", 2);
-		exit (1);
+		ft_putstr_fd("Error: The colors are poorly defined.\n", 2);
+		exit (EXIT_FAILURE);
 	}
 }

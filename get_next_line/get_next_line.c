@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:15:24 by ppuivif           #+#    #+#             */
-/*   Updated: 2024/10/08 08:01:29 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/10 10:00:15 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ char	*get_next_line(int fd)
 	{
 		tmp = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 		if (!tmp)
-			allocation_failed();
+			display_allocation_failed_and_exit();
 		nb_read_bytes = read(fd, tmp, BUFFER_SIZE);
 		if (nb_read_bytes == -1 || nb_read_bytes == 0)
 		{
