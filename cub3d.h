@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/08 08:53:08 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/09 14:02:59 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <unistd.h>
 # include <fcntl.h> 
 # include <stdlib.h>
+# include <math.h>
 # include "get_next_line/get_next_line.h" 
-# include "math.h"
 
 # include <stdio.h> //to delete
 
@@ -40,7 +40,7 @@ typedef unsigned int Uint32;
 
 typedef struct s_ray_result
 {
-	float	angle; // non initialiser 
+	float	ray_angle; // non initialiser 
 	float	distance;
 	float	ray_dist_x; // distance du rayon en x
 	float	ray_dist_y; // distance du rayon en y
