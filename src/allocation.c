@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:21:22 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 17:53:11 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/11 08:22:26 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	memory_allocation_for_structs(t_game **game)
 	}
 }
 
-void	allocate_textures(Uint32 *texture[8]) //utile ? verifier les free
+/*void	allocate_textures(Uint32 *texture[8]) //utile ? verifier les free
 {
 	int	i;
 	int	j;
@@ -47,4 +47,4 @@ void	allocate_textures(Uint32 *texture[8]) //utile ? verifier les free
 		}
 		i++;
 	}
-}
+}*/
