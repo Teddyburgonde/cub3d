@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/11 11:01:38 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/13 09:48:00 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	main(int argc, char **argv)
 	parsing_file_textures(game);
 	parsing_file_path_textures(game);
 	parsing_file_colors(game);
+//	get_map_size(game->data); //yc pour minimap
 
 	parsing_map(game); //code refactoring in progress
 
-	get_map_size(game->data); //yc pour minimap
-	get_player_initial_position_and_orientation(game); //yc pour minimap
+//	get_player_initial_position_and_orientation(game); //yc pour minimap
 
 	render_graphics (game);
 	free_structs(game);

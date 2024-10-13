@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/11 11:00:53 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/13 09:51:55 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ typedef struct s_map_data
 	int				nb_columns;
 	int				floor_color[4];
 	int				ceiling_color[4];
-	float			direction;
+	float			direction; //to delete ?
 }	t_map_data;
 
 typedef struct s_game
@@ -193,9 +193,22 @@ void	get_map_size(t_map_data *map_data);
 * get_player_features.c
 */
 
-void	get_player_initial_position_and_orientation(t_game *game);
+void	get_player_initial_position_and_orientation(char *line, int i, int *flag, \
+t_game *game);
+
+/*
+* parsing_map.c
+*/
+
+void	parsing_map(t_game *game);
 
 
+/*
+* parsing_map_utils.c
+*/
+
+void	check_top_and_bottom_wall_closed(char *str, t_game *game);
+void	check_around_0(char	**line, t_game *game);
 
 
 
@@ -223,7 +236,6 @@ void	load_image(t_game *game);
 
 int				is_line_valid(char *str);
 int				is_direction_valid(char *str, t_map_data *map_data);
-int				is_top_and_bottom_wall_closed(char *str);
 int				check_around_0(char	**line);
 
 /*
