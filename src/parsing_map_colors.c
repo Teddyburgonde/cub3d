@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/11 10:56:47 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:33:06 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void	get_color(int *color, char **arr, t_game *game)
 	while (i < 3)
 	{
 		color[i] = ft_atoi(arr[i]);
-		if (color[i] < 0 || color[i] > 255)
+		if (color[i] < 0 || color[i] > 255 || ft_atoi(arr[i]) == -1)
 		{
-			ft_putstr_fd("Error: Incorrect color value\n", 2);
+			ft_putstr_fd("Error: Incorrect color value.\n", 2);
 			free_array(arr);
 			free_structs(game);
 			exit(EXIT_FAILURE);
@@ -39,23 +39,14 @@ static void	get_color(int *color, char **arr, t_game *game)
 
 static void	parsing_color(char *line, int *color, t_game *game)
 {
-	char	**tmp;
 	char	**arr;
 
-	tmp = ft_split(line, ' ');
-	if (line && !tmp)
+	arr = ft_split(&line[1], ',');
+	if (!arr)
 	{
 		free_structs(game);
 		display_allocation_failed_and_exit();
 	}
-	arr = ft_split(tmp[1], ',');
-	if (tmp[1] && !arr)
-	{
-		free_array(tmp);
-		free_structs(game);
-		display_allocation_failed_and_exit();
-	}
-	free_array(tmp);
 	get_color(color, arr, game);
 	free_array(arr);
 }
@@ -69,11 +60,12 @@ void	parsing_file_colors(t_game *game)
 	content = game->data->file_content;
 	while (content[i])
 	{
+		content[i] = skip_first_whitespaces(content[i]);
 		if (ft_strncmp(content[i], "F ", 2) == 0)
 			parsing_color(content[i], game->data->floor_color, game);
 		if (ft_strncmp(content[i], "C ", 2) == 0)
 		{
-//			game->data->save = i + 1;
+			game->data->begin_map_index = i + 1;
 			parsing_color(content[i], game->data->ceiling_color, game);
 		}
 		i++;

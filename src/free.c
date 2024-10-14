@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:34:28 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/11 08:43:08 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 20:07:34 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	*free_array(char **arr)
 		free(arr[i]);
 		i++;
 	}
-	free(arr);
+	if (arr)
+		free(arr);
 	return (NULL);
 }
 
@@ -36,6 +37,15 @@ static void	delete_texture(t_texture *texture)
 		mlx_delete_texture(texture->east_texture);
 	if (texture->west_texture)
 		mlx_delete_texture(texture->west_texture);
+		
+	if (texture->player_image_N) //for minimap
+		mlx_delete_texture(texture->player_image_N);
+	if (texture->player_image_E) //for minimap
+		mlx_delete_texture(texture->player_image_E);
+	if (texture->player_image_W) //for minimap
+		mlx_delete_texture(texture->player_image_W);
+	if (texture->player_image_S) //for minimap
+		mlx_delete_texture(texture->player_image_S);
 }
 
 void	free_structs(t_game *game)

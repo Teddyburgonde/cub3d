@@ -6,13 +6,20 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:57:15 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/08 08:25:51 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:58:20 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	is_full_whitespaces(char *str)
+char	*skip_first_whitespaces(char *str)
+{
+	while (str && *str && (is_whitespace(*str) == 1))
+		str++;
+	return (str);
+}
+
+int	line_is_full_whitespaces(char *str)
 {
 	int	i;
 

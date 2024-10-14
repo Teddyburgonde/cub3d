@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 12:01:07 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:29:23 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,15 @@ int	main(int argc, char **argv)
 	parsing_arguments(argc, argv);
 	check_and_open_file(&fd, argv);
 	file_content = get_file_content(fd);
-	ft_print_value_map(file_content);
 	memory_allocation_for_structs(&game);
 	initialization_of_values(game, file_content);
 	parsing_file_textures(game);
 	parsing_file_path_textures(game);
 	parsing_file_colors(game);
-//	get_map_size(game->data); //yc pour minimap
+	game->data->map = &game->data->file_content[game->data->begin_map_index];
+	parsing_map(game);
 
-	parsing_map(game); //code refactoring in progress
-
-//	get_player_initial_position_and_orientation(game); //yc pour minimap
-
-	render_graphics (game);
+	render_graphics (game); //code refactoring in progress
 	free_structs(game);
 	ft_putstr_fd("\033[32mEnd of program 😊\033[0m\n", 1);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:21:22 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/11 08:22:26 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:31:48 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,3 @@ void	memory_allocation_for_structs(t_game **game)
 		display_allocation_failed_and_exit();
 	}
 }
-
-/*void	allocate_textures(Uint32 *texture[8]) //utile ? verifier les free
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < 8)
-	{
-		texture[i] = (Uint32 *)malloc(64 * 64 * sizeof(Uint32));
-		if (texture[i] == NULL)
-		{
-			ft_putstr_fd("Allocation error\n", 2);
-			j = 0;
-			while (j < i)
-			{
-				free(texture[j]);
-				j++;
-			}
-			exit(1);
-		}
-		i++;
-	}
-}*/

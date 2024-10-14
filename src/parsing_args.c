@@ -6,13 +6,13 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:52:41 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 19:03:05 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:30:15 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	manage_cub_extension(char **argv)
+static int	manage_cub_extension(char **argv)
 {
 	int	i;
 

@@ -6,13 +6,13 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 13:53:45 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/09 10:50:32 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:44:50 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-bool	is_movement_possible(char c)
+static bool	is_movement_possible(char c)
 {
 	if (c == '0' || c == 'N' || c == 'E' || c == 'W' || c == 'S') //pour que le joueur puisse se déplacer sur sa position initiale
 		return (true);

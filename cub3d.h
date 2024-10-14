@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 11:52:47 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 20:03:22 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_map_data
 	int				height;
 	int				nb_lines;
 	int				nb_columns;
+	int				begin_map_index;
 	int				floor_color[4];
 	int				ceiling_color[4];
 	float			direction; //to delete ?
@@ -131,7 +132,6 @@ typedef struct s_game
 * parsing_args.c
 */
 
-int		manage_cub_extension(char **argv);
 void	parsing_arguments(int argc, char **argv);
 
 /*
@@ -151,7 +151,6 @@ char	**get_file_content(int fd);
 */
 
 void	memory_allocation_for_structs(t_game **game);
-//void	allocate_textures(Uint32 *texture[8]);
 
 /*
 * initialization_of_values.c
@@ -176,6 +175,7 @@ void	parsing_file_path_textures(t_game *game);
 */
 
 void	parsing_file_colors(t_game *game);
+int32_t	ft_pixel(int32_t r, int32_t g, int32_t b);
 
 /*
 * parsing_map.c
@@ -183,88 +183,85 @@ void	parsing_file_colors(t_game *game);
 
 void	parsing_map(t_game *game);
 
+/*
+* parsing_map_utils_1.c
+*/
+
 void	check_if_empty_line(char *line, t_game *game);
-void	check_if_map_closed(t_game *game);
 void	check_char_validity(char *line, t_game *game);
+void	check_if_map_closed(t_game *game);
+
+/*
+* parsing_map_utils_2.c
+*/
+
 void	get_player_initial_position_and_orientation(char *line, int i, int *flag, \
-t_game *game);
+		t_game *game);
+void	check_one_player(int flag, t_game *game);
+
 
 /*
-* get_map_features.c
+* render_graphics.c
 */
 
-//void	get_map_size(t_map_data *map_data);
+void	render_graphics(t_game *game);
 
 /*
-* get_player_features.c
+* load_textures.c
 */
 
-/*void	get_player_initial_position_and_orientation(char *line, int i, int *flag, \
-t_game *game);*/
+void	load_textures(t_game *game); //for minimap
 
 /*
-* parsing_map.c
-*/
-
-//void	parsing_map(t_game *game);
-
-
-/*
-* parsing_map_utils.c
-*/
-
-//void	check_top_and_bottom_wall_closed(char *str, t_game *game);
-//void	check_around_0(char	**line, t_game *game);
-
-
-
-
-
-void	texture_choice(t_game *game);
-void	pos_texture(t_game *game);
-int32_t	ft_pixel(int32_t r, int32_t g, int32_t b);
-void	draw_wall_texture(t_game *game, int x);
-void	draw_elements(mlx_image_t *image,
-	int x, t_game *game, float wall_height);
-
-
-
-/*
-* Images
-*/
-
-void	load_image(t_game *game);
-
-
-/*
-* Parsing map Utils
-*/
-
-//int				is_line_valid(char *str);
-//int				is_direction_valid(char *str, t_map_data *map_data);
-//int				check_around_0(char	**line);
-
-/*
-* Render graphics
-*/
-
-void			render_graphics(t_game *game);
-
-/*
-* Raycasting
-*/
-
-void			raycast(void *param);
-t_ray_result	ray_hit_detection(float ray_angle, t_game *game);
-
-/*
-* Move
+* movement.c
 */
 
 void	ft_key_mouv(mlx_key_data_t keydata, void *param);
 
 /*
-* Utils
+* raycast.c
+*/
+
+void			raycast(void *param);
+
+/*
+* ray_hit_detection.c
+*/
+
+t_ray_result	ray_hit_detection(float ray_angle, t_game *game);
+
+/*
+* texture_displaying.c
+*/
+
+void	texture_choice(t_game *game);
+void	pos_texture(t_game *game);
+void	draw_wall_texture(t_game *game, int x);
+
+/*
+* draw_elements.c
+*/
+
+void	draw_elements(mlx_image_t *image,
+		int x, t_game *game, float wall_height);
+
+
+/*
+* error.c
+*/
+
+void	display_allocation_failed_and_exit();
+
+
+/*
+* free.c
+*/
+
+void	*free_array(char **arr);
+void	free_structs(t_game *game);
+
+/*
+* utils
 */
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -273,35 +270,17 @@ void	*ft_memset(void *s, int c, size_t n);
 char	*ft_strdup(const char *s);
 int		ft_atoi(const char *nptr);
 void	*ft_calloc(size_t nmemb, size_t size);
-int		is_full_whitespaces(char *str);
+int		line_is_full_whitespaces(char *str);
 float	clamp(float num, float min, float max);
 char	*ft_strchr(const char *s, int c);
-//int		ft_strcspn(char *remaining_line, char *str);
+int		ft_strcspn(char *remaining_line, char *str);
 char	**ft_split(char const *s, char c);
-
-
-/*
-* Error
-*/
-
-void	display_allocation_failed_and_exit();
-int		message_error_for_missing_elements(
-			t_counter_parameter counter_parameter);
-int		message_error_return_1(char *error_message);
-
-
-
+char	*skip_first_whitespaces(char *str);
+char	*ft_substr(char	const *s, unsigned int start, int len);
+int		is_whitespace(char c);
 
 /*
-* Free
-*/
-
-void	*free_array(char **arr);
-//static void	delete_texture(t_texture *texture);
-void	free_structs(t_game *game);
-
-/*
-* Divers help
+* test.c
 */
 
 void	ft_print_value_map(char **map);
@@ -312,6 +291,5 @@ int		ft_parse_map_elements_wall(t_map_data *map);
 */
 
 void    display_minimap(t_game *game);
-
 
 #endif

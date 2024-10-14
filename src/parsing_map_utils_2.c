@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_player_features.c                              :+:      :+:    :+:   */
+/*   parsing_map_utils_2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 09:56:10 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:37:49 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,15 @@ t_game *game)
 			(*flag)++ ;
 		}
 		j++;
+	}
+}
+
+void check_one_player(int flag, t_game *game)
+{
+	if(flag != 1)
+	{
+		ft_putstr_fd("Error: Invalid map.\n", 2);
+		free_structs(game);
+		exit(EXIT_FAILURE);
 	}
 }

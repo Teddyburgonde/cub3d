@@ -6,96 +6,55 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 14:35:54 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 14:32:35 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:31:15 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	**get_file_content(int fd)
+static char	**build_array(char **arr, int i)
 {
-	char	**map;
-	char	*line;
-	char	*tmp;
+	int		j;
+	char	**result;
 
-	map = NULL;
-	line = get_next_line(fd);
-	if (!line)
+	result = ft_calloc(i + 2, sizeof(char *));
+	j = 0;
+	if (!result)
+		return (NULL);
+	while (arr && arr[j])
 	{
-		ft_putstr_fd("Error: File is empty.\n", 2);
-		exit(EXIT_FAILURE);
+		result[j] = ft_strdup(arr[j]);
+		j++;
 	}
-	tmp = get_next_line(fd);
-	while (tmp != NULL)
-	{
-		line = ft_strjoin(line, tmp);
-		free(tmp);
-		if (!line)
-			display_allocation_failed_and_exit();
-//		tmp = NULL;
-		tmp = get_next_line(fd);
-	}
-	map = ft_split(line, '\n');
-//	free(tmp);
-	free(line);
-	if (fd > 2)
-		close(fd);
-	if(!map)
-		display_allocation_failed_and_exit();
-	return (map);
+	free_array(arr);
+	return (result);
 }
 
-/*char	**get_file_content(int fd)
+char	**get_file_content(int fd)
 {
-	char	**map;
+	char	**file_content;
 	char	*line;
-	char	*tmp;
 	int		i;
 
-	map = NULL;
+	file_content = NULL;
 	line = get_next_line(fd);
 	if (!line)
 	{
 		ft_putstr_fd("Error: File is empty.\n", 2);
 		exit(EXIT_FAILURE);
 	}
-	i = 1
-	while(!line)
+	i = 0;
+	while(line)
 	{
-		map = ft_calloc(i, sizeof(char *));
-		if (!map)
-		{	
-			free_arr(map);
+		file_content = build_array(file_content, i);
+		file_content[i] = ft_substr(line, 0, ft_strcspn(line, "\n"));
+		if (!file_content[i])
 			display_allocation_failed_and_exit();
-		}
-		
+		free(line);
+		line = get_next_line(fd);
+		i++;
 	}
-
-
-
-
-
-
-
-
-	while (tmp != NULL)
-	{
-		line = ft_strjoin(line, tmp);
-		free(tmp);
-		if (!line)
-			display_allocation_failed_and_exit();
-//		tmp = NULL;
-		tmp = get_next_line(fd);
-	}
-	map = ft_split(line, '\n');
-
-
-	
-//	free(tmp);
-	free(line);
 	if (fd > 2)
 		close(fd);
-	if(!map)
-		display_allocation_failed_and_exit();
-	return (map);
-}*/
+	return (file_content);
+}

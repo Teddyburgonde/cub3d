@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:39:22 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/08 08:30:25 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 20:03:30 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,25 +89,3 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (ptr);
 }
 
-/*void	*ft_calloc(size_t nmemb, size_t size)
-{
-	char	*str;
-	size_t	j;
-	size_t	i;
-
-	j = nmemb * size;
-	i = 0;
-	if (!size || !nmemb)
-		return (malloc(1));
-	if (j > 4294967295 || (size > 65535 && nmemb > 65535))
-		return (NULL);
-	str = malloc(j);
-	if (!str)
-		return (NULL);
-	while (i < j)
-	{
-		str[i] = '\0';
-		i++;
-	}
-	return ((void *) str);
-}*/

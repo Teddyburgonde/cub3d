@@ -6,7 +6,7 @@
 #    By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/10/11 09:22:53 by ppuivif          ###   ########.fr        #
+#    Updated: 2024/10/14 20:02:56 by ppuivif          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,25 +37,24 @@ SRCS =  src/main.c \
 		src/parsing_map_path_textures.c \
 		src/parsing_map_colors.c \
 		src/parsing_map.c \
-		src/get_map_features.c \
-		src/get_player_features.c \
-		src/load_images_and_textures.c \
+		src/parsing_map_utils_1.c \
+		src/parsing_map_utils_2.c \
+		src/render_graphics.c \
+		src/load_textures.c \
+		src/movement.c \
+		src/raycast.c \
+		src/ray_hit_detection.c \
+		src/texture_displaying.c \
+		src/draw_elements.c \
+		src/error.c \
+		src/free.c \
+		src/utils_1.c \
+		src/utils_2.c \
+		src/utils_3.c \
+		src/utils_4.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
-		src/free.c \
-		src/utils1.c \
-		src/utils2.c \
-		src/utils3.c \
-		src/utils4.c \
-		src/parsing_map_utils.c \
 		src/test.c \
-		src/movement.c \
-		src/render_graphics.c \
-		src/draw_elements.c \
-		src/ray_hit_detection.c \
-		src/raycast.c \
-		src/texture_displaying.c \
-		src/error.c \
 		src/minimap.c \
 
 

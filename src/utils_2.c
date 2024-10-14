@@ -6,13 +6,13 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:27:17 by ppuivif           #+#    #+#             */
-/*   Updated: 2024/10/08 08:18:54 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 18:57:16 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static char	*ft_substr(char	const *s, unsigned int start, int len)
+char	*ft_substr(char	const *s, unsigned int start, int len)
 {
 	int		i;
 	int		j;

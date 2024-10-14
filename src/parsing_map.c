@@ -6,22 +6,11 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 12:00:52 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:58:10 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-static void check_one_player(int flag, t_game *game)
-{
-	if(flag != 1)
-	{
-		ft_putstr_fd("Error: Invalid map\n", 2);
-		free_structs(game);
-		exit(EXIT_FAILURE);
-	}
-}
-
 
 static void	check_map_validity(t_game *game)
 {
@@ -39,8 +28,6 @@ static void	check_map_validity(t_game *game)
 		check_if_empty_line(map[i], game);
 		check_char_validity(map[i], game);
 		get_player_initial_position_and_orientation(map[i], i, &flag, game);
-
-//		check_around_0(map, game); //flood_fill?
 		len = ft_strlen(map[i]);
 		if(game->data->nb_columns < len)
 			game->data->nb_columns = len;
@@ -70,38 +57,15 @@ static void	replace_spaces_with_walls(char	**map)
 	}
 }
 
-static void	skip_first_empty_lines(char **map)
+static void	skip_first_empty_lines(char ***map)
 {
-	while (map && is_full_whitespaces(map[0]) == 1)
-		map++;
+	while (*map && line_is_full_whitespaces(*map[0]) == 1)
+		(*map)++;
 }
 
 void	parsing_map(t_game *game)
 {
-	char	**map;
-	int		i;
-
-	i = 0;
-	skip_first_empty_lines(game->data->map); //faut-il envoyer l'adresse ?
-	map = game->data->map;
-	replace_spaces_with_walls(map);
-//	ft_print_value_map(game->data->map);
+	skip_first_empty_lines(&game->data->map);
+	replace_spaces_with_walls(game->data->map);
 	check_map_validity(game);
-
-	
-//	check_top_and_bottom_wall_closed(map[0], game);
-
-/*	while (map[i])
-	{
-		check_around_0(map, game);
-		if (is_validate_map_line(map[i], game->data) != 0)
-			return (1);
-		i++;
-	}
-	i--;
-	if (is_top_and_bottom_wall_closed(map[i]) == 0)
-		return (message_error_return_1("Error: Invalid map\n"));
-	if (!game->data->direction)
-		return (message_error_return_1("Error: Invalid map\n"));
-	return (0);*/
 }

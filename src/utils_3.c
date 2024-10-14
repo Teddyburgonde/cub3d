@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:57:15 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 10:13:04 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:17:34 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-/*int	ft_strcspn(char *line, char *str)
+int	ft_strcspn(char *line, char *str)
 {
 	int	i;
 	int	j;
@@ -46,40 +46,40 @@ char	*ft_strchr(const char *s, int c)
 		i++;
 	}
 	return (i);
-}*/
+}
 
-static int	is_whitespace(char c)
+int	is_whitespace(char c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);
 	return (0);
 }
 
-int	ft_atoi(const char *nptr)
+int    ft_atoi(const char *nptr)
 {
-	int	i;
-	int	a;
-	int	sign;
+    int    i;
+    int    a;
+    int    sign;
 
-	i = 0;
-	a = 0;
-	sign = 1;
-	while (is_whitespace(nptr[i]))
-		i++;
-	while (nptr[i] == '+' || nptr[i] == '-')
-	{
-		if (nptr[i + 1] == '+')
-			return (0);
-		if (nptr[i] == '-')
-			sign *= -1;
-		if (nptr[i + 1] == '-')
-			return (0);
-		i++;
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		a = a * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (a * sign);
+    i = 0;
+    a = 0;
+    sign = 1;
+    while (is_whitespace(nptr[i]))
+        i++;
+    if (nptr[i] == '+' || nptr[i] == '-')
+    {
+        if (nptr[i] == '-')
+            sign *= -1;
+        i++;
+    }
+    while (nptr[i] >= '0' && nptr[i] <= '9')
+    {
+        a = a * 10 + (nptr[i] - '0');
+        i++;
+    }
+    while (nptr[i] && nptr[i] == ' ')
+        i++;
+    if (nptr[i])
+        return (-1);
+    return (a * sign);
 }

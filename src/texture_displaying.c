@@ -6,32 +6,11 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:01:43 by ppuivif           #+#    #+#             */
-/*   Updated: 2024/10/10 14:40:02 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 19:49:38 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	pos_texture(t_game *game)
-{
-	int	texture_coordinate_x;
-	
-	if (game->ray_result.side == 0)
-	{
-		game->ray_result.wall_pos_hit = game->player->player_pos_y + game->ray_result.ray_dist_perpendicular_to_wall * game->ray_result.ray_dist_y;
-	}
-	else 
-	{
-		game->ray_result.wall_pos_hit = game->player->player_pos_x + game->ray_result.ray_dist_perpendicular_to_wall * game->ray_result.ray_dist_x;
-	}
-	game->ray_result.wall_pos_hit -= floor(game->ray_result.wall_pos_hit);
-	texture_coordinate_x = (int)game->ray_result.wall_pos_hit * (double)TEX_WIDTH;
-	if (game->ray_result.side == 0 && game->ray_result.ray_dist_perpendicular_to_wall > 0)
-		texture_coordinate_x = TEX_WIDTH - 1;
-	if (game->ray_result.side == 1 && game->ray_result.ray_dist_perpendicular_to_wall < 0)
-		texture_coordinate_x = TEX_WIDTH - 1;	
-}
-
 
 void	texture_choice(t_game *game)
 {
@@ -53,13 +32,33 @@ void	texture_choice(t_game *game)
 	}
 }
 
+void	pos_texture(t_game *game)
+{
+	int	texture_coordinate_x;
+	
+	if (game->ray_result.side == 0)
+	{
+		game->ray_result.wall_pos_hit = game->player->player_pos_y + game->ray_result.ray_dist_perpendicular_to_wall * game->ray_result.ray_dist_y;
+	}
+	else 
+	{
+		game->ray_result.wall_pos_hit = game->player->player_pos_x + game->ray_result.ray_dist_perpendicular_to_wall * game->ray_result.ray_dist_x;
+	}
+	game->ray_result.wall_pos_hit -= floor(game->ray_result.wall_pos_hit);
+	texture_coordinate_x = (int)game->ray_result.wall_pos_hit * (double)TEX_WIDTH;
+	if (game->ray_result.side == 0 && game->ray_result.ray_dist_perpendicular_to_wall > 0)
+		texture_coordinate_x = TEX_WIDTH - 1;
+	if (game->ray_result.side == 1 && game->ray_result.ray_dist_perpendicular_to_wall < 0)
+		texture_coordinate_x = TEX_WIDTH - 1;	
+}
+
 void	draw_wall_texture(t_game *game, int x)
 {
-	
 	int	y;
 	int text_y;
 	int	pixel;
 	float text_x;
+	
 	y = game->ray_result.draw_start;
 	if (y < 0)
 		y = 0;
