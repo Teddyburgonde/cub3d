@@ -6,13 +6,13 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 14:35:54 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 13:59:26 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 14:32:35 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-/*char	**get_file_content(int fd)
+char	**get_file_content(int fd)
 {
 	char	**map;
 	char	*line;
@@ -43,9 +43,9 @@
 	if(!map)
 		display_allocation_failed_and_exit();
 	return (map);
-}*/
+}
 
-char	**get_file_content(int fd)
+/*char	**get_file_content(int fd)
 {
 	char	**map;
 	char	*line;
@@ -98,4 +98,4 @@ char	**get_file_content(int fd)
 	if(!map)
 		display_allocation_failed_and_exit();
 	return (map);
-}
+}*/
