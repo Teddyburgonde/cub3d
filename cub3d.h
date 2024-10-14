@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 18:30:42 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:46:32 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ typedef struct s_counter_parameter
 
 typedef struct s_map_data
 {
-	int				save;
+//	int				save;
 	int				fd;
-	char			**complete_map;
+	char			**file_content;
 	char			**map;
 	int				weight;
 	int				height;
@@ -114,7 +114,7 @@ typedef struct s_map_data
 	int				nb_columns;
 	int				floor_color[4];
 	int				ceiling_color[4];
-	float			direction;
+	float			direction; //to delete ?
 }	t_map_data;
 
 typedef struct s_game
@@ -126,6 +126,98 @@ typedef struct s_game
 	t_texture			*texture;
 	t_ray_result		ray_result;
 }	t_game;
+	
+/*
+* parsing_args.c
+*/
+
+int		manage_cub_extension(char **argv);
+void	parsing_arguments(int argc, char **argv);
+
+/*
+* check_and_open_file.c
+*/
+
+void	check_and_open_file(int *fd, char **argv);
+
+/*
+* get_file_content.c 
+*/
+
+char	**get_file_content(int fd);
+
+/*
+* allocation.c
+*/
+
+void	memory_allocation_for_structs(t_game **game);
+//void	allocate_textures(Uint32 *texture[8]);
+
+/*
+* initialization_of_values.c
+*/
+
+void	initialization_of_values(t_game *game, char **map);
+
+/*
+* parsing_map_textures.c
+*/
+
+void	parsing_file_textures(t_game *game);
+
+/*
+* parsing_map_path_textures.c
+*/
+
+void	parsing_file_path_textures(t_game *game);
+
+/*
+* parsing_map_colors.c
+*/
+
+void	parsing_file_colors(t_game *game);
+
+/*
+* parsing_map.c
+*/
+
+void	parsing_map(t_game *game);
+
+void	check_if_empty_line(char *line, t_game *game);
+void	check_if_map_closed(t_game *game);
+void	check_char_validity(char *line, t_game *game);
+void	get_player_initial_position_and_orientation(char *line, int i, int *flag, \
+t_game *game);
+
+/*
+* get_map_features.c
+*/
+
+//void	get_map_size(t_map_data *map_data);
+
+/*
+* get_player_features.c
+*/
+
+/*void	get_player_initial_position_and_orientation(char *line, int i, int *flag, \
+t_game *game);*/
+
+/*
+* parsing_map.c
+*/
+
+//void	parsing_map(t_game *game);
+
+
+/*
+* parsing_map_utils.c
+*/
+
+//void	check_top_and_bottom_wall_closed(char *str, t_game *game);
+//void	check_around_0(char	**line, t_game *game);
+
+
+
 
 
 void	texture_choice(t_game *game);
@@ -134,27 +226,8 @@ int32_t	ft_pixel(int32_t r, int32_t g, int32_t b);
 void	draw_wall_texture(t_game *game, int x);
 void	draw_elements(mlx_image_t *image,
 	int x, t_game *game, float wall_height);
-/*
-* Parsing arguments
-*/
 
-int		manage_cub_extension(char **argv);
-void	parsing_arguments(int argc, char **argv);
 
-/*
-* Parsing colors
-*/
-
-int		ft_parse_map_elements_colors(t_map_data *map);
-
-/*
-* Parse map
-*/
-
-int		parse_map(t_map_data *map);
-//void	parsing_map_elements(char **map, t_game *game);
-void	parsing_map_elements(t_game *game);
-void	parse_map_textures(t_game *game);
 
 /*
 * Images
@@ -162,41 +235,14 @@ void	parse_map_textures(t_game *game);
 
 void	load_image(t_game *game);
 
-/*
-* Draw
-*/
-
-//void	 draw_elements(mlx_image_t* image, int x, float wall_height, t_game *game);
-// void	draw_elements(mlx_image_t *image,
-// 	int x, t_game *game);
-/*
-* Textures
-*/
-
-//int		load_north_south_textures(t_map_data *map, t_texture *texture, int i);
-//int		load_west_east_textures(t_map_data *map, t_texture *texture, int i);
-//int		parse_map_path_texture(t_map_data *map, t_texture *texture);
-
-/*
-* Check and open file
-*/
-
-void		check_and_open_file(int *fd, char **argv);
-
-/*
-* Read map 
-*/
-
-char	**get_map(int fd);
 
 /*
 * Parsing map Utils
 */
 
-int				is_line_valid(char *str);
-int				is_direction_valid(char *str, t_map_data *map_data);
-int				is_top_and_bottom_wall_closed(char *str);
-int				check_around_0(char	**line);
+//int				is_line_valid(char *str);
+//int				is_direction_valid(char *str, t_map_data *map_data);
+//int				check_around_0(char	**line);
 
 /*
 * Render graphics
@@ -230,13 +276,9 @@ void	*ft_calloc(size_t nmemb, size_t size);
 int		is_full_whitespaces(char *str);
 float	clamp(float num, float min, float max);
 char	*ft_strchr(const char *s, int c);
-
-
-/*
-* ft_split
-*/
-
+//int		ft_strcspn(char *remaining_line, char *str);
 char	**ft_split(char const *s, char c);
+
 
 /*
 * Error
@@ -248,18 +290,7 @@ int		message_error_for_missing_elements(
 int		message_error_return_1(char *error_message);
 
 
-/*
-* Allocations
-*/
 
-void	memory_allocation_for_structs(t_game **game);
-void	allocate_textures(Uint32 *texture[8]);
-
-/*
-* Initialization
-*/
-
-void	initialization_of_values(t_game *game, char **map);
 
 /*
 * Free

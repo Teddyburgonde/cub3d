@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_elements_map.c                             :+:      :+:    :+:   */
+/*   parsing_map_path_textures.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 18:12:09 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/11 10:24:33 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ static void	handling_error_loading_texture(char **arr, t_game *game)
 	exit(EXIT_FAILURE);
 }
 
-static void	load_texture(char *map_line, mlx_texture_t **texture, \
+static void	load_texture(char *line, mlx_texture_t **texture, \
 t_game *game)
 {
 	char	**arr;
 
-	arr = ft_split(map_line, ' ');
-	if (map_line && !arr)
+	arr = ft_split(line, ' ');
+	if (line && !arr)
 	{
 		free_array(arr);
 		free_structs(game);
@@ -41,34 +41,23 @@ t_game *game)
 	free_array(arr);
 }
 
-static void	parse_map_path_texture(t_game *game)
+void	parsing_file_path_textures(t_game *game)
 {
 	int			i;
-	char		**map;
+	char		**content;
 	
 	i = 0;
-	map = game->data->complete_map;
-	while (map[i])
+	content = game->data->file_content;
+	while (content[i])
 	{
-		if (ft_strncmp(map[i], "NO ", 3) == 0)
-			load_texture(map[i], &game->texture->north_texture, game);
-		if (ft_strncmp(map[i], "EA ", 3) == 0)
-			load_texture(map[i], &game->texture->east_texture, game);
-		if (ft_strncmp(map[i], "SO ", 3) == 0)
-			load_texture(map[i], &game->texture->south_texture, game);
-		if (ft_strncmp(map[i], "WE ", 3) == 0)
-			load_texture(map[i], &game->texture->west_texture, game);
+		if (ft_strncmp(content[i], "NO ", 3) == 0)
+			load_texture(content[i], &game->texture->north_texture, game);
+		if (ft_strncmp(content[i], "EA ", 3) == 0)
+			load_texture(content[i], &game->texture->east_texture, game);
+		if (ft_strncmp(content[i], "SO ", 3) == 0)
+			load_texture(content[i], &game->texture->south_texture, game);
+		if (ft_strncmp(content[i], "WE ", 3) == 0)
+			load_texture(content[i], &game->texture->west_texture, game);
 		i++;
-	}
-}
-
-void	parsing_map_elements(t_game *game)
-{
-	parse_map_textures(game);
-	parse_map_path_texture(game);
-	if (ft_parse_map_elements_colors(game->data) != 0)
-	{
-		ft_putstr_fd("Error: The colors are poorly defined.\n", 2);
-		exit (EXIT_FAILURE);
 	}
 }

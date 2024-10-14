@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:34:28 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 18:06:29 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/11 08:43:08 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	free_structs(t_game *game)
 		delete_texture(game->texture);
 	if (game->texture)
 		free(game->texture);
-	if (game->data->complete_map)
-		free_array(game->data->complete_map);
+	if (game->data->file_content)
+		free_array(game->data->file_content);
 	if (game->data)
 		free(game->data);
 	if (game)

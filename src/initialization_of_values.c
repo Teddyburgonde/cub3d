@@ -6,13 +6,13 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:25:34 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 18:13:48 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/11 11:01:48 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	initialization_of_values(t_game *game, char **map)
+void	initialization_of_values(t_game *game, char **file_content)
 {
 	game->player->player_pos_x = 1;
 	game->player->player_pos_y = 1;
@@ -20,10 +20,10 @@ void	initialization_of_values(t_game *game, char **map)
 	game->player->angle = 0.0;
 	//game->player->pitch = 0.0;
 
-	game->data->save = 0;
+//	game->data->save = 0;
 //	game->data->fd = fd;
-	game->data->complete_map = map;
-	game->data->map = &game->data->complete_map[6];
+	game->data->file_content = file_content;
+	game->data->map = &game->data->file_content[6];
 	game->data->weight = 0;
 	game->data->height = 300;//pourquoi 300 ?
 	game->data->nb_lines = 0;

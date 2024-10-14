@@ -3,70 +3,105 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/06 16:17:42 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:00:52 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static int	is_validate_map_line(char *line, t_map_data *map_data)
+static void check_one_player(int flag, t_game *game)
 {
-	int	j;
-
-	if (line[0] != '1' && line[0] != ' ')
-		return (message_error_return_1("Error: Invalid map\n"));
-	j = ft_strlen(line) - 1;
-	if (line[j] != '1')
-		return (message_error_return_1("Error: Invalid map\n"));
-	if (is_line_valid(line) == 0 || is_full_whitespaces(line) == 1)
-		return (message_error_return_1("Error: Invalid map\n"));
-	if (is_direction_valid(line, map_data) == 0)
-		return (message_error_return_1("Error: Invalid map\n"));
-	return (0);
+	if(flag != 1)
+	{
+		ft_putstr_fd("Error: Invalid map\n", 2);
+		free_structs(game);
+		exit(EXIT_FAILURE);
+	}
 }
 
-static void	remplace_spaces_with_walls(char	**line)
+
+static void	check_map_validity(t_game *game)
+{
+	int		i;
+	int		len;
+	char	**map;
+	int		flag;
+
+	i = 0;
+	len = 0;
+	map = game->data->map;
+	flag = 0;
+	while (map[i])
+	{
+		check_if_empty_line(map[i], game);
+		check_char_validity(map[i], game);
+		get_player_initial_position_and_orientation(map[i], i, &flag, game);
+
+//		check_around_0(map, game); //flood_fill?
+		len = ft_strlen(map[i]);
+		if(game->data->nb_columns < len)
+			game->data->nb_columns = len;
+		i++;
+	}
+	check_one_player(flag, game);
+	game->data->nb_lines = i;
+	check_if_map_closed(game);
+}
+
+static void	replace_spaces_with_walls(char	**map)
 {
 	int	i;
 	int	j;
 
 	j = 1;
-	while (line[j + 1])
+	while (map[j + 1])
 	{
 		i = 1;
-		while (line[j][i + 1])
+		while (map[j][i + 1])
 		{
-			if (line[j][i] == 32)
-				line[j][i] = '1';
+			if (map[j][i] == 32)
+				map[j][i] = '1';
 			i++;
 		}
 		j++;
 	}
 }
 
-int	parse_map(t_map_data *map_data)
+static void	skip_first_empty_lines(char **map)
 {
-	remplace_spaces_with_walls(map_data->map);
-	while (map_data->map[map_data->save]
-		&& is_full_whitespaces(map_data->map[map_data->save]) == 1)
-		map_data->save++;
-	if (is_top_and_bottom_wall_closed(map_data->map[map_data->save]) == 0)
-		return (message_error_return_1("Error: Invalid map\n"));
-	while (map_data->map[map_data->save])
+	while (map && is_full_whitespaces(map[0]) == 1)
+		map++;
+}
+
+void	parsing_map(t_game *game)
+{
+	char	**map;
+	int		i;
+
+	i = 0;
+	skip_first_empty_lines(game->data->map); //faut-il envoyer l'adresse ?
+	map = game->data->map;
+	replace_spaces_with_walls(map);
+//	ft_print_value_map(game->data->map);
+	check_map_validity(game);
+
+	
+//	check_top_and_bottom_wall_closed(map[0], game);
+
+/*	while (map[i])
 	{
-		if (check_around_0(map_data->map) == 1)
-			return (message_error_return_1("Error: Invalid map\n"));
-		if (is_validate_map_line(map_data->map[map_data->save], map_data) != 0)
+		check_around_0(map, game);
+		if (is_validate_map_line(map[i], game->data) != 0)
 			return (1);
-		map_data->save++;
+		i++;
 	}
-	map_data->save--;
-	if (is_top_and_bottom_wall_closed(map_data->map[map_data->save]) == 0)
+	i--;
+	if (is_top_and_bottom_wall_closed(map[i]) == 0)
 		return (message_error_return_1("Error: Invalid map\n"));
-	if (!map_data->direction)
+	if (!game->data->direction)
 		return (message_error_return_1("Error: Invalid map\n"));
-	return (0);
+	return (0);*/
 }

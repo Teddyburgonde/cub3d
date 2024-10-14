@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 18:06:03 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/11 10:24:07 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,28 @@ t_game *game)
 	}
 }
 
-void	parse_map_textures(t_game *game)
+void	parsing_file_textures(t_game *game)
 {
 	int					i;
-	char 				**map;
+	char 				**content;
 	t_counter_parameter	counter_parameter;
 
 	i = 0;
-	map = game->data->complete_map;
+	content = game->data->file_content;
 	ft_memset(&counter_parameter, 0, sizeof(t_counter_parameter));//valider la fonction memset
-	while (map[i])
+	while (content[i])
 	{
-		if (ft_strncmp(map[i], "NO ", 3) == 0)
+		if (ft_strncmp(content[i], "NO ", 3) == 0)
 			counter_parameter.counter_no++;
-		if (ft_strncmp(map[i], "SO ", 3) == 0)
+		if (ft_strncmp(content[i], "SO ", 3) == 0)
 			counter_parameter.counter_so++;
-		if (ft_strncmp(map[i], "WE ", 3) == 0)
+		if (ft_strncmp(content[i], "WE ", 3) == 0)
 			counter_parameter.counter_we++;
-		if (ft_strncmp(map[i], "EA ", 3) == 0)
+		if (ft_strncmp(content[i], "EA ", 3) == 0)
 			counter_parameter.counter_ea++;
-		if (ft_strncmp(map[i], "F ", 2) == 0)
+		if (ft_strncmp(content[i], "F ", 2) == 0)
 			counter_parameter.counter_f++;
-		if (ft_strncmp(map[i], "C ", 2) == 0)
+		if (ft_strncmp(content[i], "C ", 2) == 0)
 			counter_parameter.counter_c++;
 		i++;
 	}
