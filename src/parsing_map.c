@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 09:29:13 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 10:23:59 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,16 @@ static void	check_map_validity(t_game *game)
 	flag = 0;
 	while (map[i])
 	{
-		len = ft_strlen(map[i]);
-		check_char_validity(map[i], len, game);
+		check_char_validity(map[i], game);
 		get_player_initial_position_and_orientation(map[i], i, &flag, game);
 
-		check_around_0(map, game); //flood_fill?
-
+//		check_around_0(map, game); //flood_fill?
+		len = ft_strlen(map[i]);
+		if(game->data->nb_columns < len)
+			game->data->nb_columns = len;
 		i++;
 	}
-	check_one_player(flag, game)
+	check_one_player(flag, game);
 	game->data->nb_lines = i;
 	check_if_map_closed(game);
 }
@@ -80,15 +81,15 @@ void	parsing_map(t_game *game)
 	int		i;
 
 	i = 0;
-	skip_first_empty_lines(game->data->map) //faut-il envoyer l'adresse ?
+	skip_first_empty_lines(game->data->map); //faut-il envoyer l'adresse ?
 	map = game->data->map;
 	replace_spaces_with_walls(map);
-//	check_map_validity(map, game);
+	check_map_validity(game);
 
 	
-	check_top_and_bottom_wall_closed(map[0], game);
+//	check_top_and_bottom_wall_closed(map[0], game);
 
-	while (map[i])
+/*	while (map[i])
 	{
 		check_around_0(map, game);
 		if (is_validate_map_line(map[i], game->data) != 0)
@@ -100,5 +101,5 @@ void	parsing_map(t_game *game)
 		return (message_error_return_1("Error: Invalid map\n"));
 	if (!game->data->direction)
 		return (message_error_return_1("Error: Invalid map\n"));
-	return (0);
+	return (0);*/
 }

@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:57:15 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/08 08:25:59 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 10:13:04 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,26 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)(s + i));
 	return (0);
 }
+
+/*int	ft_strcspn(char *line, char *str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (line[i])
+	{
+		j = 0;
+		while (str[j])
+		{
+			if (line[i] == str[j])
+				return (i);
+			j++;
+		}
+		i++;
+	}
+	return (i);
+}*/
 
 static int	is_whitespace(char c)
 {

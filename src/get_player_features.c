@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/13 10:01:14 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 09:56:10 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_game *game)
 			game->player->player_pos_x = j + 0.5;
 			game->player->player_pos_y = i + 0.5 ;
 			get_player_initial_orientation (game, game->data->map[i][j]);
-			*flag++ ;
+			(*flag)++ ;
 		}
 		j++;
 	}

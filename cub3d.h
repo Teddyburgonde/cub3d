@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/13 09:51:55 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 10:18:36 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,34 +181,40 @@ void	parsing_file_colors(t_game *game);
 * parsing_map.c
 */
 
-int		parsing_map(t_game *game);
+void		parsing_map(t_game *game);
+
+
+void	check_if_map_closed(t_game *game);
+void		check_char_validity(char *line, t_game *game);
+void	get_player_initial_position_and_orientation(char *line, int i, int *flag, \
+t_game *game);
 
 /*
 * get_map_features.c
 */
 
-void	get_map_size(t_map_data *map_data);
+//void	get_map_size(t_map_data *map_data);
 
 /*
 * get_player_features.c
 */
 
-void	get_player_initial_position_and_orientation(char *line, int i, int *flag, \
-t_game *game);
+/*void	get_player_initial_position_and_orientation(char *line, int i, int *flag, \
+t_game *game);*/
 
 /*
 * parsing_map.c
 */
 
-void	parsing_map(t_game *game);
+//void	parsing_map(t_game *game);
 
 
 /*
 * parsing_map_utils.c
 */
 
-void	check_top_and_bottom_wall_closed(char *str, t_game *game);
-void	check_around_0(char	**line, t_game *game);
+//void	check_top_and_bottom_wall_closed(char *str, t_game *game);
+//void	check_around_0(char	**line, t_game *game);
 
 
 
@@ -234,9 +240,9 @@ void	load_image(t_game *game);
 * Parsing map Utils
 */
 
-int				is_line_valid(char *str);
-int				is_direction_valid(char *str, t_map_data *map_data);
-int				check_around_0(char	**line);
+//int				is_line_valid(char *str);
+//int				is_direction_valid(char *str, t_map_data *map_data);
+//int				check_around_0(char	**line);
 
 /*
 * Render graphics
@@ -270,6 +276,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
 int		is_full_whitespaces(char *str);
 float	clamp(float num, float min, float max);
 char	*ft_strchr(const char *s, int c);
+//int		ft_strcspn(char *remaining_line, char *str);
 char	**ft_split(char const *s, char c);
 
 

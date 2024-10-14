@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:50:29 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/13 09:55:45 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 10:22:46 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	check_first_and_last_line(char *line, t_game *game)
 	{
 		if(line[j] != 1 && line [j] != 32)
 		{
-			ft_putstr_fd("Error: Invalid map\n", 2);
+			ft_putstr_fd("Error: Invalid map1\n", 2);
 			free_structs(game);
 			exit(EXIT_FAILURE);
 		}
@@ -38,7 +38,7 @@ static void	check_current_line(char *line, t_game *game)
 	j = 0;
 	while (line && line[j])
 	{
-		if((j = 0 || j = len - 1) && line[j] != 1 && line [j] != 32) //une ligne peut-elle commencer par un espace ?
+		if((j == 0 || j == len - 1) && line[j] != 1 && line [j] != 32) //une ligne peut-elle commencer par un espace ?
 		{
 			ft_putstr_fd("Error: Invalid map\n", 2);
 			free_structs(game);
@@ -48,7 +48,7 @@ static void	check_current_line(char *line, t_game *game)
 	}
 }	
 
-void	check_if_map_closed(t_game *game);
+void	check_if_map_closed(t_game *game)
 {
 	int		i;
 	char	**map;
@@ -59,13 +59,13 @@ void	check_if_map_closed(t_game *game);
 	i++;
 	while(map[i] && i != game->data->nb_lines - 1)
 	{
-		check_curent_line(map[i], game);
+		check_current_line(map[i], game);
 		i++;
 	}
 	check_first_and_last_line(map[i], game);
 }
 
-int	check_char_validity(char *line, int len, t_game *game)
+void	check_char_validity(char *line, t_game *game)
 {
 	int		j;
 	char	*valid_chars;
@@ -74,7 +74,7 @@ int	check_char_validity(char *line, int len, t_game *game)
 	valid_chars = "10 NSEW";
 	while (line && line[j])
 	{
-		if (ft_strchr(valid_chars, str[j]) < len)
+		if (ft_strchr(valid_chars, line[j]) == 0)
 		{
 			ft_putstr_fd("Error: Invalid map\n", 2);
 			free_structs(game);
@@ -82,8 +82,6 @@ int	check_char_validity(char *line, int len, t_game *game)
 		}
 		j++;
 	}
-	if(game->data->nb_columns <= j)
-		game->data->nb_columns = j;
 }
 
 
@@ -96,7 +94,7 @@ int	check_char_validity(char *line, int len, t_game *game)
 
 
 
-int	is_line_valid(char *line)
+/*int	is_line_valid(char *line)
 {
 	char	*valid_chars;
 	int		i;
@@ -202,4 +200,4 @@ void	check_if_validate_map_line(char *line, t_map_data *map_data)
 	if (is_direction_valid(line, map_data) == 0)
 		return (message_error_return_1("Error: Invalid map\n"));
 	return (0);
-}
+}*/
