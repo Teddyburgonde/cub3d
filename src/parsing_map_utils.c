@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:50:29 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 10:22:46 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 11:51:37 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	check_first_and_last_line(char *line, t_game *game)
 	j = 0;
 	while(line && line[j])
 	{
-		if(line[j] != 1 && line [j] != 32)
+		if(line[j] != '1' && line [j] != 32)
 		{
-			ft_putstr_fd("Error: Invalid map1\n", 2);
+			ft_putstr_fd("Error: Invalid map\n", 2);
 			free_structs(game);
 			exit(EXIT_FAILURE);
 		}
@@ -38,7 +38,7 @@ static void	check_current_line(char *line, t_game *game)
 	j = 0;
 	while (line && line[j])
 	{
-		if((j == 0 || j == len - 1) && line[j] != 1 && line [j] != 32) //une ligne peut-elle commencer par un espace ?
+		if((j == 0 || j == len - 1) && line[j] != '1' && line [j] != 32)//une ligne peut-elle commencer par un espace ?
 		{
 			ft_putstr_fd("Error: Invalid map\n", 2);
 			free_structs(game);
@@ -83,6 +83,17 @@ void	check_char_validity(char *line, t_game *game)
 		j++;
 	}
 }
+
+void	check_if_empty_line(char *line, t_game *game)
+{
+	if(line && is_full_whitespaces(line) == 1)
+	{
+		ft_putstr_fd("Error: Invalid map\n", 2);
+		free_structs(game);
+		exit(EXIT_FAILURE);
+	}
+}
+
 
 
 
