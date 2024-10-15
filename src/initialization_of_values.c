@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:25:34 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/15 09:48:47 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 17:21:05 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	initialization_of_values(t_game *game, char **file_content)
 	game->texture->image = NULL;
 //	game->texture->player_position_image = NULL; //pour minimap
 
-	game->texture->minimap = NULL; //pour minimap
+//	game->texture->minimap = NULL; //pour minimap
 
 	game->texture->walls_image = NULL;
 	game->texture->floor_image = NULL;

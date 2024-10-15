@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 19:58:10 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 17:47:49 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	check_map_validity(t_game *game)
 		check_char_validity(map[i], game);
 		get_player_initial_position_and_orientation(map[i], i, &flag, game);
 		len = ft_strlen(map[i]);
-		if(game->data->nb_columns < len)
+		if (game->data->nb_columns < len)
 			game->data->nb_columns = len;
 		i++;
 	}

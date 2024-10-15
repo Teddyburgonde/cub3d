@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 13:53:45 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 19:44:50 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 17:54:48 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static void	colision(t_game *game, float orientation)
 		+ cos(game->player->angle + orientation) * 0.1;
 	new_pos_y = game->player->player_pos_y
 		+ sin(game->player->angle + orientation) * 0.1;
-	if (is_movement_possible(game->data->map[(int)new_pos_y][(int)new_pos_x]) == true)
+	if (is_movement_possible \
+	(game->data->map[(int)new_pos_y][(int)new_pos_x]) == true)
 	{
 		game->player->player_pos_x = game->player->player_pos_x
 			+ cos(game->player->angle + orientation) * 0.05;

@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 20:03:22 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 17:52:38 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ typedef struct s_player
 typedef struct s_texture
 {
 	mlx_image_t		*image;
-	mlx_image_t		*player_position_image; //pour minimap
+//	mlx_image_t		*player_position_image; //pour minimap
 	
-	mlx_image_t		*minimap; //pour minimap
+//	mlx_image_t		*minimap; //pour minimap
 	
 	mlx_texture_t	*walls_image;
 	mlx_texture_t	*floor_image;
-	mlx_texture_t	*player_image; //pour minimap
+//	mlx_texture_t	*player_image; //pour minimap
 	
 	mlx_texture_t	*north_texture;
 	mlx_texture_t	*east_texture;
@@ -85,10 +85,10 @@ typedef struct s_texture
 	mlx_texture_t	*west_texture;
 	mlx_texture_t	*texture; // pas encore initialiser attention conditionnal jump
 
-	mlx_texture_t	*player_image_N; //pour minimap
-	mlx_texture_t	*player_image_E; //pour minimap
-	mlx_texture_t	*player_image_S; //pour minimap
-	mlx_texture_t	*player_image_W; //pour minimap
+//	mlx_texture_t	*player_image_N; //pour minimap
+//	mlx_texture_t	*player_image_E; //pour minimap
+//	mlx_texture_t	*player_image_S; //pour minimap
+//	mlx_texture_t	*player_image_W; //pour minimap
 	
 }	t_texture;
 
@@ -115,7 +115,7 @@ typedef struct s_map_data
 	int				begin_map_index;
 	int				floor_color[4];
 	int				ceiling_color[4];
-	float			direction; //to delete ?
+//	float			direction; //to delete ?
 }	t_map_data;
 
 typedef struct s_game
@@ -210,7 +210,7 @@ void	render_graphics(t_game *game);
 * load_textures.c
 */
 
-void	load_textures(t_game *game); //for minimap
+void	load_textures(t_game *game); //for minimap ti delete
 
 /*
 * movement.c
@@ -290,6 +290,6 @@ int		ft_parse_map_elements_wall(t_map_data *map);
 * display_minimap.c
 */
 
-void    display_minimap(t_game *game);
+//void    display_minimap(t_game *game);
 
 #endif

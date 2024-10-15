@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 18:05:35 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 17:46:08 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,20 @@ t_game *game)
 void	parsing_file_path_textures(t_game *game)
 {
 	int			i;
-	char		**content;
-	
+	char		*tmp;
+
 	i = 0;
-	content = game->data->file_content;
-	while (content[i])
+	while (game->data->file_content[i])
 	{
-		if (ft_strncmp(content[i], "NO ", 3) == 0)
-			load_texture(content[i], &game->texture->north_texture, game);
-		if (ft_strncmp(content[i], "EA ", 3) == 0)
-			load_texture(content[i], &game->texture->east_texture, game);
-		if (ft_strncmp(content[i], "SO ", 3) == 0)
-			load_texture(content[i], &game->texture->south_texture, game);
-		if (ft_strncmp(content[i], "WE ", 3) == 0)
-			load_texture(content[i], &game->texture->west_texture, game);
+		tmp = skip_first_whitespaces(game->data->file_content[i]);
+		if (ft_strncmp(tmp, "NO ", 3) == 0)
+			load_texture(tmp, &game->texture->north_texture, game);
+		if (ft_strncmp(tmp, "EA ", 3) == 0)
+			load_texture(tmp, &game->texture->east_texture, game);
+		if (ft_strncmp(tmp, "SO ", 3) == 0)
+			load_texture(tmp, &game->texture->south_texture, game);
+		if (ft_strncmp(tmp, "WE ", 3) == 0)
+			load_texture(tmp, &game->texture->west_texture, game);
 		i++;
 	}
 }

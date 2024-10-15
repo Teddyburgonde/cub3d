@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/15 10:43:52 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 17:11:05 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	int			fd;
 	char		**file_content;
 	t_game		*game;
-	
+
 	fd = 0;
 	game = NULL;
 	parsing_arguments(argc, argv);
@@ -30,8 +30,7 @@ int	main(int argc, char **argv)
 	parsing_file_colors(game);
 	game->data->map = &game->data->file_content[game->data->begin_map_index];
 	parsing_map(game);
-
-	render_graphics(game); //code refactoring in progress
+	render_graphics(game);
 	free_structs(game);
 	ft_putstr_fd("\033[32mEnd of program 😊\033[0m\n", 1);
 	return (EXIT_SUCCESS);
