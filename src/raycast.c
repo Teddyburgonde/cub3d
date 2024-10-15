@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:07:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/09 10:54:56 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 09:39:25 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	raycast(void *param)
 		draw_elements(game->texture->image, i, game, game->ray_result.wall_height);
 		i++;
 	}
-	display_minimap(game);
+//	display_minimap(game);
 	
 /*	time = clock() - time;
 	long fps;

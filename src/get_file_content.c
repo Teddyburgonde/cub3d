@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 14:35:54 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 19:31:15 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 09:47:47 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**get_file_content(int fd)
 	line = get_next_line(fd);
 	if (!line)
 	{
-		ft_putstr_fd("Error: File is empty.\n", 2);
+		ft_putstr_fd("Error: File is empty\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	i = 0;

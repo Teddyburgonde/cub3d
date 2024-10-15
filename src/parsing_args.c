@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 14:52:41 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 19:30:15 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 09:40:23 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	parsing_arguments(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		ft_putstr_fd("Error: Wrong argument number.\n", 2);
+		ft_putstr_fd("Error: Wrong argument number\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	if (manage_cub_extension(argv) == 1)
 	{
-		ft_putstr_fd("Error: Wrong extension map.\n", 2);
+		ft_putstr_fd("Error: Wrong extension map\n", 2);
 		exit(EXIT_FAILURE);
 	}
 }
