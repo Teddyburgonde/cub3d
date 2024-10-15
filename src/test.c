@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 11:09:49 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/08 09:42:15 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 11:44:40 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ void	ft_print_value_map(char **map)
 	i = 0;
 	while (map && map[i])
 	{
-		printf("La valeur de map[i] %s\n", map[i]);
+		printf("La valeur de map[%d] %s\n", i, map[i]);
 		i++;
 	}
+	printf("\n");
 }
 
 int	ft_print_map_elements(t_map_data *map)

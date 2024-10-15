@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:47:39 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/15 10:01:01 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 10:13:10 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	draw_ceiling(mlx_image_t *image, int x, int up_wall, int color)
 	y = 0;
 	while (y < up_wall && y < WINDOWS_HEIGHT)
 	{	
-		mlx_put_pixel(image, x, y, color); // couleur du plafond to modify
+		mlx_put_pixel(image, x, y, color);
 		y++;
 	}
 }
@@ -35,7 +35,7 @@ static void	draw_floor(mlx_image_t *image, int x, int down_wall, int color)
 	y = down_wall;
 	while (y < (int)image->height && y < WINDOWS_HEIGHT)
 	{
-		mlx_put_pixel(image, x, y, color); // couleur du sol to modify
+		mlx_put_pixel(image, x, y, color);
 		y++;
 	}
 }

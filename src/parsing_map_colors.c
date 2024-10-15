@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 19:33:06 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 15:19:34 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	get_color(int *color, char **arr, t_game *game)
 		color[i] = ft_atoi(arr[i]);
 		if (color[i] < 0 || color[i] > 255 || ft_atoi(arr[i]) == -1)
 		{
-			ft_putstr_fd("Error: Incorrect color value.\n", 2);
+			ft_putstr_fd("Error: Incorrect color value\n", 2);
 			free_array(arr);
 			free_structs(game);
 			exit(EXIT_FAILURE);
@@ -55,18 +55,19 @@ void	parsing_file_colors(t_game *game)
 {
 	int		i;
 	char	**content;
+	char	*tmp;
 
 	i = 0;
 	content = game->data->file_content;
 	while (content[i])
 	{
-		content[i] = skip_first_whitespaces(content[i]);
-		if (ft_strncmp(content[i], "F ", 2) == 0)
-			parsing_color(content[i], game->data->floor_color, game);
-		if (ft_strncmp(content[i], "C ", 2) == 0)
+		tmp = skip_first_whitespaces(content[i]);
+		if (ft_strncmp(tmp, "F ", 2) == 0)
+			parsing_color(tmp, game->data->floor_color, game);
+		if (ft_strncmp(tmp, "C ", 2) == 0)
 		{
 			game->data->begin_map_index = i + 1;
-			parsing_color(content[i], game->data->ceiling_color, game);
+			parsing_color(tmp, game->data->ceiling_color, game);
 		}
 		i++;
 	}

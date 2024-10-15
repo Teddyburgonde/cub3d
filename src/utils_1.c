@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:39:22 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 20:03:30 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 15:02:52 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,16 @@ char	*ft_strdup(const char *s)
 	int			i;
 
 	i = 0;
-	tab = malloc(sizeof(char) * ft_strlen(s) + 1);
-	if (tab)
+	tab = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!tab)
+		return(NULL);
+	while (s && s[i])
 	{
-		while (s[i])
-		{
-			tab[i] = s[i];
-			i++;
-		}
-		tab[i] = '\0';
+		tab[i] = s[i];
+		i++;
 	}
-	return ((char *)tab);
+	tab[i] = '\0';
+	return (tab);
 }
 
 void	*ft_calloc(size_t nmemb, size_t size)

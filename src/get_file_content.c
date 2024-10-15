@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 14:35:54 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/15 09:47:47 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 14:52:01 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static char	**build_array(char **arr, int i)
 	int		j;
 	char	**result;
 
-	result = ft_calloc(i + 2, sizeof(char *));
+//	result = ft_calloc(i + 2, sizeof(char *));
+	result = malloc((i + 2) * sizeof(char *));
 	j = 0;
 	if (!result)
 		return (NULL);
@@ -26,9 +27,11 @@ static char	**build_array(char **arr, int i)
 		result[j] = ft_strdup(arr[j]);
 		j++;
 	}
+	result[j + 1] = NULL;
 	free_array(arr);
 	return (result);
 }
+// 
 
 char	**get_file_content(int fd)
 {
@@ -50,6 +53,8 @@ char	**get_file_content(int fd)
 		file_content[i] = ft_substr(line, 0, ft_strcspn(line, "\n"));
 		if (!file_content[i])
 			display_allocation_failed_and_exit();
+//		printf("file_content[%d] :%s\n", i, file_content[i]);
+//		ft_print_value_map(file_content);
 		free(line);
 		line = get_next_line(fd);
 		i++;
