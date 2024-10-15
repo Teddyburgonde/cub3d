@@ -6,13 +6,13 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:30:15 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 19:42:18 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 18:14:40 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	load_textures(t_game *game)
+/*void	load_textures(t_game *game)
 {
 
 //	game->texture->player_position = mlx_load_png("textures/player_position.png"); //ajouté
@@ -27,4 +27,4 @@ void	load_textures(t_game *game)
 		free_structs(game);
 		exit(EXIT_FAILURE);
 	}
-}
+}*/

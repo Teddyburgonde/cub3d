@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:47:39 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/15 18:11:09 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 18:15:22 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ static void	draw_floor(mlx_image_t *image, int x, int down_wall, int color)
 void	draw_elements(mlx_image_t *image,
 	int x, t_game *game, float wall_height)
 {
-	int		color;
-
 	game->ray_result.draw_start = ((int)image->height / 2.0) - \
 		wall_height / 2.0;
 	// 	+ (float)(image->height / 2.0) * game->player->pitch;

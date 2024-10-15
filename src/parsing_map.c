@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/15 17:47:49 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/15 19:00:17 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,40 @@ static void	check_map_validity(t_game *game)
 	check_if_map_closed(game);
 }
 
+int	*get_line_lenght(t_game *game)
+{
+	int	*lines_len;
+	int	i;
+	
+	lines_len = malloc((game->data->nb_lines + 1) * sizeof(int));
+	if (!lines_len)
+	{
+		free_structs(game);
+		display_allocation_failed_and_exit();
+	}
+	i = 0;
+	while (game->data->map[i])
+	{
+		lines_len[i] = ft_strlen(game->data->map[i]);
+		i++;
+	}
+	lines_len[i] = -1;
+}
+
+
 static void	replace_spaces_with_walls(char	**map)
 {
 	int	i;
 	int	j;
+	int	len;
 
 	j = 1;
+	
 	while (map[j + 1])
 	{
+		len = ft_strlen(map[j]);
 		i = 1;
-		while (map[j][i + 1])
+		while ((i + 1) < len && map[j][i + 1])
 		{
 			if (map[j][i] == 32)
 				map[j][i] = '1';
@@ -65,7 +89,11 @@ static void	skip_first_empty_lines(char ***map)
 
 void	parsing_map(t_game *game)
 {
+	int *lines_len;
+	
 	skip_first_empty_lines(&game->data->map);
-	replace_spaces_with_walls(game->data->map);
+	replace_spaces_with_walls(game);
+	lines_len = get_lines_lenght(game->data->map);
+//	compare lines each with other 
 	check_map_validity(game);
 }

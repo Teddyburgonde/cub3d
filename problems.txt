@@ -28,7 +28,12 @@ tests parsing (avec valgrind):
 - envoyer un fichier qui n'existe pas,✅
 - envoyer le nom d'un répertoire, ✅
 - envoyer un fichier qui n'a pas l'extension .cub, ✅
+
+
 - envoyer un fichier avec une double extension .cub (.cub.cub), ❌
+⚠️ je n'arrrive pas à le reproduire (PA)
+
+
 - envoyer un fichier sur lequel l'utilisateur n'a pas les droits,
 
 - envoyer un fichier vide, ✅
@@ -42,7 +47,11 @@ tests parsing (avec valgrind):
 - envoyer un fichier dans lequel la mention N0 pour la texture est précédée d'un espace,✅
 - envoyer un fichier dans lequel la mention N0 pour la texture est suivie d'un ou plusieurs ✅
 espaces,
-- envoyer un fichier dans lequel une texture n'existe pas, ❌❌❌❌❌❌ SEGFAULT
+
+- envoyer un fichier dans lequel une texture n'existe pas, ❌❌❌❌❌❌ SEGFAULT 
+⚠️ je n'arrrive pas à le reproduire (PA)
+
+
 - envoyer un fichier dans lequel l'utilisateur ne dispose pas les droits pour l'accès à une
 texture,
 - envoyer un fichier dans lequel deux textures sont inversées,

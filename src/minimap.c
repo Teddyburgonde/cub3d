@@ -1,7 +1,7 @@
 
 #include "../cub3d.h"
 
-void	fill_grid_square(t_game *game, int i, int j, int square_width, int color)
+/*void	fill_grid_square(t_game *game, int i, int j, int square_width, int color)
 {
 	int x;
 	int y;
@@ -170,4 +170,4 @@ void    display_minimap(t_game *game)
 		i++;
 	}
 	put_player_on_map(game, square_width, square_height);
-}
+}*/
