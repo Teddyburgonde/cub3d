@@ -6,20 +6,20 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:47:39 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/10 18:29:49 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:28:54 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-static void	draw_ceiling(mlx_image_t *image, int x, int up_wall)
+static void	draw_ceiling(mlx_image_t *image, int x, int up_wall, int color)
 {
 	int	y;
 
 	y = 0;
 	while (y < up_wall && y < WINDOWS_HEIGHT)
 	{
-		mlx_put_pixel(image, x, y, 0x00007FFF);
+		mlx_put_pixel(image, x, y, color);
 		y++;
 	}
 }
@@ -139,7 +139,7 @@ static void	draw_wall_section(t_game *game, mlx_image_t *image, int x,
 // 	}
 // }
 
-static void	draw_floor(mlx_image_t *image, int x, int down_wall)
+static void	draw_floor(mlx_image_t *image, int x, int down_wall, int color)
 {
 	int	y;
 
@@ -150,7 +150,7 @@ static void	draw_floor(mlx_image_t *image, int x, int down_wall)
 	y = down_wall;
 	while (y < (int)image->height && y < WINDOWS_HEIGHT)
 	{
-		mlx_put_pixel(image, x, y, 0xAFAFAFFF); // couleur du sol
+		mlx_put_pixel(image, x, y, color); // couleur du sol
 		y++;
 	}
 }
@@ -165,9 +165,9 @@ void	draw_elements(mlx_image_t *image,
 	game->ray_result.draw_end = ((int)image->height / 2.0) + wall_height / 2.0;
 	// 	+ (float)(image->height / 2.0) * game->player->pitch;
 	color = 0xFFB400B4;
-	draw_ceiling(image, x, game->ray_result.draw_start);
+	draw_ceiling(image, x, game->ray_result.draw_start, game->data->ceiling_color[3]);
 	//draw_wall_section(image, x, game->ray_result.draw_start, game->ray_result.draw_end, color);
 	draw_wall_texture(game, x);
 //	draw_wall_section(game, image, x, game->ray_result.draw_start, game->ray_result.draw_end);//envoyer orientation du mur en paramètre
-	draw_floor(image, x, game->ray_result.draw_end);
+	draw_floor(image, x, game->ray_result.draw_end, game->data->floor_color[3]);
 }

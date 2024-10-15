@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:57:15 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 10:13:04 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/14 17:07:56 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static int	is_whitespace(char c)
 	return (0);
 }
 
+
 int	ft_atoi(const char *nptr)
 {
 	int	i;
@@ -66,14 +67,10 @@ int	ft_atoi(const char *nptr)
 	sign = 1;
 	while (is_whitespace(nptr[i]))
 		i++;
-	while (nptr[i] == '+' || nptr[i] == '-')
+	if (nptr[i] == '+' || nptr[i] == '-')
 	{
-		if (nptr[i + 1] == '+')
-			return (0);
 		if (nptr[i] == '-')
 			sign *= -1;
-		if (nptr[i + 1] == '-')
-			return (0);
 		i++;
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
@@ -81,5 +78,9 @@ int	ft_atoi(const char *nptr)
 		a = a * 10 + (nptr[i] - '0');
 		i++;
 	}
+	while (nptr[i] && nptr[i] == ' ')
+		i++;
+	if (nptr[i])
+		return (-1);
 	return (a * sign);
 }

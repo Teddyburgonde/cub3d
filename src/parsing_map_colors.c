@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 14:46:11 by tebandam         ###   ########.fr       */
+/*   Updated: 2024/10/14 16:50:04 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	get_color(int *color, char **arr, t_game *game)
 	while (i < 3)
 	{
 		color[i] = ft_atoi(arr[i]);
-		if (color[i] < 0 || color[i] > 255)
+		if (color[i] < 0 || color[i] > 255 || ft_atoi(arr[i]) == -1)
 		{
 			ft_putstr_fd("Error: Incorrect color value\n", 2);
 			free_array(arr);
@@ -56,6 +56,7 @@ static void	parsing_color(char *line, int *color, t_game *game)
 		display_allocation_failed_and_exit();
 	}
 //	free_array(tmp);
+	//ft_print_value_map(arr);
 	get_color(color, arr, game);
 	free_array(arr);
 }
