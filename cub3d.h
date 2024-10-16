@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 12:10:31 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 14:56:11 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,12 @@
 # include <math.h>
 # include "get_next_line/get_next_line.h" 
 
-# include <stdio.h> //to delete
+# define WINDOWS_WIDTH 1040
+# define WINDOWS_HEIGHT 720
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
 
-#define WINDOWS_WIDTH 1040
-#define WINDOWS_HEIGHT 720
-#define TEX_WIDTH 64 // largeur de texture
-#define TEX_HEIGHT 64 // hauteur de texture
-#define LINE_HEIGHT 64 // test 
-
-typedef unsigned int Uint32;
+typedef unsigned int	Uint32;
 
 /*
 * Struct
@@ -40,23 +37,23 @@ typedef unsigned int Uint32;
 
 typedef struct s_ray_result
 {
-	float	ray_angle; // non initialiser 
+	float	ray_angle;
 	float	distance;
-	float	ray_dist_x; // distance du rayon en x
-	float	ray_dist_y; // distance du rayon en y
-	float	delta_dist_x; // distance que le rayon doit parcourir pour atteindre la prochaine ligne verticale
-	float	delta_dist_y; // distance que le rayon doit parcourir pour atteindre la prochaine ligne horizontale
-	float	ray_dist_perpendicular_to_wall; // distance du rayon perpendiculaire au mur
+	float	ray_dist_x;
+	float	ray_dist_y;
+	float	delta_dist_x;
+	float	delta_dist_y;
+	float	ray_dist_perpendicular_to_wall;
 	int		wall_height;
-	int		step_x; // test direction dans laquelle le rayon doit se déplacer en x
-	int		step_y; // test direction dans laquelle le rayon doit se déplacer en y
-	int		hit; // test a-t-il touché un mur?
-	int		side; // test a-t-il touché un mur NS ou EW?
-	int		map_pos_x; // test
-	int		map_pos_y; // test
-	float	wall_pos_hit; // l'endroit ou le rayon touche le mur
-	int		draw_end; // ATTENTION VALEUR NON INITIALISER
-	int		draw_start; // ATTENTION VALEUR NON INITIALISER
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		map_pos_x;
+	int		map_pos_y;
+	float	wall_pos_hit;
+	int		draw_end;
+	int		draw_start;
 }	t_ray_result;
 
 typedef struct s_player
@@ -65,31 +62,18 @@ typedef struct s_player
 	float	player_pos_y;
 	float	fov;
 	float	angle;
-	// float	pitch; 
 }	t_player;
 
 typedef struct s_texture
 {
 	mlx_image_t		*image;
-//	mlx_image_t		*player_position_image; //pour minimap
-	
-//	mlx_image_t		*minimap; //pour minimap
-	
 	mlx_texture_t	*walls_image;
 	mlx_texture_t	*floor_image;
-//	mlx_texture_t	*player_image; //pour minimap
-	
 	mlx_texture_t	*north_texture;
 	mlx_texture_t	*east_texture;
 	mlx_texture_t	*south_texture;
 	mlx_texture_t	*west_texture;
-	mlx_texture_t	*texture; // pas encore initialiser attention conditionnal jump
-
-//	mlx_texture_t	*player_image_N; //pour minimap
-//	mlx_texture_t	*player_image_E; //pour minimap
-//	mlx_texture_t	*player_image_S; //pour minimap
-//	mlx_texture_t	*player_image_W; //pour minimap
-	
+	mlx_texture_t	*texture;
 }	t_texture;
 
 typedef struct s_counter_parameter
@@ -104,7 +88,6 @@ typedef struct s_counter_parameter
 
 typedef struct s_map_data
 {
-//	int				save;
 	int				fd;
 	char			**file_content;
 	char			**map;
@@ -112,10 +95,10 @@ typedef struct s_map_data
 	int				height;
 	int				nb_lines;
 	int				nb_columns;
+	int				*lines_lenght;
 	int				begin_map_index;
 	int				floor_color[4];
 	int				ceiling_color[4];
-//	float			direction; //to delete ?
 }	t_map_data;
 
 typedef struct s_game
@@ -127,112 +110,105 @@ typedef struct s_game
 	t_texture			*texture;
 	t_ray_result		ray_result;
 }	t_game;
-	
+
 /*
 * parsing_args.c
 */
 
-void	parsing_arguments(int argc, char **argv);
+void			parsing_arguments(int argc, char **argv);
 
 /*
 * check_and_open_file.c
 */
 
-void	check_and_open_file(int *fd, char **argv);
+void			check_and_open_file(int *fd, char **argv);
 
 /*
 * get_file_content.c 
 */
 
-char	**get_file_content(int fd);
+char			**get_file_content(int fd);
 
 /*
 * allocation.c
 */
 
-void	memory_allocation_for_structs(t_game **game);
+void			memory_allocation_for_structs(t_game **game);
 
 /*
 * initialization_of_values.c
 */
 
-void	initialization_of_values(t_game *game, char **map);
+void			initialization_of_values(t_game *game, char **map);
 
 /*
 * parsing_map_textures.c
 */
 
-void	parsing_file_textures(t_game *game);
+void			parsing_file_textures(t_game *game);
 
 /*
 * parsing_map_path_textures.c
 */
 
-void	parsing_file_path_textures(t_game *game);
+void			parsing_file_path_textures(t_game *game);
 
 /*
 * parsing_map_colors.c
 */
 
-void	parsing_file_colors(t_game *game);
-int32_t	ft_pixel(int32_t r, int32_t g, int32_t b);
+void			parsing_file_colors(t_game *game);
+int32_t			ft_pixel(int32_t r, int32_t g, int32_t b);
 
 /*
 * parsing_map.c
 */
 
-void	parsing_map(t_game *game);
+void			parsing_map(t_game *game);
 
 /*
 * parsing_map_utils_1.c
 */
 
-void	check_if_empty_line(char *line, t_game *game);
-void	check_char_validity(char *line, t_game *game);
-void	check_if_map_closed(t_game *game);
+void			check_if_empty_line(char *line, t_game *game);
+void			check_char_validity(char *line, t_game *game);
+void			check_if_map_closed(t_game *game);
 
 /*
 * parsing_map_utils_2.c
 */
 
-void	check_first_and_last_line(char *line, t_game *game);
-void	check_current_line(char *line, t_game *game, int *lines_len);
-int		*get_lines_lenght(t_game *game);
-void	compare_lines_one_each_other(char **map, int i, \
-		t_game *game, int *lines_len);
+void			check_first_and_last_line(char *line, t_game *game);
+void			check_current_line(char *line, t_game *game);
+void			get_lines_lenght(t_game *game);
+void			compare_lines_one_each_other(char **map, int i, \
+				t_game *game);
 
 /*
 * parsing_map_utils_3.c
 */
 
-void	get_player_initial_position_and_orientation(char *line, int i, int *flag, \
-		t_game *game);
-void	check_one_player(int flag, t_game *game);
-
+void			get_player_initial_position_and_orientation(char *line, int i, \
+				int *flag, t_game *game);
+void			check_one_player(int flag, t_game *game);
 
 /*
 * render_graphics.c
 */
 
-void	render_graphics(t_game *game);
-
-/*
-* load_textures.c
-*/
-
-void	load_textures(t_game *game); //for minimap to delete
+void			render_graphics(t_game *game);
 
 /*
 * movement.c
 */
 
-void	ft_key_mouv(mlx_key_data_t keydata, void *param);
+void			ft_key_mouv(mlx_key_data_t keydata, void *param);
 
 /*
 * raycast.c
 */
 
-void	raycast(void *param);
+void			raycast(void *param);
 
 /*
 * ray_hit_detection.c
@@ -244,60 +220,45 @@ t_ray_result	ray_hit_detection(float ray_angle, t_game *game);
 * texture_displaying.c
 */
 
-void	texture_choice(t_game *game);
-void	pos_texture(t_game *game);
-void	draw_wall_texture(t_game *game, int x);
+void			texture_choice(t_game *game);
+void			pos_texture(t_game *game);
+void			draw_wall_texture(t_game *game, int x);
 
 /*
 * draw_elements.c
 */
 
-void	draw_elements(mlx_image_t *image,
-		int x, t_game *game, float wall_height);
-
+void			draw_elements(mlx_image_t *image, \
+				int x, t_game *game, float wall_height);
 
 /*
 * error.c
 */
 
-void	display_allocation_failed_and_exit();
-
+void			display_allocation_failed_and_exit(void);
 
 /*
 * free.c
 */
 
-void	*free_array(char **arr);
-void	free_structs(t_game *game);
+void			*free_array(char **arr);
+void			free_structs(t_game *game);
 
 /*
 * utils
 */
 
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	ft_putstr_fd(char *s, int fd);
-void	*ft_memset(void *s, int c, size_t n);
-char	*ft_strdup(const char *s);
-int		ft_atoi(const char *nptr);
-void	*ft_calloc(size_t nmemb, size_t size);
-float	clamp(float num, float min, float max);
-char	*ft_strchr(const char *s, int c);
-int		ft_strcspn(char *remaining_line, char *str);
-char	**ft_split(char const *s, char c);
-char	*skip_first_spaces(char *str);
-char	*ft_substr(char	const *s, unsigned int start, int len);
-
-/*
-* test.c
-*/
-
-void	ft_print_value_map(char **map); //to delete
-int		ft_parse_map_elements_wall(t_map_data *map); //to delete
-
-/*
-* display_minimap.c
-*/
-
-//void    display_minimap(t_game *game);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+void			ft_putstr_fd(char *s, int fd);
+void			*ft_memset(void *s, int c, size_t n);
+char			*ft_strdup(const char *s);
+int				ft_atoi(const char *nptr);
+void			*ft_calloc(size_t nmemb, size_t size);
+float			clamp(float num, float min, float max);
+char			*ft_strchr(const char *s, int c);
+int				ft_strcspn(char *remaining_line, char *str);
+char			**ft_split(char const *s, char c);
+char			*skip_first_spaces(char *str);
+char			*ft_substr(char	const *s, unsigned int start, int len);
 
 #endif

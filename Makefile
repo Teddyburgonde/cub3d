@@ -6,7 +6,7 @@
 #    By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/10/16 09:44:14 by ppuivif          ###   ########.fr        #
+#    Updated: 2024/10/16 14:24:49 by ppuivif          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,10 @@
 NAME = cub3D
 
 #================ COMPILATOR ================#
+
 CC = cc
 
 #=================== FLAGS ==================#
-
-#CFLAGS = -Wall -Wextra -Werror -I./MLX42/include -pg for gmon
 
 CFLAGS = -Wall -Wextra -Werror -I./MLX42/include -g
 
@@ -41,7 +40,6 @@ SRCS =  src/main.c \
 		src/parsing_map_utils_2.c \
 		src/parsing_map_utils_3.c \
 		src/render_graphics.c \
-		src/load_textures.c \
 		src/movement.c \
 		src/raycast.c \
 		src/ray_hit_detection.c \
@@ -55,9 +53,6 @@ SRCS =  src/main.c \
 		src/utils_4.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
-		src/test.c \
-		src/minimap.c \
-
 
 #============ TRANSFORM .c TO .o ============#
 

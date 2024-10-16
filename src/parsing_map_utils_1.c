@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:50:29 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 12:06:36 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 14:36:40 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	check_if_empty_line(char *line, t_game *game)
 {
-	if(line && *line == 0)
+	if (line && *line == 0)
 	{
 		ft_putstr_fd("Error: Invalid map\n", 2);
 		free_structs(game);
@@ -45,19 +45,17 @@ void	check_if_map_closed(t_game *game)
 {
 	int		i;
 	char	**map;
-	int *lines_len;
 
 	i = 0;
 	map = game->data->map;
 	check_first_and_last_line(map[i], game);
 	i++;
-	lines_len = get_lines_lenght(game);
-	while(map[i] && i < game->data->nb_lines - 1)
+	get_lines_lenght(game);
+	while (map[i] && i < game->data->nb_lines - 1)
 	{
-		compare_lines_one_each_other(map, i, game, lines_len);
-		check_current_line(map[i], game, lines_len);
+		compare_lines_one_each_other(map, i, game);
+		check_current_line(map[i], game);
 		i++;
 	}
-	free(lines_len);
 	check_first_and_last_line(map[i], game);
 }

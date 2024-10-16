@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 09:46:27 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 14:22:21 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ static void	get_player_initial_orientation(t_game *game, char facing)
 	}
 }
 
-void	get_player_initial_position_and_orientation(char *line, int i, int *flag, \
-t_game *game)
+void	get_player_initial_position_and_orientation(char *line, int i, \
+int *flag, t_game *game)
 {
 	int	j;
 
 	j = 0;
-	while(line[j])
+	while (line[j])
 	{
 		if ((line[j] == 'E' || line[j] == 'W' || \
 		line[j] == 'S' || line[j] == 'N'))
@@ -52,9 +52,9 @@ t_game *game)
 	}
 }
 
-void check_one_player(int flag, t_game *game)
+void	check_one_player(int flag, t_game *game)
 {
-	if(flag != 1)
+	if (flag != 1)
 	{
 		ft_putstr_fd("Error: Invalid map\n", 2);
 		free_structs(game);

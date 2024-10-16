@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:07:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/15 17:58:39 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 14:12:02 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,20 @@ void	raycast(void *param)
 	float			angle_step;
 	int				rays;
 	int				i;
-//	clock_t			time;
 
-//	time = clock();
-	game = (t_game*)param;
-	rays = WINDOWS_WIDTH - 1 ; // definie le nombre de rayon a tirer
-	angle_step = game->player->fov / rays; // calcul de l'angle entre les rayons qui permettra de creer une image fluide 
+	game = (t_game *)param;
+	rays = WINDOWS_WIDTH - 1;
+	angle_step = game->player->fov / rays;
 	i = 0;
-	while (i < rays) // Elle parcours tous les rayons
+	while (i < rays)
 	{
 		game->ray_result.ray_angle = game->player->angle - \
-		(game->player->fov / 2.0f) + i * angle_step; // calcul de l'angle du rayon actuel
-		game->ray_result = ray_hit_detection(game->ray_result.ray_angle, game); // on regarde si le rayon a toucher un mur
+		(game->player->fov / 2.0f) + i * angle_step;
+		game->ray_result = ray_hit_detection(game->ray_result.ray_angle, game);
 		texture_choice(game);
 		pos_texture(game);
-		draw_elements(game->texture->image, i, game, game->ray_result.wall_height);
+		draw_elements(game->texture->image, i, game, \
+			game->ray_result.wall_height);
 		i++;
 	}
-//	display_minimap(game);
-	
-/*	time = clock() - time;
-	long fps;
-	if (time != 0)
-		fps = CLOCKS_PER_SEC / time;
-	else
-		fps = 99999999999;
-	printf("fps : %li\n", fps);*/
-	
-
 }

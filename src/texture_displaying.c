@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:01:43 by ppuivif           #+#    #+#             */
-/*   Updated: 2024/10/15 18:08:53 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 14:04:01 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	texture_choice(t_game *game)
 {
 	if (game->ray_result.side == 0 && cos(game->ray_result.ray_angle) > 0)
 		game->texture->texture = game->texture->west_texture;
-	else if (game->ray_result.side == 0 && cos(game->ray_result.ray_angle) <= 0)
+	else if (game->ray_result.side == 0 && \
+	cos(game->ray_result.ray_angle) <= 0)
 		game->texture->texture = game->texture->east_texture;
 	else if (game->ray_result.side == 1 && sin(game->ray_result.ray_angle) > 0)
 		game->texture->texture = game->texture->north_texture;
@@ -79,7 +80,7 @@ void	draw_wall_texture(t_game *game, int x)
 		text_y = (int)((y - game->ray_result.draw_start) * \
 		((float)game->texture->texture->height / \
 		(game->ray_result.draw_end - game->ray_result.draw_start)));
-		pixel = (game->texture->texture->width * text_y + text_x) * 4; // remove * 4 RGBA	
+		pixel = (game->texture->texture->width * text_y + text_x) * 4;
 		mlx_put_pixel(game->texture->image, x, y, \
 		ft_pixel(game->texture->texture->pixels[pixel], \
 		game->texture->texture->pixels[pixel + 1], \

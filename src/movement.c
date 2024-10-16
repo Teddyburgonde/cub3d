@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 13:53:45 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 09:50:45 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 13:56:01 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	is_movement_possible(char c)
 {
-	if (c == '0' || c == 'N' || c == 'E' || c == 'W' || c == 'S') //pour que le joueur puisse se déplacer sur sa position initiale
+	if (c == '0' || c == 'N' || c == 'E' || c == 'W' || c == 'S')
 		return (true);
 	return (false);
 }
@@ -55,10 +55,6 @@ void	ft_key_mouv(mlx_key_data_t keydata, void *param)
 		game->player->angle = clamp(game->player->angle - 0.05, 0, M_PI * 2.0);
 	if (keydata.key == MLX_KEY_RIGHT)
 		game->player->angle = clamp(game->player->angle + 0.05, 0, M_PI * 2.0);
-	// if (keydata.key == MLX_KEY_UP && game->player->pitch < 0.5)
-	// 	game->player->pitch += 0.04;
-	// if (keydata.key == MLX_KEY_DOWN && game->player->pitch > -0.5)
-	// 	game->player->pitch -= 0.04;
 	if (keydata.key == MLX_KEY_ESCAPE)
 		mlx_close_window(game->mlx);
 }
