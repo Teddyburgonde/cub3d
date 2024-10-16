@@ -68,6 +68,7 @@ supérieure à 255, avec une lettre avant le nombre, après le nombre),
 - envoyer une map avec un caractère autre que 0, 1, espace, N, S, W, E,✅
 - envoyer une map avec des espaces en bordure de map, ✅
 - envoyer une map avec des 0 en bordure de map (en haut, en bas, à droite, à gauche),✅
+- envoyer une map avec des 0 sur la fin de lignes plus longues au milieu de la map,
 - envoyer une map avec des espaces au milieu, ✅
 - envoyer une map avec des lignes vides au milieu, ❌ invalid read 
 
