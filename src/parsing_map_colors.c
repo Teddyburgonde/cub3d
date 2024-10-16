@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/15 15:19:34 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 11:13:08 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	parsing_file_colors(t_game *game)
 	content = game->data->file_content;
 	while (content[i])
 	{
-		tmp = skip_first_whitespaces(content[i]);
+		tmp = skip_first_spaces(content[i]);
 		if (ft_strncmp(tmp, "F ", 2) == 0)
 			parsing_color(tmp, game->data->floor_color, game);
 		if (ft_strncmp(tmp, "C ", 2) == 0)

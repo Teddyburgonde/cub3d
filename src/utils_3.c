@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils3.c                                           :+:      :+:    :+:   */
+/*   utils_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:57:15 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 19:17:34 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 11:16:27 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,6 @@ int	ft_strcspn(char *line, char *str)
 	return (i);
 }
 
-int	is_whitespace(char c)
-{
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
-}
-
 int    ft_atoi(const char *nptr)
 {
     int    i;
@@ -64,7 +57,7 @@ int    ft_atoi(const char *nptr)
     i = 0;
     a = 0;
     sign = 1;
-    while (is_whitespace(nptr[i]))
+    while (nptr[i] == ' ')
         i++;
     if (nptr[i] == '+' || nptr[i] == '-')
     {

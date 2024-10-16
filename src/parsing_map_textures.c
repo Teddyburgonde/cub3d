@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/15 15:36:01 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 11:13:01 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	parsing_file_textures(t_game *game)
 	ft_memset(&counter_parameter, 0, sizeof(t_counter_parameter));
 	while (game->data->file_content[i])
 	{
-		tmp = skip_first_whitespaces(game->data->file_content[i]);
+		tmp = skip_first_spaces(game->data->file_content[i]);
 		if (ft_strncmp(tmp, "NO ", 3) == 0)
 			counter_parameter.counter_no++;
 		if (ft_strncmp(tmp, "SO ", 3) == 0)

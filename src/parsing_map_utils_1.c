@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:50:29 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 09:46:14 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 12:06:36 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	check_if_empty_line(char *line, t_game *game)
 {
-	if(line && line_is_full_whitespaces(line) == 1)
+	if(line && *line == 0)
 	{
 		ft_putstr_fd("Error: Invalid map\n", 2);
 		free_structs(game);

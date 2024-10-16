@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 09:43:44 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 12:10:31 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ void	render_graphics(t_game *game);
 * load_textures.c
 */
 
-void	load_textures(t_game *game); //for minimap ti delete
+void	load_textures(t_game *game); //for minimap to delete
 
 /*
 * movement.c
@@ -232,7 +232,7 @@ void	ft_key_mouv(mlx_key_data_t keydata, void *param);
 * raycast.c
 */
 
-void			raycast(void *param);
+void	raycast(void *param);
 
 /*
 * ray_hit_detection.c
@@ -280,21 +280,19 @@ void	*ft_memset(void *s, int c, size_t n);
 char	*ft_strdup(const char *s);
 int		ft_atoi(const char *nptr);
 void	*ft_calloc(size_t nmemb, size_t size);
-int		line_is_full_whitespaces(char *str);
 float	clamp(float num, float min, float max);
 char	*ft_strchr(const char *s, int c);
 int		ft_strcspn(char *remaining_line, char *str);
 char	**ft_split(char const *s, char c);
-char	*skip_first_whitespaces(char *str);
+char	*skip_first_spaces(char *str);
 char	*ft_substr(char	const *s, unsigned int start, int len);
-int		is_whitespace(char c);
 
 /*
 * test.c
 */
 
-void	ft_print_value_map(char **map);
-int		ft_parse_map_elements_wall(t_map_data *map);
+void	ft_print_value_map(char **map); //to delete
+int		ft_parse_map_elements_wall(t_map_data *map); //to delete
 
 /*
 * display_minimap.c

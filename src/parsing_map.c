@@ -6,11 +6,40 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 08:39:46 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 12:08:53 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+static void	check_no_space_around_0(t_game *game)
+{
+	int	i;
+	int	j;
+	char	**map;
+
+	j = 1;
+	map = game->data->map;
+	while (map[j + 1])
+	{
+		i = 1;
+		while (i < ft_strlen(map[j]) - 1)
+		{
+			if (map[j][i] == '0')
+			{
+				if (map[j - 1][i] == ' ' || map[j + 1][i] == ' ' || \
+					map[j][i - 1] == ' ' || map[j][i + 1] == ' ')
+				{
+					ft_putstr_fd("Error: Invalid map\n", 2);
+					free_structs(game);
+					exit(EXIT_FAILURE);
+				}
+			}
+			i++;
+		}
+		j++;
+	}
+}
 
 static void	check_map_validity(t_game *game)
 {
@@ -36,39 +65,17 @@ static void	check_map_validity(t_game *game)
 	check_one_player(flag, game);
 	game->data->nb_lines = i;
 	check_if_map_closed(game);
-}
-
-static void	replace_spaces_with_walls(char	**map)
-{
-	int	i;
-	int	j;
-	int	len;
-
-	j = 1;
-	
-	while (map[j + 1])
-	{
-		len = ft_strlen(map[j]);
-		i = 1;
-		while ((i + 1) < len && map[j][i + 1])
-		{
-			if (map[j][i] == 32)
-				map[j][i] = '1';
-			i++;
-		}
-		j++;
-	}
+	check_no_space_around_0(game);
 }
 
 static void	skip_first_empty_lines(char ***map)
 {
-	while (*map && line_is_full_whitespaces(*map[0]) == 1)
+	while (*map && **map && ***map == 0)
 		(*map)++;
 }
 
 void	parsing_map(t_game *game)
 {
 	skip_first_empty_lines(&game->data->map);
-	replace_spaces_with_walls(game->data->map);
 	check_map_validity(game);
 }
