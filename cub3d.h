@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 08:39:57 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 09:43:44 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,16 @@ void	check_if_map_closed(t_game *game);
 
 /*
 * parsing_map_utils_2.c
+*/
+
+void	check_first_and_last_line(char *line, t_game *game);
+void	check_current_line(char *line, t_game *game, int *lines_len);
+int		*get_lines_lenght(t_game *game);
+void	compare_lines_one_each_other(char **map, int i, \
+		t_game *game, int *lines_len);
+
+/*
+* parsing_map_utils_3.c
 */
 
 void	get_player_initial_position_and_orientation(char *line, int i, int *flag, \
