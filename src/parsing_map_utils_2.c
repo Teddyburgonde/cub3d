@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:50:29 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 14:35:21 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 19:39:09 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	check_first_and_last_line(char *line, t_game *game)
 	{
 		if (line[j] != '1')
 		{
-			ft_putstr_fd("Error: Invalid map\n", 2);
+			ft_putstr_fd("Error: Invalid map3\n", 2);
 			free_structs(game);
 			exit(EXIT_FAILURE);
 		}
@@ -40,7 +40,7 @@ void	check_current_line(char *line, t_game *game)
 	{
 		if ((j == 0 || j == len - 1) && line[j] != '1')
 		{
-			ft_putstr_fd("Error: Invalid map\n", 2);
+			ft_putstr_fd("Error: Invalid map4\n", 2);
 			free_structs(game);
 			exit(EXIT_FAILURE);
 		}
@@ -79,7 +79,7 @@ t_game *game, int index)
 		j++;
 	if (j != -1 && map[i][j] && map[i][j] != '1')
 	{
-		ft_putstr_fd("Error: Invalid map\n", 2);
+		ft_putstr_fd("Error: Invalid map5\n", 2);
 		free_structs(game);
 		exit(EXIT_FAILURE);
 	}

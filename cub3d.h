@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 14:56:11 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/16 16:18:56 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,5 +260,6 @@ int				ft_strcspn(char *remaining_line, char *str);
 char			**ft_split(char const *s, char c);
 char			*skip_first_spaces(char *str);
 char			*ft_substr(char	const *s, unsigned int start, int len);
+char			**arr_copy(char **arr);
 
 #endif
