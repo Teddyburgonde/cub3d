@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/17 17:22:14 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/17 17:47:44 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ static void	get_color(int *color, char **arr, t_game *game)
 	int	i;
 
 	i = 0;
-	while (color[i] && i < 3)
+	while (arr[i] && i < 3)
 	{
-		if (color[i] < 0 || color[i] > 255 || ft_atoi(arr[i]) == -1)
+		color[i] = ft_atoi(arr[i]);
+		if (color[i] < 0 || color[i] > 255)
 			exit_when_incorrect_color_value(arr, game);
 		i++;
 	}
