@@ -6,7 +6,7 @@
 #    By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/10/16 14:24:49 by ppuivif          ###   ########.fr        #
+#    Updated: 2024/10/17 11:25:33 by ppuivif          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,6 @@ SRCS =  src/main.c \
 		src/parsing_map.c \
 		src/parsing_map_utils_1.c \
 		src/parsing_map_utils_2.c \
-		src/parsing_map_utils_3.c \
 		src/render_graphics.c \
 		src/movement.c \
 		src/raycast.c \

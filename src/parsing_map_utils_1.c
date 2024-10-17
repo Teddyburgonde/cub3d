@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:50:29 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 19:42:29 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/17 11:43:04 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	check_if_empty_line(char *line, t_game *game)
 	}
 }
 
-# include <stdio.h>
-
 void	check_char_validity(char *line, t_game *game)
 {
 	int		j;
@@ -35,7 +33,6 @@ void	check_char_validity(char *line, t_game *game)
 	{
 		if (ft_strchr(valid_chars, line[j]) == 0)
 		{
-			printf("line %s\nAt [%d]", line, j);
 			ft_putstr_fd("Error: Invalid map2\n", 2);
 			free_structs(game);
 			exit(EXIT_FAILURE);
@@ -44,21 +41,61 @@ void	check_char_validity(char *line, t_game *game)
 	}
 }
 
-void	check_if_map_closed(t_game *game)
+static void	exit_0_non_closed_by_1(char **filled_map, t_game *game)
 {
-	int		i;
-	char	**map;
+	ft_putstr_fd("Error: Invalid map8\n", 2);
+	free_array(filled_map);
+	free_structs(game);
+	exit(EXIT_FAILURE);
+}
 
-	i = 0;
-	map = game->data->map;
-	check_first_and_last_line(map[i], game);
-	i++;
-	get_lines_lenght(game);
-	while (map[i] && i < game->data->nb_lines - 1)
+static void	flood_fill_2(char **map, int x, int y, t_game *game)
+{
+	map[y][x] = 'c';
+	if (y > 0 && x < ft_strlen(map[y - 1]) && \
+	(map[y - 1][x] == '0' || map[y - 1][x] == ' '))
+		flood_fill_2(map, x, y - 1, game);
+	else if (!map[y - 1][x] || (y > 0 && x < ft_strlen(map[y - 1]) && \
+	map[y - 1][x] != '1' && map[y - 1][x] != 'c'))
+		exit_0_non_closed_by_1(map, game);
+	if (x > 0 && y < game->data->nb_lines && \
+	(map[y][x - 1] == '0' || map[y][x - 1] == ' '))
+		flood_fill_2(map, x - 1, y, game);
+	else if (!map[y][x - 1] || (x > 0 && y < game->data->nb_lines && \
+	map[y][x - 1] != '1' && map[y][x - 1] != 'c'))
+		exit_0_non_closed_by_1(map, game);
+	if (y < game->data->nb_lines - 1 && x < ft_strlen(map[y + 1]) && \
+	(map[y + 1][x] == '0' || map[y + 1][x] == ' '))
+		flood_fill_2(map, x, y + 1, game);
+	else if (!map[y + 1][x] || (y < game->data->nb_lines - 1 && \
+	x < ft_strlen(map[y + 1]) && map[y + 1][x] != '1' && map[y + 1][x] != 'c'))
+		exit_0_non_closed_by_1(map, game);
+	if (x < ft_strlen(map[y]) - 1 && y < game->data->nb_lines && \
+	(map[y][x + 1] == '0' || map[y][x + 1] == ' '))
+		flood_fill_2(map, x + 1, y, game);
+	else if (!map[y][x + 1] || (x < ft_strlen(map[y]) - 1 && \
+	y < game->data->nb_lines && map[y][x + 1] != '1' && map[y][x + 1] != 'c'))
+		exit_0_non_closed_by_1(map, game);
+}
+
+void	check_if_0_closed_by_1(t_game *game, char **filled_map)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (filled_map && filled_map[j])
 	{
-		compare_lines_one_each_other(map, i, game);
-		check_current_line(map[i], game);
-		i++;
+		i = 0;
+		while (filled_map[j][i])
+		{
+			if (filled_map[j][i] == '0')
+			{
+				flood_fill_2(filled_map, i, j, game);
+			}
+			i++;
+		}
+		j++;
 	}
-	check_first_and_last_line(map[i], game);
+	free_array(filled_map);
 }

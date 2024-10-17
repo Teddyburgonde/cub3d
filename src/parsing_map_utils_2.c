@@ -1,102 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_map_utils_2.c                              :+:      :+:    :+:   */
+/*   parsing_map_utils_3.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 09:50:29 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 19:39:09 by ppuivif          ###   ########.fr       */
+/*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
+/*   Updated: 2024/10/16 19:50:23 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	check_first_and_last_line(char *line, t_game *game)
+static void	get_player_initial_orientation(t_game *game, char facing)
+{
+	if (facing == 'N')
+	{
+		game->player->angle = 3 * M_PI / 2;
+	}
+	if (facing == 'E')
+	{
+		game->player->angle = 0;
+	}
+	if (facing == 'S')
+	{
+		game->player->angle = M_PI / 2;
+	}
+	if (facing == 'W')
+	{
+		game->player->angle = M_PI;
+	}
+}
+
+void	get_player_initial_position_and_orientation(char *line, int i, \
+int *flag, t_game *game)
 {
 	int	j;
 
 	j = 0;
-	while (line && line[j])
+	while (line[j])
 	{
-		if (line[j] != '1')
+		if ((line[j] == 'E' || line[j] == 'W' || \
+		line[j] == 'S' || line[j] == 'N'))
 		{
-			ft_putstr_fd("Error: Invalid map3\n", 2);
-			free_structs(game);
-			exit(EXIT_FAILURE);
+			game->player->player_pos_x = j + 0.5;
+			game->player->player_pos_y = i + 0.5 ;
+			get_player_initial_orientation (game, game->data->map[i][j]);
+			(*flag)++ ;
 		}
 		j++;
 	}
 }
 
-void	check_current_line(char *line, t_game *game)
+void	check_one_player(int flag, t_game *game)
 {
-	int	j;
-	int	len;
-
-	len = ft_strlen(line);
-	j = 0;
-	while (line && line[j])
+	if (flag != 1)
 	{
-		if ((j == 0 || j == len - 1) && line[j] != '1')
-		{
-			ft_putstr_fd("Error: Invalid map4\n", 2);
-			free_structs(game);
-			exit(EXIT_FAILURE);
-		}
-		j++;
-	}
-}
-
-void	get_lines_lenght(t_game *game)
-{
-	int	*lines_lenght;
-	int	i;
-
-	lines_lenght = malloc((game->data->nb_lines + 1) * sizeof(int));
-	if (!lines_lenght)
-	{
-		free_structs(game);
-		display_allocation_failed_and_exit();
-	}
-	i = 0;
-	while (game->data->map[i])
-	{
-		lines_lenght[i] = ft_strlen(game->data->map[i]);
-		i++;
-	}
-	lines_lenght[i] = -1;
-	game->data->lines_lenght = lines_lenght;
-}
-
-static void	check_1_on_current_line(char **map, int i, \
-t_game *game, int index)
-{
-	int	j;
-
-	j = game->data->lines_lenght[index];
-	while (j != -1 && map[i][j] && map[i][j] == '1')
-		j++;
-	if (j != -1 && map[i][j] && map[i][j] != '1')
-	{
-		ft_putstr_fd("Error: Invalid map5\n", 2);
+		ft_putstr_fd("Error: Invalid map6\n", 2);
 		free_structs(game);
 		exit(EXIT_FAILURE);
 	}
-}
-
-void	compare_lines_one_each_other(char **map, int i, \
-t_game *game)
-{
-	int	lower_delta_len;
-	int	upper_delta_len;
-	int	*lines_lenght;
-
-	lines_lenght = game->data->lines_lenght;
-	lower_delta_len = lines_lenght[i] - lines_lenght[i - 1];
-	upper_delta_len = lines_lenght[i] - lines_lenght[i + 1];
-	if (lower_delta_len > 0)
-		check_1_on_current_line(map, i, game, i - 1);
-	if (upper_delta_len > 0)
-		check_1_on_current_line(map, i, game, i + 1);
 }

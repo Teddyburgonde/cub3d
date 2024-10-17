@@ -6,42 +6,11 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 20:05:15 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/17 11:43:31 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-/*static void	check_no_space_around_0(t_game *game)
-{
-	int		i;
-	int		j;
-	char	**map;
-
-	j = 1;
-	map = game->data->map;
-	while (map[j + 1])
-	{
-		i = 1;
-		while (i < ft_strlen(map[j]) - 1)
-		{
-			if (map[j][i] == '0')
-			{
-				if (map[j - 1][i] == ' ' || map[j + 1][i] == ' ' || \
-					map[j][i - 1] == ' ' || map[j][i + 1] == ' ')
-				{
-					ft_putstr_fd("Error: Invalid map\n", 2);
-					free_structs(game);
-					exit(EXIT_FAILURE);
-				}
-			}
-			i++;
-		}
-		j++;
-	}
-}*/
-
-# include <stdio.h>
 
 static int	flood_fill(char **map, int x, int y, t_game *game)
 {
@@ -65,28 +34,6 @@ static int	flood_fill(char **map, int x, int y, t_game *game)
 	return (0);
 }
 
-static int	flood_fill_2(char **map, int x, int y, t_game *game)
-{
-	map[y][x] = 'c';
-	if (y > 0 && x < ft_strlen(map[y - 1]) && (map[y - 1][x] == '0' || map[y - 1][x] == ' '))
-		flood_fill_2(map, x, y - 1, game);
-	else if (y > 0 && x < ft_strlen(map[y - 1]) && map[y - 1][x] != '1')
-		return (1);
-	if (x > 0 && y < game->data->nb_lines && (map[y][x - 1] == '0' || map[y][x - 1] == ' '))
-		flood_fill_2(map, x - 1, y, game);
-	else if (x > 0 && y < game->data->nb_lines && map[y][x - 1] != '1')
-		return (1);
-	if (y < game->data->nb_lines - 1 && x < ft_strlen(map[y + 1]) && (map[y + 1][x] == '0' || map[y + 1][x] == ' '))
-		flood_fill_2(map, x, y + 1, game);
-	else if (y < game->data->nb_lines - 1 && x < ft_strlen(map[y + 1]) && map[y + 1][x] != '1')
-		return (1);
-	if (x < ft_strlen(map[y]) - 1 && y < game->data->nb_lines && (map[y][x + 1] == '0' || map[y][x + 1] == ' '))
-		flood_fill_2(map, x + 1, y, game);
-	else if (x < ft_strlen(map[y]) - 1 && y < game->data->nb_lines && map[y][x + 1] != '1')
-		return (1);
-	return (0);
-}
-
 static char	**check_no_reachable_space_from_player(t_game *game)
 {
 	char	**map;
@@ -103,50 +50,7 @@ static char	**check_no_reachable_space_from_player(t_game *game)
 		free_structs(game);
 		exit(EXIT_FAILURE);
 	}
-	return(map);
-//	free_array(map);
-}
-
-void	ft_print_value_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		printf("La valeur de map[] %s\n", map[i]);
-		i++;
-	}
-}
-
-
-void	check_if_0_closed_by_1(t_game *game, char **filled_map)
-{
-	int	i;
-	int	j;
-	
-	j = 0;
-	
-//	printf("game->data->nb_lines : %d\n", game->data->nb_lines);
-	
-	while (filled_map && filled_map[j])
-	{
-		i = 0;
-		while (filled_map[j][i])
-		{	
-			if (filled_map[j][i] == '0' && flood_fill_2(filled_map, i, j, game) == 1)
-			{
-				ft_putstr_fd("Error: Invalid map8\n", 2);
-				free_array(filled_map);
-				free_structs(game);
-				exit(EXIT_FAILURE);
-			}
-			i++;
-		}
-		j++;
-	}
-	ft_print_value_map(filled_map);
-
+	return (map);
 }
 
 static void	check_map_validity(t_game *game)
@@ -173,10 +77,8 @@ static void	check_map_validity(t_game *game)
 	}
 	check_one_player(flag, game);
 	game->data->nb_lines = i;
-//	check_if_map_closed(game);
 	filled_map = check_no_reachable_space_from_player(game);
 	check_if_0_closed_by_1(game, filled_map);
-//	check_no_space_around_0(game);
 }
 
 static void	skip_first_empty_lines(char ***map)
