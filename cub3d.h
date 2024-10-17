@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:47:10 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/17 17:13:22 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,8 @@ void			draw_elements(mlx_image_t *image, \
 */
 
 void			display_allocation_failed_and_exit(void);
+void			exit_when_space_reachable_by_player(char **map, t_game *game);
+void			exit_when_0_non_closed_by_1(char **filled_map, t_game *game);
 
 /*
 * free.c

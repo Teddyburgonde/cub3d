@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 11:13:08 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/17 17:22:14 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,29 @@ int32_t	ft_pixel(int32_t r, int32_t g, int32_t b)
 	return (r << 24 | g << 16 | b << 8 | 255);
 }
 
+static void	exit_when_incorrect_color_value(char **arr, t_game *game)
+{
+	ft_putstr_fd("Error: Incorrect color value\n", 2);
+	free_array(arr);
+	free_structs(game);
+	exit(EXIT_FAILURE);
+}
+
 static void	get_color(int *color, char **arr, t_game *game)
 {
 	int	i;
 
 	i = 0;
-	while (i < 3)
+	while (color[i] && i < 3)
 	{
-		color[i] = ft_atoi(arr[i]);
 		if (color[i] < 0 || color[i] > 255 || ft_atoi(arr[i]) == -1)
-		{
-			ft_putstr_fd("Error: Incorrect color value\n", 2);
-			free_array(arr);
-			free_structs(game);
-			exit(EXIT_FAILURE);
-		}
+			exit_when_incorrect_color_value(arr, game);
 		i++;
 	}
-	color[3] = ft_pixel(color[0], color[1], color[2]);
+	if (color[0] && color[1] && color[2])
+		color[3] = ft_pixel(color[0], color[1], color[2]);
+	else
+		exit_when_incorrect_color_value(arr, game);
 }
 
 static void	parsing_color(char *line, int *color, t_game *game)
