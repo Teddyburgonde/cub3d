@@ -6,12 +6,11 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:07:21 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 14:12:02 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/17 13:32:51 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-//#include <time.h>
 
 void	raycast(void *param)
 {

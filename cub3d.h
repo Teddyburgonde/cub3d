@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:25:15 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/17 11:47:10 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 # define WINDOWS_HEIGHT 720
 # define TEX_WIDTH 64
 # define TEX_HEIGHT 64
-
-typedef unsigned int	Uint32;
 
 /*
 * Struct

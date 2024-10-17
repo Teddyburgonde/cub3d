@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/17 11:43:31 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/17 14:49:47 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	**check_no_reachable_space_from_player(t_game *game)
 	y = game->player->player_pos_y;
 	if (flood_fill(map, x, y, game) == 1)
 	{
-		ft_putstr_fd("Error: Invalid map7\n", 2);
+		ft_putstr_fd("Error: Invalid map (space reachable by player)\n", 2);
 		free_array(map);
 		free_structs(game);
 		exit(EXIT_FAILURE);

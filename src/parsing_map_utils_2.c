@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_map_utils_3.c                              :+:      :+:    :+:   */
+/*   parsing_map_utils_2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 19:50:23 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/17 14:48:54 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	check_one_player(int flag, t_game *game)
 {
 	if (flag != 1)
 	{
-		ft_putstr_fd("Error: Invalid map6\n", 2);
+		ft_putstr_fd("Error: Invalid map (not one player)\n", 2);
 		free_structs(game);
 		exit(EXIT_FAILURE);
 	}
