@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 16:23:56 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/17 17:06:08 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/18 22:26:58 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 static void	flood_fill_from_player(char **map, int x, int y, t_game *game)
 {
+	int	len;
+
+	len = game->data->nb_lines;
 	map[y][x] = '1';
 	if (y > 0 && x < ft_strlen(map[y - 1]) && \
 	(map[y - 1][x] == '0'))
 		flood_fill_from_player(map, x, y - 1, game);
 	else if (y == 0 || (y > 0 && x < ft_strlen(map[y - 1]) && \
-	map[y - 1][x] != '1'))
+	map[y - 1][x] != '1') || (y > 0 && x >= ft_strlen(map[y - 1])))
 		exit_when_space_reachable_by_player(map, game);
-	if (x > 0 && y < game->data->nb_lines && \
-	map[y][x - 1] == '0')
+	if (x > 0 && y < len && map[y][x - 1] == '0')
 		flood_fill_from_player(map, x - 1, y, game);
-	else if (x == 0 || (x > 0 && y < game->data->nb_lines && \
-	map[y][x - 1] != '1'))
+	else if (x == 0 || (x > 0 && y < len && map[y][x - 1] != '1'))
 		exit_when_space_reachable_by_player(map, game);
-	if (y < game->data->nb_lines - 1 && x < ft_strlen(map[y + 1]) && \
-	map[y + 1][x] == '0')
+	if (y < len - 1 && x < ft_strlen(map[y + 1]) && map[y + 1][x] == '0')
 		flood_fill_from_player(map, x, y + 1, game);
-	else if (y == game->data->nb_lines - 1 || (y < game->data->nb_lines - 1 && \
-	x < ft_strlen(map[y + 1]) && map[y + 1][x] != '1'))
+	else if (y == len - 1 || (y < len - 1 && \
+	x < ft_strlen(map[y + 1]) && map[y + 1][x] != '1') ||
+	(y < game->data->nb_lines - 1 && x >= ft_strlen(map[y + 1])))
 		exit_when_space_reachable_by_player(map, game);
-	if (x < ft_strlen(map[y]) - 1 && y < game->data->nb_lines && \
-	map[y][x + 1] == '0')
+	if (x < ft_strlen(map[y]) - 1 && y < len && map[y][x + 1] == '0')
 		flood_fill_from_player(map, x + 1, y, game);
-	else if (x == ft_strlen(map[y]) || (x < ft_strlen(map[y]) - 1 && \
-	y < game->data->nb_lines && map[y][x + 1] != '1'))
+	else if (x == ft_strlen(map[y]) - 1 || (x < ft_strlen(map[y]) - 1 && \
+	y < len && map[y][x + 1] != '1'))
 		exit_when_space_reachable_by_player(map, game);
 }
 
@@ -48,6 +48,11 @@ static char	**check_no_reachable_space_from_player(t_game *game)
 	int		y;
 
 	map = arr_copy(game->data->map);
+	if (game->data->map && game->data->map[0] && !map)
+	{
+		free_structs(game);
+		display_allocation_failed_and_exit(0);
+	}
 	x = game->player->player_pos_x;
 	y = game->player->player_pos_y;
 	flood_fill_from_player(map, x, y, game);

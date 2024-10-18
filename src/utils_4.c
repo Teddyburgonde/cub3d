@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 17:57:15 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 19:18:47 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/18 20:21:01 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ char	**arr_copy(char **arr)
 	while (arr && arr[i])
 	{
 		result[i] = ft_strdup(arr[i]);
+		if (!result[i])
+		{
+			free_array(result);
+			return (NULL);
+		}
 		i++;
 	}
 	result[i] = NULL;

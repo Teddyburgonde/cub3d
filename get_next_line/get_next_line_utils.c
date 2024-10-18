@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 13:53:47 by ppuivif           #+#    #+#             */
-/*   Updated: 2024/10/10 10:37:59 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/18 18:43:20 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
-char	*begin_new_line(char *s1)
+char	*begin_new_line(char *s1, int fd)
 {
 	char	*s2;
 	int		len;
@@ -63,7 +63,7 @@ char	*begin_new_line(char *s1)
 	}
 	s2 = ft_calloc(len + 1, sizeof(char));
 	if (!s2)
-		display_allocation_failed_and_exit();
+		display_allocation_failed_and_exit(fd);
 	i = 0;
 	j = find_line_return(s1);
 	while (s1 && s1[j])
@@ -77,7 +77,7 @@ char	*begin_new_line(char *s1)
 	return (s2);
 }
 
-char	*close_current_line(char *s1)
+char	*close_current_line(char *s1, int fd)
 {
 	char	*s2;
 	int		len;
@@ -86,7 +86,7 @@ char	*close_current_line(char *s1)
 	len = find_line_return(s1);
 	s2 = ft_calloc((len + 1), sizeof(char));
 	if (!s2)
-		display_allocation_failed_and_exit();
+		display_allocation_failed_and_exit(fd);
 	i = 0;
 	while (s1 && s1[i] && i < len)
 	{

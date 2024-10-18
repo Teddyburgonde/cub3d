@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 18:34:28 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 14:37:16 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/18 20:04:38 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,22 @@ static void	delete_texture(t_texture *texture)
 
 void	free_structs(t_game *game)
 {
-	if (game->mlx)
+	if (game && game->mlx)
 	{
 		mlx_close_window(game->mlx);
 		mlx_terminate(game->mlx);
 	}
-	if (game->player)
+	if (game && game->player)
 		free(game->player);
-	if (game->texture)
+	if (game && game->texture)
 		delete_texture(game->texture);
-	if (game->texture)
+	if (game && game->texture)
 		free(game->texture);
-	if (game->data->file_content)
+	if (game && game->data && game->data->file_content)
 		free_array(game->data->file_content);
-	if (game->data->lines_lenght)
+	if (game && game->data && game->data->lines_lenght)
 		free(game->data->lines_lenght);
-	if (game->data)
+	if (game && game->data)
 		free(game->data);
 	if (game)
 		free(game);

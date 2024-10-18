@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:03:02 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/15 17:11:05 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/18 19:39:32 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ int	main(int argc, char **argv)
 	t_game		*game;
 
 	fd = 0;
+	file_content = NULL;
 	game = NULL;
 	parsing_arguments(argc, argv);
 	check_and_open_file(&fd, argv);
 	file_content = get_file_content(fd);
-	memory_allocation_for_structs(&game);
+	memory_allocation_for_structs(&game, file_content);
 	initialization_of_values(game, file_content);
 	parsing_file_textures(game);
 	parsing_file_path_textures(game);

@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:04:10 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 14:20:05 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/18 22:26:33 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ t_ray_result	ray_hit_detection(float ray_angle, t_game *game)
 	initialize_ray(&ray_result, game, ray_angle);
 	calcul_delta(&ray_result);
 	initialize_ray_step_and_distance(&ray_result, game);
-	ray_result.hit = 0;
 	ray_result = perform_dda(ray_result, game->data->map);
 	ray_result.wall_height = (int)((float)game->data->height / \
 		(floor(ray_result.ray_dist_perpendicular_to_wall * \

@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 11:13:01 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/18 20:50:24 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_game *game)
 		|| counter_parameter.counter_ea != 1
 		|| counter_parameter.counter_f != 1 || counter_parameter.counter_c != 1)
 	{
-		ft_putstr_fd("Error: One or more way to texture/color is missing\n", 2);
+		ft_putstr_fd("Error: One or more way to texture/color is missing \
+or redundant\n", 2);
 		free_structs(game);
 		exit (EXIT_FAILURE);
 	}

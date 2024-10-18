@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/17 17:47:44 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/18 20:12:30 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	parsing_color(char *line, int *color, t_game *game)
 	if (!arr)
 	{
 		free_structs(game);
-		display_allocation_failed_and_exit();
+		display_allocation_failed_and_exit(0);
 	}
 	get_color(color, arr, game);
 	free_array(arr);

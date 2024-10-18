@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 14:35:54 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/15 17:13:25 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/18 22:27:11 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,18 @@ static char	**build_array(char **arr, int i)
 	char	**result;
 
 	result = malloc((i + 2) * sizeof(char *));
-	j = 0;
 	if (!result)
 		return (NULL);
+	j = 0;
 	while (arr && arr[j])
 	{
 		result[j] = ft_strdup(arr[j]);
+		if (!result[j])
+		{
+			free_array(arr);
+			free_array(result);
+			return (NULL);
+		}
 		j++;
 	}
 	result[j + 1] = NULL;
@@ -31,30 +37,40 @@ static char	**build_array(char **arr, int i)
 	return (result);
 }
 
+static char	**get_lines(int fd, char *line)
+{
+	int		i;
+	char	**file_content;
+
+	i = 0;
+	file_content = NULL;
+	while (line)
+	{
+		file_content = build_array(file_content, i);
+		if (!file_content)
+		{
+			free(line);
+			display_allocation_failed_and_exit(fd);
+		}
+		file_content[i] = ft_substr(line, 0, ft_strcspn(line, "\n"));
+		free(line);
+		if (!file_content[i])
+			display_allocation_failed_and_exit(fd);
+		line = get_next_line(fd);
+		i++;
+	}
+	return (file_content);
+}
+
 char	**get_file_content(int fd)
 {
 	char	**file_content;
 	char	*line;
-	int		i;
 
-	file_content = NULL;
 	line = get_next_line(fd);
 	if (!line)
-	{
-		ft_putstr_fd("Error: File is empty\n", 2);
-		exit(EXIT_FAILURE);
-	}
-	i = 0;
-	while (line)
-	{
-		file_content = build_array(file_content, i);
-		file_content[i] = ft_substr(line, 0, ft_strcspn(line, "\n"));
-		if (!file_content[i])
-			display_allocation_failed_and_exit();
-		free(line);
-		line = get_next_line(fd);
-		i++;
-	}
+		exit_when_file_is_empty(fd);
+	file_content = get_lines(fd, line);
 	if (fd > 2)
 		close(fd);
 	return (file_content);

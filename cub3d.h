@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 07:41:32 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/17 17:13:22 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/18 20:03:40 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,8 @@ char			**get_file_content(int fd);
 * allocation.c
 */
 
-void			memory_allocation_for_structs(t_game **game);
+void			memory_allocation_for_structs(t_game **game, \
+				char **file_content);
 
 /*
 * initialization_of_values.c
@@ -223,7 +224,8 @@ void			draw_elements(mlx_image_t *image, \
 * error.c
 */
 
-void			display_allocation_failed_and_exit(void);
+void			display_allocation_failed_and_exit(int fd);
+void			exit_when_file_is_empty(int fd);
 void			exit_when_space_reachable_by_player(char **map, t_game *game);
 void			exit_when_0_non_closed_by_1(char **filled_map, t_game *game);
 

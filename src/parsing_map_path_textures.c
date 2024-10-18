@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/16 11:12:50 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/18 20:11:09 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_game *game)
 	{
 		free_array(arr);
 		free_structs(game);
-		display_allocation_failed_and_exit();
+		display_allocation_failed_and_exit(0);
 	}
 	if (arr[1])
 		*texture = mlx_load_png(arr[1]);
