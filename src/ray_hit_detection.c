@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 17:04:10 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/14 19:47:38 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/18 17:13:28 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static void	initialize_ray_step_and_distance(t_ray_result *ray_result,
 	if (ray_result->ray_dist_x < 0)
 	{
 		ray_result->step_x = -1; // Si la direction est négative, on va verifier la case vers la gauche dans la carte
+// player_pos_x est un float (le joueur n'est pas forcement au milieu de la case) alors que map_pos_x est un entier (l'index de la case)
 		ray_result->ray_dist_x = (game->player->player_pos_x - ray_result->map_pos_x) * ray_result->delta_dist_x; // Calcule la distance à la prochaine ligne de la carte sur l'axe X
-//		ray_result->ray_dist_x = ray_result->delta_dist_x; // Calcule la distance à la prochaine ligne de la carte sur l'axe X
 	}
 	else
 	{
@@ -73,12 +73,12 @@ static void	initialize_ray_step_and_distance(t_ray_result *ray_result,
 
 static void	calcul_delta(t_ray_result *ray_result)
 {
-	// Calcul du delta_dist_x
+	// Calcul du delta_dist_x qui correspond a la composante horizontale de la distance a parcourir le long du rayon pour atteindre la prochaine ligne verticale de la grille
 	if (ray_result->ray_dist_x == 0)
 		ray_result->delta_dist_x = 1e30; // Si le rayon est parfaitement vertical, on met une grande valeur
 	else
 		ray_result->delta_dist_x = fabs(1 / ray_result->ray_dist_x);// Sinon on calcule le delta pour l'axe X
-	// Calcul du delta_dist_y
+	// Calcul du delta_dist_y qui correspond a la composante verticale de la distance a parcourir le long du rayon pour atteindre la prochaine ligne horizontale de la grille
 	if (ray_result->ray_dist_y == 0)
 		ray_result->delta_dist_y = 1e30; // Si le rayon est parfaitement horizontal, on met une grande valeur
 	else
@@ -87,10 +87,10 @@ static void	calcul_delta(t_ray_result *ray_result)
 
 static void	initialize_ray(t_ray_result *ray_result, t_game *game, float ray_angle)
 {
-	ray_result->map_pos_x = game->player->player_pos_x; // Définit le point de départ du rayon horizontal
-	ray_result->map_pos_y = game->player->player_pos_y; // Définit le point de départ du rayon vertical
-	ray_result->ray_dist_x = cos(ray_angle); // On definie la direction horizontal du rayon où il sera envoyé plus tard
-	ray_result->ray_dist_y = sin(ray_angle); // On definie la direction vertical du rayon où il sera envoyé plus tard
+	ray_result->map_pos_x = game->player->player_pos_x; // Définit l'abscisse du point de départ du rayon
+	ray_result->map_pos_y = game->player->player_pos_y; // Définit l'ordonnee du point de départ du rayon
+	ray_result->ray_dist_x = cos(ray_angle); // On definit la composante horizontale du rayon
+	ray_result->ray_dist_y = sin(ray_angle); // On definit la composante verticale du rayon
 
 }
 
@@ -101,7 +101,7 @@ t_ray_result	ray_hit_detection(float ray_angle, t_game *game)
 	initialize_ray(&ray_result, game, ray_angle);
 	calcul_delta(&ray_result);
 	initialize_ray_step_and_distance(&ray_result, game);
-	ray_result.hit = 0;
+//	ray_result.hit = 0;
 	ray_result = perform_dda(ray_result, game->data->map);
 	//cette ligne permet de calculer la hauteur du mur		    floor permet d'enleve le fisheye(distorsion visuel, les objets proches paraissent déformé)
 	ray_result.wall_height = (int)((float)game->data->height / (floor(ray_result.ray_dist_perpendicular_to_wall * cos(clamp(game->player->angle - ray_angle, 0, 2 * M_PI)) * 1000) / 1000)); 
