@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 01:49:06 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/15 09:47:13 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/19 10:12:00 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	check_and_open_file(int *fd, char **argv)
 	*fd = open(argv[1], O_RDONLY);
 	if (*fd < 0 || *fd > 1023)
 	{
-		ft_putstr_fd("Error: The file is not reachable \
+		ft_putstr_fd("Error: The file is not reachable/no rights \
 or does not exist\n", 2);
 		exit(EXIT_FAILURE);
 	}
