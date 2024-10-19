@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map_colors.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/18 20:12:30 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/19 14:19:32 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ static void	get_color(int *color, char **arr, t_game *game)
 			exit_when_incorrect_color_value(arr, game);
 		i++;
 	}
-	if (color[0] && color[1] && color[2])
+	if (color[0] >= 0 && color[1] >= 0 && color[2] >= 0 && !arr[i])
+	{
 		color[3] = ft_pixel(color[0], color[1], color[2]);
+	}
 	else
 		exit_when_incorrect_color_value(arr, game);
 }
@@ -46,7 +48,6 @@ static void	get_color(int *color, char **arr, t_game *game)
 static void	parsing_color(char *line, int *color, t_game *game)
 {
 	char	**arr;
-
 	arr = ft_split(&line[1], ',');
 	if (!arr)
 	{
