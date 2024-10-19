@@ -3,7 +3,6 @@ SO ./textures/wall_so.png
 EA ./textures/wall_ea.png
 WE ./textures/wall_we.png
 F 254,45,60
-C 225,30,5
 
 111111111
 100000001
