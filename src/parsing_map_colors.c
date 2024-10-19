@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:07:59 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/18 20:12:30 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/19 15:06:58 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,21 @@ int32_t	ft_pixel(int32_t r, int32_t g, int32_t b)
 	return (r << 24 | g << 16 | b << 8 | 255);
 }
 
-static void	exit_when_incorrect_color_value(char **arr, t_game *game)
+static void	count_comma_in_str(char *line, t_game *game)
 {
-	ft_putstr_fd("Error: Incorrect color value\n", 2);
-	free_array(arr);
-	free_structs(game);
-	exit(EXIT_FAILURE);
+	int		i;
+	int		count_comma;
+
+	i = 0;
+	count_comma = 0;
+	while (line && line[i])
+	{
+		if (line[i] == ',')
+			count_comma++;
+		i++;
+	}
+	if (count_comma > 2)
+		exit_when_incorrect_color_value(NULL, game);
 }
 
 static void	get_color(int *color, char **arr, t_game *game)
@@ -37,7 +46,7 @@ static void	get_color(int *color, char **arr, t_game *game)
 			exit_when_incorrect_color_value(arr, game);
 		i++;
 	}
-	if (color[0] && color[1] && color[2])
+	if (color[0] >= 0 && color[1] >= 0 && color[2] >= 0 && !arr[i])
 		color[3] = ft_pixel(color[0], color[1], color[2]);
 	else
 		exit_when_incorrect_color_value(arr, game);
@@ -47,6 +56,7 @@ static void	parsing_color(char *line, int *color, t_game *game)
 {
 	char	**arr;
 
+	count_comma_in_str(line, game);
 	arr = ft_split(&line[1], ',');
 	if (!arr)
 	{
@@ -71,10 +81,7 @@ void	parsing_file_colors(t_game *game)
 		if (ft_strncmp(tmp, "F ", 2) == 0)
 			parsing_color(tmp, game->data->floor_color, game);
 		if (ft_strncmp(tmp, "C ", 2) == 0)
-		{
-			game->data->begin_map_index = i + 1;
 			parsing_color(tmp, game->data->ceiling_color, game);
-		}
 		i++;
 	}
 }
