@@ -19,57 +19,5 @@ PA
 
 ❌ créer les bonus pour la minimap.
 
------------------------------------------------------------------------------------------------
-
-tests parsing (avec valgrind):
-
-- envoyer 0 arguments, ✅
-- envoyer plus de 1 argument,✅
-- envoyer un fichier qui n'existe pas,✅
-- envoyer le nom d'un répertoire dir.cub, ✅
-- envoyer un fichier qui n'a pas l'extension .cub (.zub), ✅
-
-
-- envoyer un fichier file.cub avec une extension .cub (.cub.cub), ✅
-
-- envoyer un fichier sur lequel l'utilisateur n'a pas les droits, ✅
-
-- envoyer un fichier vide, ✅
-- envoyer un fichier dans lequel il manque une texture, ✅
-- envoyer un fichier dans lequel il manque une couleur,✅
-
-- envoyer un fichier dans lequel il y a des lignes vides entre les textures,✅
-- envoyer un fichier dans lequel il y a des lignes vides entre les couleurs,✅
-- envoyer un fichier dans lequel il y a des lignes vides entre les textures et les couleurs, ✅
-
-- envoyer un fichier dans lequel la mention N0 pour la texture est précédée d'un espace,✅
-- envoyer un fichier dans lequel la mention N0 pour la texture est suivie d'un ou plusieurs, ✅
-espaces,
-
-- envoyer un fichier dans lequel une texture n'existe pas, ✅
-
-- envoyer un fichier dans lequel l'utilisateur ne dispose pas les droits pour l'accès à une
-texture,
-- envoyer un fichier dans lequel deux textures sont inversées,
-
-- envoyer un fichier dans lequel la mention C pour la couleur du plafond est précédée d'un
-espace,
-- envoyer un fichier dans lequel la mention C pour la couleur du plafond est suivie d'un ou
-plusieurs espaces,
-- envoyer un fichier dans lequel la couleur du plafond contient des espaces avant, après
-les nombres,
-- envoyer un fichier dans lequel la couleur du plafond est invalide (valeur négative,
-supérieure à 255, avec une lettre avant le nombre, après le nombre),
-
-- envoyer une map avec un caractère autre que 0, 1, espace, N, S, W, E,✅
-- envoyer une map avec des espaces en bordure de map, ✅
-- envoyer une map avec des 0 en bordure de map (en haut, en bas, à droite, à gauche),✅
-- envoyer une map avec des 0 sur la fin de lignes plus longues au milieu de la map,
-- envoyer une map avec des espaces au milieu, ✅
-- envoyer une map avec des lignes vides au milieu, ✅
-
-- vérifier que la fenêtre se ferme avec echap, ✅
-- vérifier que la fenêtre se ferme en cliquant sur la croix, ✅
-
 
 ✅ ❌

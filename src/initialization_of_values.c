@@ -6,11 +6,23 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 12:25:34 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/18 20:09:44 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/28 09:34:22 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+static void	int_array_initialization(int *array)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		array[i] = -1;
+		i++;
+	}
+}
 
 void	initialization_of_values(t_game *game, char **file_content)
 {
@@ -26,6 +38,8 @@ void	initialization_of_values(t_game *game, char **file_content)
 	game->data->nb_columns = 0;
 	game->data->lines_lenght = NULL;
 	game->data->begin_map_index = 0;
+	int_array_initialization(game->data->floor_color);
+	int_array_initialization(game->data->ceiling_color);
 	game->texture->image = NULL;
 	game->texture->walls_image = NULL;
 	game->texture->floor_image = NULL;
