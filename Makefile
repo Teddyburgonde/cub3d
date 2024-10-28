@@ -6,7 +6,7 @@
 #    By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 07:00:41 by tebandam          #+#    #+#              #
-#    Updated: 2024/10/17 11:25:33 by ppuivif          ###   ########.fr        #
+#    Updated: 2024/10/28 12:15:58 by ppuivif          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,11 +66,15 @@ dark_green='\033[0;32m'
 
 RM = rm -f
 
-all: $(NAME)
+all: mlx_build $(NAME)
 
 $(NAME) : $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) -o $(NAME)
 	@echo $(dark_green)"Executable is ready"
+
+mlx_build:
+	@cd MLX42 && cmake -B build
+	@cd MLX42 && cmake --build build -j4
 
 clean: 
 	@$(RM) $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: ppuivif <ppuivif@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 11:19:52 by tebandam          #+#    #+#             */
-/*   Updated: 2024/10/19 15:29:30 by ppuivif          ###   ########.fr       */
+/*   Updated: 2024/10/28 12:03:46 by ppuivif          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,22 @@ t_game *game)
 		|| counter_parameter.counter_ea != 1
 		|| counter_parameter.counter_f != 1 || counter_parameter.counter_c != 1)
 	{
-		ft_putstr_fd("Error: One or more way to texture/color is missing \
-or redundant\n", 2);
+		ft_putstr_fd("Error: One or more way to texture/color is false, \
+missing or redundant\n", 2);
 		free_structs(game);
 		exit (EXIT_FAILURE);
 	}
 }
 
+#include <stdio.h>
+
+
 static int	count_parameters(char *tmp, t_counter_parameter	*counter_parameter)
+//static void	count_parameters(char *tmp, t_counter_parameter	*counter_parameter)
 {
-	if (ft_strncmp(tmp, "NO ", 3) == 0)
+	if (tmp[0] == 0)
+		return (1);
+	else if (ft_strncmp(tmp, "NO ", 3) == 0)
 		counter_parameter->counter_no++;
 	else if (ft_strncmp(tmp, "SO ", 3) == 0)
 		counter_parameter->counter_so++;
@@ -42,7 +48,7 @@ static int	count_parameters(char *tmp, t_counter_parameter	*counter_parameter)
 	else if (ft_strncmp(tmp, "C ", 2) == 0)
 		counter_parameter->counter_c++;
 	else
-		return (0);
+	 	return (0);
 	return (1);
 }
 
@@ -58,6 +64,7 @@ void	parsing_file_textures(t_game *game)
 	{
 		tmp = skip_first_spaces(game->data->file_content[i]);
 		if (count_parameters(tmp, &counter_parameter) == 0)
+//		count_parameters(tmp, &counter_parameter); 	 
 			break ;
 		i++;
 	}
