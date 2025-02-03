@@ -97,5 +97,206 @@ C 255,255,255
 1000000001
 1111111111
 ```
+-------------------------------------------
+
+# README.md
+
+## Introduction
+
+Ce projet permet de charger et analyser un fichier `.cub` pour afficher un environnement graphique. Voici les étapes à suivre pour que votre ami puisse l'utiliser correctement.
+
+## Prérequis
+
+Avant de commencer, assurez-vous que les points suivants sont remplis :
+
+1. Avoir un compilateur C installé (`gcc` ou `clang`).
+2. Disposer de la bibliothèque graphique `MLX`.
+3. Les fonctions auxiliaires suivantes doivent être disponibles :
+   - `ft_strncmp`, `ft_strdup`, `ft_split`, `ft_strlen`, `ft_substr`, `ft_atoi`, `get_next_line`.
+
+---
+
+## Étapes à suivre pour utiliser le projet
+
+### 1. Cloner le projet
+
+```bash
+git clone <url-du-repo>
+```
+
+### 2. Compiler le projet
+
+```bash
+make
+```
+
+### 3. Préparer un fichier `.cub`
+
+Le fichier `.cub` doit contenir les éléments suivants :
+
+- Les chemins vers les textures.
+- Les couleurs pour le sol (`F`) et le plafond (`C`).
+- Une carte correctement fermée.
+
+Exemple de fichier `.cub` :
+
+```text
+NO ./textures/north_texture.png
+SO ./textures/south_texture.png
+WE ./textures/west_texture.png
+EA ./textures/east_texture.png
+F 220,100,50
+C 255,255,255
+
+1111111111
+1000000001
+1011101111
+1000000001
+1111111111
+```
+
+### 4. Lancer le programme avec le fichier `.cub`
+
+```bash
+./program map.cub
+```
+
+Si le fichier est valide, le programme affichera le rendu graphique. En cas d'erreur, un message d’erreur apparaîtra.
+
+---
+
+## Étapes techniques dans le code
+
+Voici les principales étapes effectuées par le programme lors de son exécution :
+
+### 1. Parsing des arguments
+
+**Fonction :** `parsing_arguments`
+
+- Vérifie que le fichier est bien passé en argument.
+- Valide l’extension `.cub`.
+
+Code correspondant :
+
+```c
+void parsing_arguments(int argc, char **argv)
+{
+    if (argc != 2)
+    {
+        ft_putstr_fd("Error: Wrong argument number\n", 2);
+        exit(EXIT_FAILURE);
+    }
+    if (manage_cub_extension(argv) == 1)
+    {
+        ft_putstr_fd("Error: Wrong extension map\n", 2);
+        exit(EXIT_FAILURE);
+    }
+}
+```
+
+### 2. Ouverture et lecture du fichier
+
+**Fonction :** `get_file_content`
+
+- Ouvre le fichier et le lit ligne par ligne.
+- Stocke le contenu dans un tableau de chaînes de caractères.
+
+Code correspondant :
+
+```c
+char **get_file_content(int fd)
+{
+    char **file_content;
+    char *line;
+
+    line = get_next_line(fd);
+    if (!line)
+        exit_when_file_is_empty(fd);
+
+    file_content = get_lines(fd, line);
+    if (fd > 2)
+        close(fd);
+    return (file_content);
+}
+```
+
+### 3. Parsing des textures
+
+**Fonction :** `parsing_file_textures`
+
+- Analyse les lignes du fichier contenant les chemins des textures.
+- Met à jour l’index de début de la carte.
+
+Code correspondant :
+
+```c
+void parsing_file_textures(t_game *game)
+{
+    int i;
+    char *tmp;
+    t_counter_parameter counter_parameter;
+
+    i = 0;
+    ft_memset(&counter_parameter, 0, sizeof(t_counter_parameter));
+    while (game->data->file_content[i])
+    {
+        tmp = skip_first_spaces(game->data->file_content[i]);
+        if (count_parameters(tmp, &counter_parameter) == 0)
+            break;
+        i++;
+    }
+    game->data->begin_map_index = i;
+    check_if_missing_element(counter_parameter, game);
+}
+```
+
+### 4. Validation de la carte
+
+**Fonction :** `parsing_map`
+
+- Vérifie la validité de la carte.
+- Utilise une technique de flood-fill pour s'assurer que toutes les zones sont correctement fermées.
+
+Code correspondant :
+
+```c
+void parsing_map(t_game *game)
+{
+    skip_first_empty_lines(&game->data->map);
+    check_map_validity(game);
+}
+```
+
+### 5. Rendu graphique
+
+**Fonction :** `render_graphics`
+
+- Initialise l'affichage et affiche la carte avec les textures chargées.
+
+### 6. Libération de la mémoire
+
+**Fonction :** `free_structs`
+
+- Libère toutes les structures de données allouées dynamiquement.
+
+---
+
+## Gestion des erreurs
+
+Le programme gère différentes erreurs, telles que :
+
+- Nombre incorrect d'arguments.
+- Extension de fichier invalide.
+- Fichier inaccessible ou vide.
+- Erreurs dans les chemins de textures ou les couleurs.
+- Carte non valide (ex. : zones non fermées).
+
+Exemple de message d’erreur :
+
+```text
+Error: Wrong argument number
+```
+
+---
 
 
