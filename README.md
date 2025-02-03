@@ -98,10 +98,4 @@ C 255,255,255
 1111111111
 ```
 
-## Contributeurs
-- [Nom du développeur 1]
-- [Nom du développeur 2]
-
-## Remerciements
-Merci à tous les contributeurs et aux ressources externes qui ont aidé à la réalisation de ce projet.
 
